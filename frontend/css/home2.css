@@ -1,0 +1,179 @@
+*
+{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+    background-color: #f5bf7d;
+}
+
+.dm-sans-regular {
+    font-family: "DM Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+  }
+
+.faculty-glyphic-regular {
+    font-family: "Faculty Glyphic", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+.header {
+    padding: 20px;
+    margin: 0px;
+    text-align: left;
+    background: #007a87;
+    color: white;
+    font-size: 16px;
+    font-family: Faculty Glyphic, serif;
+    display: flex;
+    justify-content: space-between; /* Horizontal alignment */
+    align-items: flex-start; 
+  }
+
+.content {
+    padding: 10px;
+    margin: 0px;
+    text-align: right;
+    background: #007a87;
+    color: white;
+    font-size: 16px;
+    font-family: Faculty Glyphic, serif;
+}
+
+h2{
+    color: black;
+    font-family: Faculty Glyphic, serif;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* hero section */
+
+.hero {
+    display: flex;
+    text-align: left;
+}
+
+.hero-content {
+    display: flex;
+    align-items: left;
+    gap: 20px; /* Space between text and image */
+    max-width: 100%;
+    /*margin: 0 auto;*/
+    padding-top: 0px;
+    flex-wrap: wrap; /* Ensures it adapts to smaller screens */
+}
+
+.hero-text {
+    flex: 1;
+}
+
+.hero-text h1 {
+    color: black;
+    font-family: Faculty Glyphic, serif;
+    padding: 20px;
+    font-size: 48px;
+}
+
+.hero-text p {
+    font-family: DM Sans;
+    padding: 20px;
+    font-size: 20px;
+}
+
+.hero-text .learn-more {
+    padding: 15px 30px;
+    font-size: 16px;
+    /*font-weight: bold;*/
+    background-color: #007a87;
+    border: solid 2px white;
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+    justify-content: center;
+    float: center;
+    margin-left: 250px;
+    font-family: Faculty Glyphic, serif;
+}
+
+/* link styling */
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    color: white;
+  }
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: right;
+    margin-right: 0;
+    right: 0px;
+} 
+
+.hero-image img {
+    max-width: 100%;
+    height: 100%;
+    border-radius: 0;
+    float: left;
+}
+
+  /* sidebar navigation */
+
+  .sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 85px; /* Stay at the top */
+    right: 0;
+    background-color: #007a87; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    border: solid 6px white; 
+  }
+  
+  /* The navigation menu links */
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+    font-family: Faculty Glyphic, serif;
+  }
+  
+  /* When you mouse over the navigation links, change their color */
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+  /* Position and style the close button (top right corner) */
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+  #main {
+    transition: margin-left .5s;
+    padding: 20px;
+  }
+  
+  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
