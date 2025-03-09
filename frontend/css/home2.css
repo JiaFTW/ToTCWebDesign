@@ -6,6 +6,7 @@
 
 body{
     background-color: #f5bf7d;
+	position: relative;
 }
 
 .dm-sans-regular {
@@ -20,35 +21,58 @@ body{
     font-weight: 400;
     font-style: normal;
 }
-  
-.header {
-    padding: 20px;
-    margin: 0px;
-    text-align: left;
-    background: #007a87;
-    color: white;
-    font-size: 16px;
-    font-family: Faculty Glyphic, serif;
-    display: flex;
-    justify-content: space-between; /* Horizontal alignment */
-    align-items: flex-start; 
-  }
-
-.content {
-    padding: 10px;
-    margin: 0px;
-    text-align: right;
-    background: #007a87;
-    color: white;
-    font-size: 16px;
-    font-family: Faculty Glyphic, serif;
-}
 
 h2{
     color: black;
     font-family: Faculty Glyphic, serif;
     text-align: center;
     margin-top: 20px;
+}
+
+/* navbar section */
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  overflow: hidden;
+  background-color: #007a87;
+  display: flex;
+  align-items: center;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  
+}
+
+.navbar li {
+  display: flex;
+}
+
+.navbar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 15px 15px;
+  text-decoration: none;
+  font-size: 16px;
+  font-family: Faculty Glyphic, serif;
+}
+
+.navbar img {
+	width: 100px;
+	height: 100px;
+}
+
+.navbar h1{
+	font-size: 24px;
 }
 
 /* hero section */
@@ -63,9 +87,23 @@ h2{
     align-items: left;
     gap: 20px; /* Space between text and image */
     max-width: 100%;
-    /*margin: 0 auto;*/
     padding-top: 0px;
     flex-wrap: wrap; /* Ensures it adapts to smaller screens */
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: right;
+    margin-right: 0;
+    right: 0px;
+} 
+
+.hero-image img {
+    max-width: 100%;
+    height: 100%;
+    border-radius: 0;
+    float: left;
 }
 
 .hero-text {
@@ -97,6 +135,8 @@ h2{
     justify-content: center;
     float: center;
     margin-left: 250px;
+	/*margin-top: 10px;*/
+	margin-bottom: 20px;
     font-family: Faculty Glyphic, serif;
 }
 
@@ -108,72 +148,110 @@ a:link {
 
 a:visited {
     color: white;
-  }
-
-.hero-image {
-    flex: 1;
-    display: flex;
-    justify-content: right;
-    margin-right: 0;
-    right: 0px;
-} 
-
-.hero-image img {
-    max-width: 100%;
-    height: 100%;
-    border-radius: 0;
-    float: left;
 }
 
-  /* sidebar navigation */
+/* order section */
 
-  .sidenav {
-    height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
-    top: 85px; /* Stay at the top */
-    right: 0;
-    background-color: #007a87; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-    border: solid 6px white; 
-  }
-  
-  /* The navigation menu links */
-  .sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
+.order {
+	display: flex;
+    align-items: center; 
+    justify-content: space-between; 
+	background-color: #007a87;
+}
+
+.order-text {
+    flex: 1; 
+    max-width: 50%; 
+	padding: 50px;
+	margin-left: 250px;
+}
+
+.order-text h1 {
+	color: black;
+    font-family: DM Sans, sans-serif;
+    text-align: left;
+    margin-bottom: 10px;
+	font-size: 36px;
+}
+
+.order-text p {
+	font-family: DM Sans;
+    font-size: 20px;
+    text-align: left;
+    margin: 0;
+}
+
+.order img {
+	width: 40%;
+    height: 40%;
+    flex-shrink: 0;
+}
+
+.order .menu {
+    padding: 15px 30px;
+    font-size: 16px;
+    /*font-weight: bold;*/
+    background-color: #f5bf7d;
+    border: solid 2px white;
+    border-radius: 25px;
     color: white;
-    display: block;
-    transition: 0.3s;
+    cursor: pointer;
+    justify-content: center;
+    float: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
     font-family: Faculty Glyphic, serif;
-  }
+}
+
   
-  /* When you mouse over the navigation links, change their color */
-  .sidenav a:hover {
-    color: #f1f1f1;
-  }
-  
-  /* Position and style the close button (top right corner) */
-  .sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-  }
-  
-  /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-  #main {
-    transition: margin-left .5s;
-    padding: 20px;
-  }
-  
-  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-  @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-  }
+
+/* map section */
+
+.map {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; 
+	gap: 50px;
+    padding: 50px;
+}
+
+.map-text {
+    flex: 1; /* Allows text to take up available space */
+    max-width: 50%; 
+}
+
+.map h1 {
+    color: black;
+    font-family: Faculty Glyphic, serif;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.map p {
+    font-family: DM Sans;
+    font-size: 20px;
+    text-align: left;
+    margin: 0;
+}
+
+.map img {
+    width: 700px;
+    height: auto;
+    flex-shrink: 0; /* Prevents image from shrinking */
+	border-radius: 25px;
+	margin-bottom: 50px;
+}
+
+/* footer section */
+
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #007a87;
+  color: white;
+  text-align: left;
+  font-family: DM Sans, sans-serif;
+  padding: 15px;
+}
