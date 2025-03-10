@@ -20,29 +20,34 @@ if ($mysqli->connect_error) {
 }
 
 $callback = function ($msg) use ($mysqli) {
-    echo " [x] Received ", $msg->body, "\n";
+    echo "[x] Received " . $msg->body . "\n";
     $data = json_decode($msg->body, true);
 
     if ($data['action'] == 'register') {
+        // Register a new user
         $stmt = $mysqli->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
-        $stmt->bind_param("ss", $data['username'], password_hash($data['password'], PASSWORD_BCRYPT));
+        $stmt->bind_param("ss", $data['username'], $data['password']);
         $stmt->execute();
         echo "User Registered: " . $data['username'] . "\n";
     } elseif ($data['action'] == 'login') {
+        // Verify user login
         $stmt = $mysqli->prepare("SELECT password FROM users WHERE username=?");
         $stmt->bind_param("s", $data['username']);
         $stmt->execute();
         $stmt->store_result();
+
         if ($stmt->num_rows > 0) {
-            echo "Login Successful for " . $data['username'] . "\n";
+            $stmt->bind_result($hashed_password);
+            $stmt->fetch();
+
+            if (password_verify($data['password'], $hashed_password)) {
+                echo "Login Successful for " . $data['username'] . "\n";
+            } else {
+                echo "Login Failed: Incorrect password for " . $data['username'] . "\n";
+            }
         } else {
-            echo "Login Failed for " . $data['username'] . "\n";
+            echo "Login Failed: User " . $data['username'] . " not found\n";
         }
-    } elseif ($data['action'] == 'order') {
-        $stmt = $mysqli->prepare("INSERT INTO orders (username, order_data) VALUES (?, ?)");
-        $stmt->bind_param("ss", $data['username'], json_encode($data['order']));
-        $stmt->execute();
-        echo "Order placed for " . $data['username'] . "\n";
     }
 };
 
