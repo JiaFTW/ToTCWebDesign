@@ -73,6 +73,8 @@ h2{
 
 .navbar h1{
 	font-size: 24px;
+    font-family: Faculty Glyphic, serif;
+    color: white;
 }
 
 .navbar li a:hover {
