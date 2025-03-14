@@ -69,6 +69,31 @@
     background-color: #d9432a;
 }
 
+/* Link colors */
+a:link {
+    color: blue;
+    background-color: transparent;
+    text-decoration: none;
+}
+  
+a:visited {
+    color: orange;
+    background-color: transparent;
+    text-decoration: none;
+}
+  
+a:hover {
+    color: blue;
+    background-color: transparent;
+    text-decoration: underline;
+}
+  
+a:active {
+    color: orange;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
 .footerc {
     position: fixed;
     left: 0;

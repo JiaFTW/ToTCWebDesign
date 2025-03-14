@@ -26,46 +26,20 @@
 				<li><a href="#contact">Catering</a></li>
 				<li><a href="#about">Hours and Location</a></li>
 				<li><a href="#about">About</a></li>
-                <li><a href="cart.html"><img src="images/cart_icon.png" alt="Go to cart page"></a></li>
+        <li><a href="cart.php"><img src="images/cart_icon.png" alt="Go to cart page"></a></li>
 			</div>
 		</ul>
 	</div>
-    <h2>Your Cart</h2>
-    <div class="cart-container">
-      <table class="cart-table">
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Jerk Chicken</td>
-            <td>$12.99</td>
-            <td>1</td>
-            <td>$12.99</td>
-          </tr>
-          <tr>
-            <td>Plantain Fries</td>
-            <td>$5.99</td>
-            <td>1</td>
-            <td>$5.99</td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="cart-summary">
-        <p>Subtotal: $18.98</p>
-        <p>Tax: $1.52</p>
-        <p><strong>Total: $20.50</strong></p>
-        <button class="checkout-btn">Proceed to Checkout</button>
-      </div>
-    </div>
-    
+  <h2>Jerk Chicken</h2>
+    <form action="add_to_cart.php" method="POST">
+        <input type="hidden" name="name" value="Jerk Chicken">
+        <input type="hidden" name="price" value="12.99">
+        <input type="number" name="quantity" value="1" min="1">
+        <button type="submit">Add to Cart</button>
+    </form>
+
     <div class="footerc">
-      <p>Taste of the Caribbean 2025</p>
+        <p>&copy; 2025 Taste of the Caribbean. All Rights Reserved.</p>
     </div>
 </body>
 </html>
