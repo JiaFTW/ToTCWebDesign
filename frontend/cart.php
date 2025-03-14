@@ -89,7 +89,7 @@ $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
     </div>
 
     <div class="footerc">
-        <p>&copy; 2025 Taste of the Caribbean. All Rights Reserved.</p>
+        <p>&copy; Taste of the Caribbean 2025</p>
     </div>
 </body>
 </html>
