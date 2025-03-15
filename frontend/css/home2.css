@@ -86,7 +86,6 @@ h2 {
 
 .navbar h1{
 	font-size: 24px;
-<<<<<<< HEAD
     color: white;
     font-family: Faculty Glyphic, sans-serif;
 }
@@ -104,23 +103,18 @@ h2 {
     padding: 10px 15px;
     transition: all 0.3s ease-in-out;
 	font-family: Faculty Glyphic, serif;
-=======
-    font-family: Faculty Glyphic, serif;
-    color: white;
->>>>>>> dfv6
+
 }
 
 .navbar li a:hover {
     background: rgba(255, 255, 255, 0.2);
 	border-radius: 5px;
-<<<<<<< HEAD
-=======
+
 }
 
 .nav-right img {
     width: 20px; /* Adjust width as needed */
     height: 20px; /* Maintains aspect ratio */
->>>>>>> dfv6
 }
 
 /* hero section */
