@@ -1,0 +1,76 @@
+/*CSS for all the food category pages in the Menu*/
+*
+{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+    background-color: #f5bf7d;
+	position: relative;
+}
+
+.dm-sans-regular {
+    font-family: "DM Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+  }
+
+.faculty-glyphic-regular {
+    font-family: "Faculty Glyphic", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+h2{
+    color: black;
+    font-family: Faculty Glyphic, serif;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* navbar section */
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    overflow: hidden;
+    background-color: #007a87;
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-right {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    
+  }
+  
+  .navbar li {
+    display: flex;
+  }
+  
+  .navbar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 15px 15px;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: Faculty Glyphic, serif;
+  }
+  
+  .navbar img {
+      width: 100px;
+      height: 100px;
+  }
+  
+  .navbar h1{
+      font-size: 24px;
+  }
