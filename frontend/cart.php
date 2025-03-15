@@ -26,22 +26,19 @@ $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 				<li><a href="#home"><h1>Taste of the Caribbean<h1></a></li>
 			</div>
 			<div class="nav-right">
-				<li><a href="#news">Menu</a></li>
-				<li><a href="index.html">Menu</a></li>
-				<li><a href="map.html">Map</a></li>
+                <li><a href="map.html">Map</a></li>
 				<li><a href="index1.html">Login</a></li>
-
 				<li><a href="#contact">Catering</a></li>
 				<li><a href="#about">Hours and Location</a></li>
 				<li><a href="#about">About</a></li>
-        <li><a href="cart.php"><img src="images/cart_icon.png" alt="Go to cart page"></a></li>
+				<li><a href="cart.php"><img src="images/cart_icon.png" alt="Go to cart page"></a></li>
 			</div>
 		</ul>
 	</div>
   <h2>Your Cart</h2>
     <div class="cart-container">
         <?php if (empty($cart)): ?>
-            <p>Your cart is empty. <a href="menu.html">Browse our menu</a> to add delicious items!</p>
+            <p>Your cart is empty. <a class="a" href="menu.html">Browse our menu</a> to add delicious items!</p>
         <?php else: ?>
             <table class="cart-table">
                 <thead>
