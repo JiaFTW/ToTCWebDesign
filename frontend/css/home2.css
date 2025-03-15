@@ -4,23 +4,36 @@
   padding: 0;
 }
 
+html{
+    overflow-x: hidden;
+}
+
+
 body{
     background-color: #f5bf7d;
 	position: relative;
+	overflow-x: hidden;
 }
+
 
 .dm-sans-regular {
     font-family: "DM Sans", serif;
     font-optical-sizing: auto;
     font-weight: 300;
     font-style: normal;
-  }
+}
 
 .faculty-glyphic-regular {
     font-family: "Faculty Glyphic", serif;
     font-weight: 400;
     font-style: normal;
 }
+
+.poppins-light {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
 
 h2{
     color: black;
@@ -31,14 +44,14 @@ h2{
 
 /* navbar section */
 
-.navbar ul {
+/*.navbar ul {
   list-style-type: none;
   margin: 0;
   overflow: hidden;
   background-color: #007a87;
   display: flex;
   align-items: center;
-}
+}*/
 
 .nav-left {
   display: flex;
@@ -56,7 +69,7 @@ h2{
   display: flex;
 }
 
-.navbar li a {
+/*.navbar li a {
   display: block;
   color: white;
   text-align: center;
@@ -64,7 +77,7 @@ h2{
   text-decoration: none;
   font-size: 16px;
   font-family: Faculty Glyphic, serif;
-}
+}*/
 
 .navbar img {
 	width: 100px;
@@ -73,8 +86,21 @@ h2{
 
 .navbar h1{
 	font-size: 24px;
-    font-family: Faculty Glyphic, serif;
-    color: white;
+}
+
+.navbar ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #56aab3;
+}
+
+.navbar li a {
+    font-size: 18px;
+    padding: 10px 15px;
+    transition: all 0.3s ease-in-out;
+	font-family: Faculty Glyphic, serif;
 }
 
 .navbar li a:hover {
@@ -95,7 +121,7 @@ h2{
     gap: 20px; /* Space between text and image */
     max-width: 100%;
     padding-top: 0px;
-    flex-wrap: wrap; /* Ensures it adapts to smaller screens */
+    flex-wrap: wrap;
 }
 
 .hero-image {
@@ -115,6 +141,7 @@ h2{
 
 .hero-text {
     flex: 1;
+	padding: 30px 0px;
 }
 
 .hero-text h1 {
@@ -125,7 +152,7 @@ h2{
 }
 
 .hero-text p {
-    font-family: DM Sans;
+    font-family: Poppins, sans-serif;
     padding: 20px;
     font-size: 20px;
 }
@@ -134,7 +161,7 @@ h2{
     padding: 15px 30px;
     font-size: 16px;
     /*font-weight: bold;*/
-    background-color: #007a87;
+    background-color: #56aab3;
     border: solid 2px white;
     border-radius: 25px;
     color: white;
@@ -151,6 +178,7 @@ h2{
 
 a:link {
     text-decoration: none;
+	color: white;
 }
 
 a:visited {
@@ -163,26 +191,26 @@ a:visited {
 	display: flex;
     align-items: center; 
     justify-content: space-between; 
-	background-color: #007a87;
+	background-color: #56aab3;
 }
 
 .order-text {
     flex: 1; 
     max-width: 50%; 
 	padding: 50px;
-	margin-left: 250px;
+	margin-left: 200px;
 }
 
 .order-text h1 {
 	color: black;
-    font-family: DM Sans, sans-serif;
+    font-family: Faculty Glyphic, serif;
     text-align: left;
     margin-bottom: 10px;
 	font-size: 36px;
 }
 
 .order-text p {
-	font-family: DM Sans;
+	font-family: Poppins, sans-serif;
     font-size: 20px;
     text-align: left;
     margin: 0;
@@ -210,6 +238,39 @@ a:visited {
     font-family: Faculty Glyphic, serif;
 }
 
+/* location section */
+.address{
+	display: flex;
+    align-items: center; 
+    justify-content: space-between; 
+}
+.address-text{
+    flex: 1;
+    max-width: 50%; 
+}
+
+.address h1 {
+    color: black;
+    font-family: Faculty Glyphic, serif;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.address p {
+    font-family: Poppins, sans-serif;
+    font-size: 20px;
+    text-align: center;
+    margin: 0;
+	padding: 0px 40px;
+}
+
+.address img {
+    width: 700px;
+    height: auto;
+    flex-shrink: 0; /* Prevents image from shrinking */
+}
+
+
   
 
 /* map section */
@@ -218,13 +279,16 @@ a:visited {
     display: flex;
     align-items: center; 
     justify-content: space-between; 
-	gap: 50px;
-    padding: 50px;
+	/*gap: 50px;
+    padding: 50px;*/
+	background-color: #56aab3;
 }
 
 .map-text {
     flex: 1; /* Allows text to take up available space */
     max-width: 50%; 
+	gap: 50px;
+    padding: 125px 50px;
 }
 
 .map h1 {
@@ -235,7 +299,7 @@ a:visited {
 }
 
 .map p {
-    font-family: DM Sans;
+    font-family: Poppins, sans-serif;
     font-size: 20px;
     text-align: left;
     margin: 0;
@@ -245,8 +309,6 @@ a:visited {
     width: 700px;
     height: auto;
     flex-shrink: 0; /* Prevents image from shrinking */
-	border-radius: 25px;
-	margin-bottom: 50px;
 }
 
 /* footer section */
