@@ -70,25 +70,25 @@
 }
 
 /* Link colors */
-a:link {
+.a:link {
     color: #007a87;
     background-color: transparent;
     text-decoration: none;
 }
   
-a:visited {
+.a:visited {
     color: orange;
     background-color: transparent;
     text-decoration: none;
 }
   
-a:hover {
+.a:hover {
     color: #007a87;
     background-color: transparent;
     text-decoration: underline;
 }
   
-a:active {
+.a:active {
     color: orange;
     background-color: transparent;
     text-decoration: underline;
