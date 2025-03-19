@@ -48,8 +48,14 @@ session_start();
     <h1>Create an Account</h1>
 
     <form action="../backend/api/register_user.php" method="post" onsubmit="return validateForm()">
+        <label for="full_name">Full Name:</label>
+        <input type="text" id="full_name" name="full_name" required>
+
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phone">
 
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>

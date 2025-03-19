@@ -1,13 +1,15 @@
 <?php
-require_once __DIR__ . '/../../../vendor/autoload.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
-if (!isset($_POST['email']) || !isset($_POST['password']) || !isset($_POST['confirm_password'])) {
+if (!isset($_POST['email']) || !isset($_POST['password']) || !isset($_POST['confirm_password']) || !isset($_POST['full_name'])) {
     die("❌ Missing required fields.");
 }
 
 $email = trim($_POST['email']);
+$full_name = trim($_POST['full_name']);
+$phone = isset($_POST['phone']) ? trim($_POST['phone']) : null;
 $password = $_POST['password'];
 $confirmPassword = $_POST['confirm_password'];
 
@@ -35,6 +37,8 @@ $channel->queue_declare('user_requests', false, true, false, false);
 $data = json_encode([
     "action" => "register",
     "email" => $email,
+    "full_name" => $full_name,
+    "phone" => $phone,
     "password" => $hashedPassword
 ]);
 
