@@ -1,76 +1,134 @@
 /*CSS for all the food category pages in the Menu*/
-*
-{
+* {
   margin: 0;
   padding: 0;
 }
 
-body{
-    background-color: #f5bf7d;
-	position: relative;
+body {
+  background-color: #f5bf7d;
+  position: relative;
 }
 
 .dm-sans-regular {
-    font-family: "DM Sans", serif;
-    font-optical-sizing: auto;
-    font-weight: 300;
-    font-style: normal;
-  }
-
-.faculty-glyphic-regular {
-    font-family: "Faculty Glyphic", serif;
-    font-weight: 400;
-    font-style: normal;
+  font-family: "DM Sans", serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
 }
 
-h2{
-    color: black;
-    font-family: Faculty Glyphic, serif;
-    text-align: center;
-    margin-top: 20px;
+.faculty-glyphic-regular {
+  font-family: "Faculty Glyphic", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h2 {
+  color: black;
+  font-family: Faculty Glyphic, serif;
+  text-align: center;
+  margin-top: 20px;
 }
 
 /* navbar section */
 .navbar ul {
-    list-style-type: none;
-    margin: 0;
-    overflow: hidden;
-    background-color: #007a87;
-    display: flex;
-    align-items: center;
-  }
-  
-  .nav-left {
-    display: flex;
-    align-items: center;
-  }
-  
-  .nav-right {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-    
-  }
-  
-  .navbar li {
-    display: flex;
-  }
-  
-  .navbar li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 15px 15px;
-    text-decoration: none;
-    font-size: 16px;
-    font-family: Faculty Glyphic, serif;
-  }
-  
-  .navbar img {
-      width: 100px;
-      height: 100px;
-  }
-  
-  .navbar h1{
-      font-size: 24px;
-  }
+  list-style-type: none;
+  margin: 0;
+  overflow: hidden;
+  background-color: #007a87;
+  display: flex;
+  align-items: center;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+
+}
+
+.navbar li {
+  display: flex;
+}
+
+.navbar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 15px 15px;
+  text-decoration: none;
+  font-size: 16px;
+  font-family: Faculty Glyphic, serif;
+}
+
+.navbar img {
+  width: 100px;
+  height: 100px;
+}
+
+.navbar h1 {
+  font-size: 24px;
+}
+
+.return {
+  padding: 30px;
+  font-size: 35px;
+}
+
+/* Food Category CSS */
+.categorygrid {
+  margin: 20px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.headcategory {
+  padding-bottom: 10px;
+}
+
+.headname {
+  font-weight: bolder;
+  font-size: 25px;
+  line-height: 2.0;
+}
+
+.dineinitems, .horsitems {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.fooditem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.plus {
+  display: none;
+}
+
+.fooditem:hover p {
+  font-size: 20px;
+}
+
+.fooditem:hover .plus {
+  display: inline;
+}
+
+.fooditem:hover .plus img {
+  width: 50%;
+  height: 50%;
+}
+
+/* Margin for Those Food Items without Heading */
+.horsitems {
+  margin-left: 20px;
+  margin-top: 20px;
+}
