@@ -24,33 +24,33 @@ $callback = function ($msg) use ($mysqli) {
 
     $data = json_decode($msg->body, true);
 
-    if (!isset($data['email']) || !isset($data['password'])) {
-        echo "❌ Error: Missing email or password.\n";
+    if (!isset($data['email']) || !isset($data['password']) || !isset($data['full_name'])) {
+        echo "❌ Error: Missing fields.\n";
         return;
     }
 
     $email = trim($data['email']);
+    $full_name = trim($data['full_name']);
+    $phone = isset($data['phone']) ? trim($data['phone']) : null;
     $password = trim($data['password']);
 
-    if (empty($email) || empty($password)) {
-        echo "❌ Error: Empty email or password.\n";
+    if (empty($email) || empty($full_name) || empty($password)) {
+        echo "❌ Error: Empty fields.\n";
         return;
     }
 
-    // Insert user into MySQL
-    $stmt = $mysqli->prepare("INSERT INTO users (email, password_hash) VALUES (?, ?)");
+    $stmt = $mysqli->prepare("INSERT INTO users (email, full_name, phone, password_hash) VALUES (?, ?, ?, ?)");
     if (!$stmt) {
         echo "❌ Prepare failed: " . $mysqli->error . "\n";
         return;
     }
-    $stmt->bind_param("ss", $email, $password);
+    $stmt->bind_param("ssss", $email, $full_name, $phone, $password);
     if (!$stmt->execute()) {
         echo "❌ Execution failed: " . $stmt->error . "\n";
     } else {
         echo "✅ User Registered: " . $email . "\n";
     }
 };
-
 // Keep script running to process messages
 $channel->basic_consume('user_requests', '', false, true, false, false, $callback);
 
