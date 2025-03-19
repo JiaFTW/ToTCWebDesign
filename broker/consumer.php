@@ -1,60 +1,66 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
-
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 
 // Connect to RabbitMQ
 $connection = new AMQPStreamConnection('98.82.149.231', 5672, 'totc', 'Totc2025');
 $channel = $connection->channel();
-
-// Declare queue
 $channel->queue_declare('user_requests', false, true, false, false);
 
-echo " [*] Waiting for messages. To exit press CTRL+C\n";
+echo "[*] Waiting for messages. To exit press CTRL+C\n";
 
-// MySQL Database Connection
+// Connect to MySQL
 $mysqli = new mysqli("toc-dev.chaqko2e2i9g.us-east-1.rds.amazonaws.com", "toc_dev", "toc2024!", "totc");
 
 if ($mysqli->connect_error) {
-    die("Connection failed: " . $mysqli->connect_error);
+    die("❌ Database Connection Failed: " . $mysqli->connect_error);
+} else {
+    echo "✅ Connected to MySQL database: totc\n";
 }
 
+// Callback function to process messages
 $callback = function ($msg) use ($mysqli) {
     echo "[x] Received " . $msg->body . "\n";
+
     $data = json_decode($msg->body, true);
 
-    if ($data['action'] == 'register') {
-        // Register a new user
-        $stmt = $mysqli->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
-        $stmt->bind_param("ss", $data['username'], $data['password']);
-        $stmt->execute();
-        echo "User Registered: " . $data['username'] . "\n";
-    } elseif ($data['action'] == 'login') {
-        // Verify user login
-        $stmt = $mysqli->prepare("SELECT password FROM users WHERE username=?");
-        $stmt->bind_param("s", $data['username']);
-        $stmt->execute();
-        $stmt->store_result();
+    if (!isset($data['email']) || !isset($data['password'])) {
+        echo "❌ Error: Missing email or password.\n";
+        return;
+    }
 
-        if ($stmt->num_rows > 0) {
-            $stmt->bind_result($hashed_password);
-            $stmt->fetch();
+    $email = trim($data['email']);
+    $password = trim($data['password']);
 
-            if (password_verify($data['password'], $hashed_password)) {
-                echo "Login Successful for " . $data['username'] . "\n";
-            } else {
-                echo "Login Failed: Incorrect password for " . $data['username'] . "\n";
-            }
-        } else {
-            echo "Login Failed: User " . $data['username'] . " not found\n";
-        }
+    if (empty($email) || empty($password)) {
+        echo "❌ Error: Empty email or password.\n";
+        return;
+    }
+
+    // Insert user into MySQL
+    $stmt = $mysqli->prepare("INSERT INTO users (email, password_hash) VALUES (?, ?)");
+    if (!$stmt) {
+        echo "❌ Prepare failed: " . $mysqli->error . "\n";
+        return;
+    }
+    $stmt->bind_param("ss", $email, $password);
+    if (!$stmt->execute()) {
+        echo "❌ Execution failed: " . $stmt->error . "\n";
+    } else {
+        echo "✅ User Registered: " . $email . "\n";
     }
 };
 
+// Keep script running to process messages
 $channel->basic_consume('user_requests', '', false, true, false, false, $callback);
 
-while ($channel->is_consuming()) {
-    $channel->wait();
+while (true) {
+    try {
+        $channel->wait();
+    } catch (Exception $e) {
+        echo "⚠️ Error processing message: " . $e->getMessage() . "\n";
+        sleep(1);
+    }
 }
 
 $channel->close();
