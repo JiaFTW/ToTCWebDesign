@@ -81,7 +81,7 @@ $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
                 <button class="checkout-btn">Proceed to Checkout</button>
             </div>
         <?php endif; ?>
-        <form action="backend/api/clear_cart.php" method="POST">
+        <form action="../backend/api/clear_cart.php" method="POST">
             <button type="submit">Clear Cart</button>
         </form>
     </div>
