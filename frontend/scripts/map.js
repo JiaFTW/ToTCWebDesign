@@ -1,14 +1,18 @@
 function showCountryImage(event, country, x, y) {
     const image = document.getElementById(country + 'Image');
     const text = document.getElementById(country + 'Text');
-    const imageWidth = 300; 
-    const imageHeight = 300; 
+    const imageWidth = 300;
+    const imageHeight = 300;
 
-    // Position the image and text
-    image.style.left = `${x - imageWidth / 2}px`; 
-    image.style.top = `${y - imageHeight - 10}px`; 
-    text.style.left = `${x - 70}px`;
-    text.style.top = `${y - 50}px`; 
+    // Get the mouse position
+    const mouseX = event.clientX;
+    const mouseY = event.clientY;
+
+    // Adjusting image and text position to appear right below the cursor
+    image.style.left = `${mouseX - imageWidth / 2}px`;
+    image.style.top = `${mouseY + 10}px`;  // Make sure it's below the mouse
+    text.style.left = `${mouseX - 70}px`;
+    text.style.top = `${mouseY + imageHeight + 20}px`;  // Adjust text below image
 
     // Display the image and text
     image.style.display = 'block';
@@ -17,6 +21,10 @@ function showCountryImage(event, country, x, y) {
 
 // General function to hide country image and text
 function hideCountryImage(country) {
-    document.getElementById(country + 'Image').style.display = 'none';
-    document.getElementById(country + 'Text').style.display = 'none';
+    const image = document.getElementById(country + 'Image');
+    const text = document.getElementById(country + 'Text');
+    
+    // Hide the image and text
+    image.style.display = 'none';
+    text.style.display = 'none';
 }
