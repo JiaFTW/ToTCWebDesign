@@ -8,11 +8,11 @@ function showCountryImage(event, country, x, y) {
     const mouseX = event.clientX;
     const mouseY = event.clientY;
 
-    // Adjusting image and text position to appear right below the cursor
+    // Image realitive to mouse placement
     image.style.left = `${mouseX - imageWidth / 2}px`;
-    image.style.top = `${mouseY + 10}px`;  // Make sure it's below the mouse
+    image.style.top = `${mouseY + 10}px`; 
     text.style.left = `${mouseX - 70}px`;
-    text.style.top = `${mouseY + imageHeight + 20}px`;  // Adjust text below image
+    text.style.top = `${mouseY + imageHeight + 20}px`;  
 
     // Display the image and text
     image.style.display = 'block';
@@ -24,7 +24,7 @@ function hideCountryImage(country) {
     const image = document.getElementById(country + 'Image');
     const text = document.getElementById(country + 'Text');
     
-    // Hide the image and text
+    
     image.style.display = 'none';
     text.style.display = 'none';
 }
