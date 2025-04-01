@@ -116,3 +116,20 @@ h2 {
     width: 20px; /* Adjust width as needed */
     height: 20px; /* Maintains aspect ratio */
 }
+
+/* form section */
+
+h1{
+    color: white;
+    font-family: Faculty Glyphic, serif;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 36px;
+}
+
+p{
+    color: white;
+    font-family: Poppins, sans-serif;
+    text-align: center;
+    font-size: 18px;
+}
