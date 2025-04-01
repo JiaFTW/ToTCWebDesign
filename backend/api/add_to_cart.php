@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'quantity' => (int) $itemQuantity
     ];
     
-    header("Location: cart.php"); // Redirect to cart page
+    header("Location: /../../frontend/cart.php"); // Redirect to cart page
     exit();
 }
 ?>

@@ -12,6 +12,14 @@
     align-items: center;
 }
 
+.cart-container p {
+    font-family: Poppins, sans-serif;
+}
+
+.cart-container button {
+    font-family: Poppins, sans-serif;
+}
+
 /* Styling for the cart table */
 .cart-table {
     width: 100%;
@@ -23,6 +31,7 @@
     border: 1px solid #ddd;
     padding: 12px;
     text-align: center;
+    font-family: Poppins, sans-serif;
 }
 
 .cart-table th {
@@ -35,6 +44,7 @@
 .cart-summary {
     width: 100%;
     max-width: 400px;
+    margin: 15px 0;
     text-align: right;
     font-size: 18px;
     padding: 10px;
@@ -45,6 +55,7 @@
 
 .cart-summary p {
     margin: 8px 0;
+    font-family: Poppins, sans-serif;
 }
 
 .cart-summary strong {
@@ -104,4 +115,4 @@
     text-align: left;
     font-family: DM Sans, sans-serif;
     padding: 10px;
-  }
+}
