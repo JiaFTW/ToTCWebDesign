@@ -1,0 +1,105 @@
+/* General Form Styling */
+.forms {
+    background-color: #fff8dc;
+    padding: 30px;
+    gap: 16px;
+    max-width: 700px;
+    margin: 50px auto;
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+}
+
+/* Left Side (Field Names) */
+.leftfields {
+    flex: 3;
+    font-size: 16px;
+    font-family: Georgia;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+    text-align: left;
+}
+
+.desc {
+    padding-bottom: 90px;
+}
+
+/* Right Side (Field Values) */
+.rightfields {
+    flex: 7;
+    font-size: 16px;
+    font-family: Georgia;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+    text-align: left;
+}
+
+.detail {
+    height: 157px;
+}
+
+#info {
+    font-size: 14px;
+    font-family: Georgia;
+    font-weight: lighter;
+}
+
+/* Quantity Styling */
+.rightfields p {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.rightfields img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.sizechoice {
+    padding-bottom: 6px;
+}
+
+.addonchoice {
+    padding-bottom: 10px;
+}
+
+/* Total Price Styling */
+.rightfields p:last-child {
+    font-weight: bold;
+    font-size: 18px;
+    color: #000;
+}
+
+.buttonform {
+    background-color: #fff8dc;
+    padding: 30px;
+    gap: 16px;
+    max-width: 700px;
+    margin: 50px auto;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+}
+
+.leftbutton {
+    font-size: 30px;
+    font-family: Georgia;
+    font-weight: bold;
+    margin-right: 135px;
+    flex: 5.0
+}
+
+.rightbutton {
+    font-size: 30px;
+    font-family: Georgia;
+    font-weight: bold;
+    margin-left: 135px;
+    flex: 5.0
+}
