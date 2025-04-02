@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../../css/dinein.css">
+    </head>
+    <body>
+        <script src="../scripts/dinein.js" defer></script>
+        <a href="../category/dinein.html">Return to checking our Menu?</a>
+        <div class="forms">
+            <div class="leftfields">
+                <p>Food Name</p>
+                <p class="desc">Description</p>
+                <p>Size</p>
+                <p>Quantity</p>
+                <p>Add-ons</p>
+                <p>Total Price</p>
+            </div>
+
+            <div class="rightfields">
+                <p>Lorem ipsum</p>
+                <div class="detail"><p align="left" id="info">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></div>
+                <div class="sizechoice">
+                    <input type="radio" id="small" name="size" value="SMALL" onclick="getsize(); smalloption()">
+                    <label for="small">Small</label>
+                    <input type="radio" id="medium" name="size" value="MEDIUM" onclick="getsize(); mediumoption()">
+                    <label for="medium">Medium</label>
+                    <input type="radio" id="large" name="size" value="LARGE" onclick="getsize(); largeoption()">
+                    <label for="large">Large</label>
+                </div>
+                <p class="addonchoice"><img src="../../images/Minus_Sign.png" onclick="decrement()"> 0 <img src="../../images/Plus_Sign.png" onclick="increment()"></p>
+                <div class="sizechoice">
+                    <input type="radio" id="yes" name="addon" value="YES" onclick="getaddon(); ifyes()">
+                    <label for="yes">Yes</label>
+                    <input type="radio" id="no" name="addon" value="NO" onclick="getaddon(); ifno()">
+                    <label for="no">No</label>
+                </div>
+                <p class="tprice">$0.00</p>
+            </div>
+        </div>
+        <div class="buttonform">
+            <div class="buttons">
+                <button class="leftbutton" onclick="cancelling()">Cancel</button>
+                <button class="rightbutton" onclick="submitting()">Submit</button>
+            </div>
+        </div>
+    </body>
+</html>
