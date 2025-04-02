@@ -63,7 +63,7 @@ function decrement() {
         else if(foodsize == 'm') value -= 7;
         else if(foodsize == 'l') value -= 10;
         change();
-        if(quantity == 0) {
+        if(quantity == 0 && !(foodsize == '')) {
             document.getElementById("no").checked = true;
             value -= 4;
             change();
