@@ -1,6 +1,6 @@
-// Step 1: Get the element and parse the value
+//Variables used in the following methods
 var priceElement = document.querySelector(".tprice");
-var value = parseFloat(priceElement.innerHTML.replace(/[^0-9.]/g, "")) || 0; // Remove $ if present
+var value = parseFloat(priceElement.innerHTML.replace(/[^0-9.]/g, "")) || 0;
 var amount = document.querySelector(".addonchoice");
 var quantity = parseFloat(0);
 var foodsize = '';
@@ -10,6 +10,7 @@ function Aseasonal() {
     location.replace("../dinein/appetizers/Aseasonal.html")
 }
 
+//Methods for cancelling and submitting the order
 function cancelling() {
     location.replace("../../category/dinein.html");
 }
@@ -23,6 +24,7 @@ function submitting() {
     }
 }
 
+//Gets the size of the food from the selected radio options
 function getsize() {
     if (document.getElementById("small").checked) foodsize = 's';
     else if (document.getElementById("medium").checked) foodsize = 'm';
@@ -30,6 +32,7 @@ function getsize() {
     console.log("Selected size option: " + foodsize);
 }
 
+//Assigns addon value to variable based on options, only if quantity is selected
 function getaddon() {
     if(quantity == 0) {
         document.getElementById("yes").checked = false;
@@ -39,11 +42,10 @@ function getaddon() {
     }
     if(document.getElementById("yes").checked) addon = 'y';
     else if (document.getElementById("no").checked) addon = 'n';
-
-    document.getElementById("yes").onclick = null;
-    document.getElementById("no").onclick = null;
 }
 
+
+//Plus and Minus that calculates cost based on size and quantity
 function increment() {
     quantity += 1;
     amount.childNodes[1].nodeValue = quantity;
@@ -61,9 +63,15 @@ function decrement() {
         else if(foodsize == 'm') value -= 7;
         else if(foodsize == 'l') value -= 10;
         change();
+        if(quantity == 0) {
+            document.getElementById("no").checked = true;
+            value -= 4;
+            change();
+        }
     }
 }
 
+//These methods help initialize final cost based on option selected
 function smalloption() {
     if(addon == 'y') {
         value = 4 + (5 * quantity);
@@ -97,6 +105,8 @@ function largeoption() {
     }
 }
 
+
+//Evaluates cost based on add ons
 function ifyes() {
     if(!(quantity == 0) && !(foodsize == '')) {
         value += 4;
@@ -152,6 +162,7 @@ function ifno() {
     }
 }
 
+//Default method for instantly updating the final price
 function change() {
     priceElement.innerHTML = '$' + value.toFixed(2);
 }
