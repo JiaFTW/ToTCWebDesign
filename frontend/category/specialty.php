@@ -1,3 +1,12 @@
+<?php
+session_start();
+if (isset($_SESSION['username'])) {
+  include '../includes/header_user.php';
+} else {
+  include '../includes/header_guest.php';
+}
+?>
+
 <!DOCTYPE html>
 <html lang = "en">
     <head>
@@ -10,7 +19,7 @@
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,900;1,9..40,900&family=Faculty+Glyphic&display=swap" rel="stylesheet">
     </head>
     <body> 
-        <div class="navbar">
+        <!-- <div class="navbar">
             <ul>
                 <div class="nav-left">
                     <li><img src="../images/TOC_Logo.png" /></li>
@@ -23,34 +32,58 @@
                     <li><a href="#about">About</a></li>
                 </div>
             </ul>
-        </div>
+        </div> -->
 
         <div>
             <a class="return" href="../menu.html">Back to selecting Categories?</a>
             <div class="categoryid">
                 <div class="horsitems">
                     <div class="fooditem">
-                        <p>Browm Stew</p>
+                        <p>Chicken Roasted</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Jerk Chicken</p>
+                        <p>Herb Roasted Chicken Leg</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Fried Chicken</p>
+                        <p>Baked Tomato Herb Fish</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Curried Chicken</p>
+                        <p>Salisbury Steak</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Curried Chickpea</p>
+                        <p>Meals Egg Scramble</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Curried Goat</p>
+                        <p>Meals Cheese Blintz</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>Meals Puree of Omelette</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>Yankee Style Pot Roast-Beef</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>Meatballs & Spaghetti</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>Roast Turkey Breast</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>Pasta Cheese Lasagna</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>Cheese Ravioli</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                 </div>

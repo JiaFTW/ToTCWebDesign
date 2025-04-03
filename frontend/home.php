@@ -1,3 +1,12 @@
+<?php
+session_start();
+if (isset($_SESSION['username'])) {
+  include '../includes/header_user.php';
+} else {
+  include '../includes/header_guest.php';
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>

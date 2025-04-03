@@ -1,3 +1,12 @@
+<?php
+session_start();
+if (isset($_SESSION['username'])) {
+  include '../includes/header_user.php';
+} else {
+  include '../includes/header_guest.php';
+}
+?>
+
 <!DOCTYPE html>
 <html lang = "en">
     <head>
@@ -10,7 +19,7 @@
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,900;1,9..40,900&family=Faculty+Glyphic&display=swap" rel="stylesheet">
     </head>
     <body> 
-        <div class="navbar">
+        <!-- <div class="navbar">
             <ul>
                 <div class="nav-left">
                     <li><img src="../images/TOC_Logo.png" /></li>
@@ -23,50 +32,34 @@
                     <li><a href="#about">About</a></li>
                 </div>
             </ul>
-        </div>
+        </div> -->
 
         <div>
             <a class="return" href="../menu.html">Back to selecting Categories?</a>
             <div class="categoryid">
                 <div class="horsitems">
                     <div class="fooditem">
-                        <p>Rice & Peas</p>
+                        <p>Browm Stew</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Jasmine Rice</p>
+                        <p>Jerk Chicken</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Roasted Sweet Potato</p>
+                        <p>Fried Chicken</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Truffle Mac & Cheese</p>
+                        <p>Curried Chicken</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Garlic Mashed Potato</p>
+                        <p>Curried Chickpea</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Potato Salad</p>
-                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
-                    </div>
-                    <div class="fooditem">
-                        <p>Sweet Plantain</p>
-                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
-                    </div>
-                    <div class="fooditem">
-                        <p>Steamed Cabbage</p>
-                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
-                    </div>
-                    <div class="fooditem">
-                        <p>Roti</p>
-                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
-                    </div>
-                    <div class="fooditem">
-                        <p>Cornbread</p>
+                        <p>Curried Goat</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                 </div>
