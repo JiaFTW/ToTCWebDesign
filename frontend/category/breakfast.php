@@ -1,3 +1,12 @@
+<?php
+session_start();
+if (isset($_SESSION['username'])) {
+  include '../includes/header_user.php';
+} else {
+  include '../includes/header_guest.php';
+}
+?>
+
 <!DOCTYPE html>
 <html lang = "en">
     <head>
@@ -10,7 +19,7 @@
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,900;1,9..40,900&family=Faculty+Glyphic&display=swap" rel="stylesheet">
     </head>
     <body> 
-        <div class="navbar">
+        <!-- <div class="navbar">
             <ul>
                 <div class="nav-left">
                     <li><img src="../images/TOC_Logo.png" /></li>
@@ -23,54 +32,74 @@
                     <li><a href="#about">About</a></li>
                 </div>
             </ul>
-        </div>
+        </div> -->
 
         <div>
             <a class="return" href="../menu.html">Back to selecting Categories?</a>
             <div class="categoryid">
                 <div class="horsitems">
                     <div class="fooditem">
-                        <p>Bread Pudding</p>
+                        <p>Penn Station Go</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Banana Pudding</p>
+                        <p>Rutgers Sunrise Starter</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Chocolate Chip with Nutella Cookie</p>
+                        <p>NJIT Starter</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>White Chocolate Chip</p>
+                        <p>Newark Nibbles Starter</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Rum Cake</p>
+                        <p>Healthy Brick City</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Carrot Cake</p>
+                        <p>Halsey Street Sunrise</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Ricotta & Pistachio Cake</p>
+                        <p>Charcuterie Cups</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Mini Dessert Cups</p>
+                        <p>NJ Turnpike Toast</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Mini Exotic Tarts</p>
+                        <p>Ackee You Lata</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Cakes</p>
+                        <p>Callaloo Crew</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Brie & Pear in Phyllo</p>
+                        <p>The Roti Breakfast Roll-up</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>Bammy Slammy</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>Rum Punch Panckaes</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>Cornmeal Porridge</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>Plantain Porridge</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>Taste of the Carribean</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                 </div>

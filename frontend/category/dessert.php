@@ -1,3 +1,12 @@
+<?php
+session_start();
+if (isset($_SESSION['username'])) {
+  include '../includes/header_user.php';
+} else {
+  include '../includes/header_guest.php';
+}
+?>
+
 <!DOCTYPE html>
 <html lang = "en">
     <head>
@@ -10,7 +19,7 @@
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,900;1,9..40,900&family=Faculty+Glyphic&display=swap" rel="stylesheet">
     </head>
     <body> 
-        <div class="navbar">
+        <!-- <div class="navbar">
             <ul>
                 <div class="nav-left">
                     <li><img src="../images/TOC_Logo.png" /></li>
@@ -23,70 +32,54 @@
                     <li><a href="#about">About</a></li>
                 </div>
             </ul>
-        </div>
+        </div> -->
 
         <div>
             <a class="return" href="../menu.html">Back to selecting Categories?</a>
             <div class="categoryid">
                 <div class="horsitems">
                     <div class="fooditem">
-                        <p>Jerk Meatballs</p>
+                        <p>Bread Pudding</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Coconut Shrimp</p>
+                        <p>Banana Pudding</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Cocktail Beef Patty</p>
+                        <p>Chocolate Chip with Nutella Cookie</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Cocktail Vegetablle Patty</p>
+                        <p>White Chocolate Chip</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Cocktail Beef Empanadas</p>
+                        <p>Rum Cake</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Cocktail Chicken Empanadas</p>
+                        <p>Carrot Cake</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Charcuterie Cups</p>
+                        <p>Ricotta & Pistachio Cake</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Fruit Cups</p>
+                        <p>Mini Dessert Cups</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Grilled Fig & Goat Cheese Crostini</p>
+                        <p>Mini Exotic Tarts</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Jerk Chicken Wings</p>
+                        <p>Cakes</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Tropical Chicken Wings</p>
-                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
-                    </div>
-                    <div class="fooditem">
-                        <p>Impossible Meatballs</p>
-                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
-                    </div>
-                    <div class="fooditem">
-                        <p>Slab Bacon Skewer with Vanilla bourbon sauce</p>
-                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
-                    </div>
-                    <div class="fooditem">
-                        <p>Calzone Cheese</p>
-                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
-                    </div>
-                    <div class="fooditem">
-                        <p>Short Rib and Roquefort Hand Pie</p>
+                        <p>Brie & Pear in Phyllo</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                 </div>

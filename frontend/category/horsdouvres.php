@@ -1,3 +1,12 @@
+<?php
+session_start();
+if (isset($_SESSION['username'])) {
+  include '../includes/header_user.php';
+} else {
+  include '../includes/header_guest.php';
+}
+?>
+
 <!DOCTYPE html>
 <html lang = "en">
     <head>
@@ -10,7 +19,7 @@
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,900;1,9..40,900&family=Faculty+Glyphic&display=swap" rel="stylesheet">
     </head>
     <body> 
-        <div class="navbar">
+        <!-- <div class="navbar">
             <ul>
                 <div class="nav-left">
                     <li><img src="../images/TOC_Logo.png" /></li>
@@ -23,58 +32,70 @@
                     <li><a href="#about">About</a></li>
                 </div>
             </ul>
-        </div>
+        </div> -->
 
         <div>
             <a class="return" href="../menu.html">Back to selecting Categories?</a>
             <div class="categoryid">
                 <div class="horsitems">
                     <div class="fooditem">
-                        <p>Chicken Roasted</p>
+                        <p>Jerk Meatballs</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Herb Roasted Chicken Leg</p>
+                        <p>Coconut Shrimp</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Baked Tomato Herb Fish</p>
+                        <p>Cocktail Beef Patty</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Salisbury Steak</p>
+                        <p>Cocktail Vegetablle Patty</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Meals Egg Scramble</p>
+                        <p>Cocktail Beef Empanadas</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Meals Cheese Blintz</p>
+                        <p>Cocktail Chicken Empanadas</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Meals Puree of Omelette</p>
+                        <p>Charcuterie Cups</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Yankee Style Pot Roast-Beef</p>
+                        <p>Fruit Cups</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Meatballs & Spaghetti</p>
+                        <p>Grilled Fig & Goat Cheese Crostini</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Roast Turkey Breast</p>
+                        <p>Jerk Chicken Wings</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Pasta Cheese Lasagna</p>
+                        <p>Tropical Chicken Wings</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                     <div class="fooditem">
-                        <p>Cheese Ravioli</p>
+                        <p>Impossible Meatballs</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>Slab Bacon Skewer with Vanilla bourbon sauce</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>Calzone Cheese</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>Short Rib and Roquefort Hand Pie</p>
                         <div class="plus"><img src="../images/Plus_Sign.png"></div>
                     </div>
                 </div>
