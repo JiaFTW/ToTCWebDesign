@@ -1,6 +1,19 @@
+<?php
+session_start();
+if (isset($_SESSION['username'])) {
+  include '../includes/header_user.php';
+} else {
+  include '../includes/header_guest.php';
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="../css/navbar.css">
+
         <link rel="stylesheet" href="../../css/dinein.css">
     </head>
     <body>

@@ -1,13 +1,26 @@
+<?php
+session_start();
+if (isset($_SESSION['username'])) {
+  include 'includes/header_user.php';
+} else {
+  include 'includes/header_guest.php';
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taste of the Caribbean</title>
+    <link rel="stylesheet" href="css/navbar.css">
+
     <link rel="stylesheet" href="css/styles.css"><link rel="stylesheet" href="css/map.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
+    <!-- Navigation Bar
     <nav>
         <ul>
             <li><a href="#">Menu</a></li>
@@ -16,7 +29,7 @@
             <li><a href="profile.html">Profile</a></li>
             <li><a href="index1.html">Login</a></li>
         </ul>
-    </nav>
+    </nav> -->
 
     <!-- Hero Section -->
     <header class="hero">

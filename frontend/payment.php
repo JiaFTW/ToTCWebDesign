@@ -1,5 +1,10 @@
 <?php
 session_start();
+if (isset($_SESSION['username'])) {
+  include 'includes/header_user.php';
+} else {
+  include 'includes/header_guest.php';
+}
 ?>
 
 <!DOCTYPE html>
@@ -8,10 +13,12 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment - Taste of the Caribbean</title>
+    <link rel="stylesheet" href="css/navbar.css">
+
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <nav>
+    <!-- <nav>
         <ul>
             <li><a href="menu.html">Menu</a></li>
             <li><a href="map.html">Map</a></li>
@@ -19,7 +26,7 @@ session_start();
             <li><a href="profile.html">Profile</a></li>
             <li><a href="login.php">Login</a></li>
         </ul>
-    </nav>
+    </nav> -->
 
     <h1>Enter Your Payment Details</h1>
 

@@ -99,11 +99,11 @@
     text-decoration: underline;
 }
   
-.a:active {
+/* .a:active {
     color: orange;
     background-color: transparent;
     text-decoration: underline;
-}
+} */
 
 .footerc {
     position: fixed;
@@ -116,3 +116,10 @@
     font-family: DM Sans, sans-serif;
     padding: 10px;
 }
+
+nav a.active {
+    font-weight: bold;
+    text-decoration: underline;
+    color: #ff6b35;
+  }
+  
