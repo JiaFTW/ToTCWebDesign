@@ -1,7 +1,19 @@
+<?php
+session_start();
+if (isset($_SESSION['username'])) {
+  include 'includes/header_user.php';
+} else {
+  include 'includes/header_guest.php';
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang = "en">
     <head>
         <title>Taste of the Carribean</title>
+        <link rel="stylesheet" href="css/navbar.css">
+
         <link rel="stylesheet" href="css/menu.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +23,7 @@
     </head>
     <body> 
         <script src="scripts/menu.js"></script>
-        <div class="navbar">
+        <!-- <div class="navbar">
             <ul>
                 <div class="nav-left">
                     <li><img src="images/TOC_Logo.png" /></li>
@@ -24,7 +36,7 @@
                     <li><a href="#about">About</a></li>
                 </div>
             </ul>
-        </div>
+        </div> -->
 
         <div>
             <p class="menuinfo">Explore our menus</p>

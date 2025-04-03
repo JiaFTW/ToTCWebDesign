@@ -15,3 +15,9 @@
   font-size: 20px;
   z-index: 1001;
 }
+
+nav a.active {
+  font-weight: bold;
+  text-decoration: underline;
+  color: #ff6b35;
+}

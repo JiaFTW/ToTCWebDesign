@@ -132,3 +132,9 @@ h2 {
   margin-left: 20px;
   margin-top: 20px;
 }
+
+nav a.active {
+  font-weight: bold;
+  text-decoration: underline;
+  color: #ff6b35;
+}
