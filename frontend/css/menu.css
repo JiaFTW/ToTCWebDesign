@@ -107,3 +107,9 @@ h2{
         width: 80%;
     }
 }
+
+nav a.active {
+  font-weight: bold;
+  text-decoration: underline;
+  color: #ff6b35;
+}

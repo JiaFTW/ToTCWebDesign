@@ -56,3 +56,11 @@ img.avatar {
         width: 90%; 
     }
 }
+
+
+nav a.active {
+    font-weight: bold;
+    text-decoration: underline;
+    color: #ff6b35;
+  }
+  

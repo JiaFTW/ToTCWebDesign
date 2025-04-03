@@ -103,3 +103,10 @@
     margin-left: 135px;
     flex: 5.0
 }
+
+nav a.active {
+    font-weight: bold;
+    text-decoration: underline;
+    color: #ff6b35;
+  }
+  

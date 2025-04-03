@@ -1,0 +1,24 @@
+<?php
+session_start();
+$activePage = basename($_SERVER['PHP_SELF']);
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taste of the Caribbean</title>
+  <link rel="stylesheet" href="../css/navbar.css"> <!-- 🌟 use shared navbar styling -->
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="menu.html" class="<?= $activePage == 'menu.html' ? 'active' : '' ?>">Menu</a></li>
+      <li><a href="map.html" class="<?= $activePage == 'map.html' ? 'active' : '' ?>">Map</a></li>
+      <li><a href="order.php" class="<?= $activePage == 'order.php' ? 'active' : '' ?>">Order</a></li>
+      <li><a href="profile.html" class="<?= $activePage == 'profile.html' ? 'active' : '' ?>">Profile</a></li>
+      <li><a href="login.php" class="<?= $activePage == 'login.php' ? 'active' : '' ?>">Login</a></li>
+    </ul>
+  </nav>
+</body>
+</html>
