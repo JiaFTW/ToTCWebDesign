@@ -7,12 +7,12 @@ var foodsize = '';
 var addon = '';
 
 function Aseasonal() {
-    location.replace("../dinein/appetizers/Aseasonal.html")
+    location.replace("../dinein/appetizers/Aseasonal.php")
 }
 
 //Methods for cancelling and submitting the order
 function cancelling() {
-    location.replace("../../category/dinein.html");
+    location.replace("../../category/dinein.php");
 }
 
 function submitting() {

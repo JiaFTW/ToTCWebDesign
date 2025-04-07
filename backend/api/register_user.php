@@ -53,6 +53,6 @@ $connection->close();
 $_SESSION['username'] = $email;
 
 // Redirect to welcome page or homepage
-header("Location: ../../frontend/index.html");
+header("Location: ../../frontend/index.php");
 exit;
 ?>

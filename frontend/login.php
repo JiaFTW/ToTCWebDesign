@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-<?php include('./includes/header_guest.php'); ?>
+<?php include('includes/header_guest.php'); ?>
 
 <h2>Login</h2>
 <form action="../backend/api/login_user.php" method="POST">
@@ -11,3 +11,4 @@
 
     <button type="submit">Login</button>
 </form>
+<p>Don't have an account? <a href="register.php">Register here</a></p>

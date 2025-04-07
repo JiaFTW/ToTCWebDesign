@@ -1,47 +1,47 @@
 function dineinfunction() {
-    location.replace("category/dinein.html");
+    location.replace("category/dinein.php");
 }
 
 function horsdouvresfunction() {
-    location.replace("category/horsdouvres.html");
+    location.replace("category/horsdouvres.php");
 }
 
 function saladsbowlsfunction() {
-    location.replace("category/saladsbowls.html");
+    location.replace("category/saladsbowls.php");
 }
 
-function soupsfunction() {
-    location.replace("category/soups.html");
+function soupsfunction() {php
+    location.replace("category/soups.php");
 }
 
 function saladsfunction() {
-    location.replace("category/salads.html");
+    location.replace("category/salads.php");
 }
 
 function breakfastfunction() {
-    location.replace("category/breakfast.html");
+    location.replace("category/breakfast.php");
 }
 
 function entreefunction() {
-    location.replace("category/entree.html");
+    location.replace("category/entree.php");
 }
 
 function sidesfunction() {
-    location.replace("category/sides.html");
+    location.replace("category/sides.php");
 }
 
 function dessertfunction() {
-    location.replace("category/dessert.html");
+    location.replace("category/dessert.php");
 }
 
 function specialtyfunction() {
-    location.replace("category/specialty.html");
+    location.replace("category/specialty.php");
 }
 
 function lunchboxfunction() {
-    location.replace("category/lunchbox.html");
+    location.replace("category/lunchbox.php");
 }
 
 function carribeanlunchboxfunction() {
-    location.replace("category/carribeanlunchbox.html");
+    location.replace("category/carribeanlunchbox.php");
 }
