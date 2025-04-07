@@ -1,5 +1,10 @@
 <?php
 session_start();
+if (isset($_SESSION['username'])) {
+    include 'includes/header_user.php';
+  } else {
+    include 'includes/header_guest.php';
+  }
 
 // Sample cart structure (this should come from session)
 $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
@@ -20,7 +25,7 @@ $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   </head>
   <body>
-	<div class="navbar">
+	<!-- <div class="navbar">
 		<ul>
 			<div class="nav-left">
 				<li><img src="images/TOC_Logo.png" /></li>
@@ -35,7 +40,7 @@ $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 				<li><a href="cart.php"><img src="images/cart_icon.png" alt="Go to cart page"></a></li>
 			</div>
 		</ul>
-	</div>
+	</div> -->
   <h2>Your Cart</h2>
     <div class="cart-container">
         <?php if (empty($cart)): ?>

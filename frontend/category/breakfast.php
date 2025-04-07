@@ -35,7 +35,7 @@ if (isset($_SESSION['username'])) {
         </div> -->
 
         <div>
-            <a class="return" href="../menu.html">Back to selecting Categories?</a>
+            <a class="return" href="../menu.php">Back to selecting Categories?</a>
             <div class="categoryid">
                 <div class="horsitems">
                     <div class="fooditem">
