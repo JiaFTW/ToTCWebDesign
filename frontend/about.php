@@ -30,7 +30,7 @@ if (isset($_SESSION['username'])) {
         }
         .container {
             max-width: 1400px;
-            margin: 0px 40px 40px 40px;
+            margin: 5px 40px 40px 40px;
             padding: 30px;
             background-color: #f5bf7d;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -41,6 +41,7 @@ if (isset($_SESSION['username'])) {
             font-weight: 400;
             font-style: normal;
         }
+
         .profile-image {
             width: 250px;
             height: 250px;
@@ -55,7 +56,7 @@ if (isset($_SESSION['username'])) {
         h1 {
             text-align: center;
             margin-bottom: 36px;
-            font-family: "Faculty Gylphic", serif;
+            font-family: "Faculty Glyphic", serif;
         }
         p {
             line-height: 1.8;
