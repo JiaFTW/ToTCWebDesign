@@ -32,11 +32,10 @@ if (isset($_SESSION['username'])) {
             min-height: 100vh;
         }
         .container {
-            max-width: 800px;
+            max-width: 1400px;
             margin: 40px auto;
-            padding: 30px;
-            background-color: white;
-            border-radius: 8px;
+            /*padding: 30px;*/
+            background-color: #f5bf7d;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         .profile-image {
@@ -52,7 +51,8 @@ if (isset($_SESSION['username'])) {
         }
         h1 {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 36px;
+            font-family: Faculty Gylphic, serif;
         }
         p {
             line-height: 1.8;
@@ -61,49 +61,8 @@ if (isset($_SESSION['username'])) {
     </style>
   </head>
   <body>
-
-  <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #4a9aa3;
-            color: black;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .container {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 30px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        .profile-image {
-            width: 250px;
-            height: 250px;
-            background-color: #f0f0f0;
-            border-radius: 50%;
-            margin: 0 auto 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        p {
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-    </style>
     <div class="container">
-        <h1>About Chanice Fish</h1>
+        <h1>About Taste of the Caribbean</h1>
         <div class="profile-image">
             <img src="/api/placeholder/250/250" alt="Chanice Fish">
         </div>
