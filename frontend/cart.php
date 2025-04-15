@@ -1,11 +1,13 @@
 <?php
 session_start();
-if (isset($_SESSION['username'])) {
-    include 'includes/header_user.php';
-  } else {
-    include 'includes/header_guest.php';
-  }
+// Check critical services FIRST (before anything else that depends on them)
+include __DIR__ . '/scripts/check-services.php';
 
+if (isset($_SESSION['username'])) {
+  include 'includes/header_user.php';
+} else {
+  include 'includes/header_guest.php';
+}
 // Sample cart structure (this should come from session)
 $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 

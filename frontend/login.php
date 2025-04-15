@@ -1,5 +1,17 @@
-<?php session_start(); ?>
-<?php include('includes/header_guest.php'); ?>
+<?php
+session_start();
+
+// Check critical services FIRST (before anything else that depends on them)
+include __DIR__ . '/scripts/check-services.php';
+
+if (isset($_SESSION['username'])) {
+  include 'includes/header_user.php';
+} else {
+  include 'includes/header_guest.php';
+}
+?>
+
+
 
 <h2>Login</h2>
 <form action="../backend/api/login_user.php" method="POST">
