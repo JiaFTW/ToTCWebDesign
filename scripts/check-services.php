@@ -1,13 +1,29 @@
 <?php
-$services = ['apache2', 'rabbitmq-server', 'mysql']; // Add more services as needed
+date_default_timezone_set('UTC'); // for consistent timestamps
 
-foreach ($services as $service) {
-    $status = shell_exec("systemctl is-active $service");
-    if (trim($status) !== 'active') {
-        echo "🔧 Restarting $service ...\n";
-        shell_exec("sudo systemctl start $service");
-    } else {
-        echo "✅ $service is running.\n";
+function checkAndRestart($service, $label) {
+    $status = trim(shell_exec("systemctl is-active $service"));
+
+    if ($status !== 'active') {
+        // Restart it
+        shell_exec("sudo systemctl restart $service");
+        sleep(1);
+        $recheck = trim(shell_exec("systemctl is-active $service"));
+
+        if ($recheck === 'active') {
+            echo "<div style='background-color: #ddffdd; padding: 10px; border: 1px solid green; color: green;'>
+                    ✅ <strong>$label</strong> was down and has been restarted.
+                  </div>";
+        } else {
+            echo "<div style='background-color: #ffdddd; padding: 10px; border: 1px solid red; color: red;'>
+                    ❌ <strong>$label</strong> is still down. Please try again later.
+                  </div>";
+            exit;
+        }
     }
 }
-?>
+
+// Apache will already be running if this page loads, but checking anyway
+checkAndRestart('apache2', 'Apache Web Server');
+checkAndRestart('mysql', 'MySQL Database');
+checkAndRestart('rabbitmq-server', 'RabbitMQ Message Broker');

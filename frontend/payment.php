@@ -1,11 +1,16 @@
 <?php
 session_start();
+
+// Check critical services FIRST (before anything else that depends on them)
+include __DIR__ . '/scripts/check-services.php';
+
 if (isset($_SESSION['username'])) {
   include 'includes/header_user.php';
 } else {
   include 'includes/header_guest.php';
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
