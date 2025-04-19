@@ -1,51 +1,53 @@
 <?php
+// frontend/payment.php
 session_start();
+include 'scripts/check-services.php';
+include isset($_SESSION['username'])
+  ? 'includes/header_user.php'
+  : 'includes/header_guest.php';
 
-// Check critical services FIRST (before anything else that depends on them)
-include __DIR__ . '/scripts/check-services.php';
-
-if (isset($_SESSION['username'])) {
-  include 'includes/header_user.php';
-} else {
-  include 'includes/header_guest.php';
-}
+$item_id = intval($_GET['item_id']);
+$qty     = intval($_GET['qty']);
+$size    = $_GET['size'];
+// fetch price
+require __DIR__.'/backend/api/database.php';
+$db = getDB();
+$stmt = $db->prepare('SELECT price FROM menu_items WHERE id=:id');
+$stmt->execute(['id'=>$item_id]);
+$price = $stmt->fetchColumn() * $qty;
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment - Taste of the Caribbean</title>
-    <link rel="stylesheet" href="css/navbar.css">
-
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <title>Payment • Taste of the Caribbean</title>
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/menu2.css">
 </head>
 <body>
-    <!-- <nav>
-        <ul>
-            <li><a href="menu.html">Menu</a></li>
-            <li><a href="map.html">Map</a></li>
-            <li><a href="order.php">Order</a></li>
-            <li><a href="profile.html">Profile</a></li>
-            <li><a href="login.php">Login</a></li>
-        </ul>
-    </nav> -->
+  <div class="container py-5">
+    <h2>Payment</h2>
+    <p>Amount: <strong>$<?= number_format($price,2) ?></strong></p>
+    <form action="../backend/api/process_payment.php" method="POST">
+      <input type="hidden" name="item_id" value="<?=$item_id?>">
+      <input type="hidden" name="qty" value="<?=$qty?>">
+      <input type="hidden" name="size" value="<?=$size?>">
 
-    <h1>Enter Your Payment Details</h1>
+      <div class="form-group">
+        <label>Card Number:</label>
+        <input type="text" name="card" class="form-control w-50" required>
+      </div>
+      <div class="form-group">
+        <label>Expiration:</label>
+        <input type="month" name="exp" class="form-control w-25" required>
+      </div>
+      <div class="form-group">
+        <label>CVC:</label>
+        <input type="text" name="cvc" class="form-control w-25" required>
+      </div>
 
-    <form action="backend/api/process_payment.php" method="post">
-        <label for="card_number">Card Number:</label>
-        <input type="text" name="card_number" required>
-
-        <label for="expiry_date">Expiry Date:</label>
-        <input type="text" name="expiry_date" placeholder="MM/YY" required>
-
-        <label for="cvv">CVV:</label>
-        <input type="text" name="cvv" required>
-
-        <button type="submit">Complete Payment</button>
+      <button type="submit" class="btn btn-primary">Submit Payment</button>
     </form>
+  </div>
 </body>
 </html>
