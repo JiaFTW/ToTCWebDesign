@@ -1,103 +1,93 @@
 <?php
+// frontend/menu.php
 session_start();
-
-// Check critical services FIRST (before anything else that depends on them)
 include __DIR__ . '/scripts/check-services.php';
-
 if (isset($_SESSION['username'])) {
-  include 'includes/header_user.php';
+  include __DIR__ . '/includes/header_user.php';
 } else {
-  include 'includes/header_guest.php';
+  include __DIR__ . '/includes/header_guest.php';
 }
+
+// load categories
+require __DIR__ . '/backend/api/database.php';
+$db = getDB();
+$cats = $db->query('SELECT DISTINCT category FROM menu_items')
+           ->fetchAll(PDO::FETCH_COLUMN);
+
+// current filter
+$selCat = $_GET['category'] ?? '';
 ?>
-
-
-
 <!DOCTYPE html>
-<html lang = "en">
-    <head>
-        <title>Taste of the Carribean</title>
-        <link rel="stylesheet" href="css/navbar.css">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>
+    <?= $selCat ? htmlspecialchars($selCat).' • ' : '' ?>Menu • Taste of the Caribbean
+  </title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Faculty+Glyphic&display=swap">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/menu.css">
 
-        <link rel="stylesheet" href="css/menu.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,900;1,9..40,900&family=Faculty+Glyphic&display=swap" rel="stylesheet">
-    </head>
-    <body> 
-        <script src="scripts/menu.js"></script>
-        <!-- <div class="navbar">
-            <ul>
-                <div class="nav-left">
-                    <li><img src="images/TOC_Logo.png" /></li>
-                    <li><a href="#home"><h1>Taste of the Caribbean<h1></a></li>
+</head>
+<body>
+  <!-- 1. Category nav -->
+  <nav class="category-nav">
+    <a href="menu.php" class="<?= $selCat==''?'active':'' ?>">All</a>
+    <?php foreach($cats as $c): 
+      $slug = urlencode($c);
+      $active = $c === $selCat ? 'active':'';
+    ?>
+      <a href="menu.php?category=<?= $slug ?>" class="<?= $active ?>">
+        <?= htmlspecialchars($c) ?>
+      </a>
+    <?php endforeach; ?>
+  </nav>
+
+  <!-- 2. Menu grid -->
+  <div class="container py-5">
+    <h1 class="display-4 text-center mb-4">
+      <?= $selCat ?: 'All' ?> Menu
+    </h1>
+    <div id="menu-grid" class="row"></div>
+  </div>
+
+  <!-- 3. JS loader -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script>
+  $(function(){
+    let url = '/backend/api/get_menu.php' +
+      (<?= json_encode($selCat) ?> ? '?category='+encodeURIComponent(<?= json_encode($selCat) ?>) : '');
+
+    $.getJSON(url)
+      .done(items => {
+        let $g = $('#menu-grid').empty();
+        if (!items.length) {
+          return $g.html('<div class="col-12 text-muted">No items found.</div>');
+        }
+        items.forEach(i => {
+          $g.append(`
+            <div class="col-md-4 mb-4">
+              <a href="item.php?item_id=${i.item_id}" 
+                 class="text-decoration-none text-dark">
+                <div class="card h-100 shadow-sm">
+                  <img src="/images/${i.image_name}"
+                       class="card-img-top" alt="${i.item_name}">
+                  <div class="card-body">
+                    <h5 class="card-title">${i.item_name}</h5>
+                    <p class="card-text">${i.description}</p>
+                  </div>
+                  <div class="card-footer text-right">
+                    <strong>$${parseFloat(i.price).toFixed(2)}</strong>
+                  </div>
                 </div>
-                <div class="nav-right">
-                    <li><a href="home.html">Home</a></li>
-                    <li><a href="#contact">Catering</a></li>
-                    <li><a href="#about">Hours and Location</a></li>
-                    <li><a href="#about">About</a></li>
-                </div>
-            </ul>
-        </div> -->
-
-        <div>
-            <p class="menuinfo">Explore our menus</p>
-            <p class="menusubtext">Whether you're dining in, ordering out, or planning an event with our catering services, our menus cater to every taste and occasion. Delight in the bold flavors, fresh aromas, and joyful spirit of the Caribbean with every meal at Taste of the Caribbean.</p>
-        </div>
-
-        <div class="foodcategories">
-            <div class="foodtype">
-                <img src = "images/Burger.png" alt = "Dine in Menu">
-                <p><button type="button" onclick="dineinfunction()">Dine in Menu</p>
-            </div>
-            <div class="foodtype">
-                <img src = "images/Burger.png" alt = "Hors D'ourvres">
-                <p><button type="button" onclick="horsdouvresfunction()">Hors D'ouvres</p>
-            </div>
-            <div class="foodtype">
-                <img src = "images/Burger.png" alt = "Salads Bowls">
-                <p><button type="button" onclick="saladsbowlsfunction()">Salads Bowls</p>
-            </div>
-            <div class="foodtype">
-                <img src = "images/Burger.png" alt = "Soup">
-                <p><button type="button" onclick="soupsfunction()">Soup</p>
-            </div>
-            <div class="foodtype">
-                <img src = "images/Burger.png" alt = "Salads">
-                <p><button type="button" onclick="saladsfunction()">Salads</p>
-            </div>
-            <div class="foodtype">
-                <img src = "images/Burger.png" alt = "Breakfast">
-                <p><button type="button" onclick="breakfastfunction()">Breakfast</p>
-            </div>
-            <div class="foodtype">
-                <img src = "images/Burger.png" alt = "Entree">
-                <p><button type="button" onclick="entreefunction()">Entree</p>
-            </div>
-            <div class="foodtype">
-                <img src = "images/Burger.png" alt = "Sides">
-                <p><button type="button" onclick="sidesfunction()">Sides</p>
-            </div>
-            <div class="foodtype">
-                <img src = "images/Burger.png" alt = "Dessert">
-                <p><button type="button" onclick="dessertfunction()">Desserts</p>
-            </div>
-            <div class="foodtype">
-                <img src = "images/Burger.png" alt = "Specialty Options">
-                <p><button type="button" onclick="specialtyfunction()">Specialty Options</p>
-            </div>
-            <div class="foodtype">
-                <img src = "images/Burger.png" alt = "Lunch Box">
-                <p><button type="button" onclick="lunchboxfunction()">Lunch Box</p>
-            </div>
-            <div class="foodtype">
-                <img src = "images/Burger.png" alt = "Carribean Lunch Box">
-                <p><button type="button" onclick="carribeanlunchboxfunction()">Carribean Lunchbox</p>
-            </div>
-        </div>
-    </body>
-
+              </a>
+            </div>`);
+        });
+      })
+      .fail(() => $('#menu-grid')
+        .html('<div class="col-12 text-danger">Unable to load menu.</div>'));
+  });
+  </script>
+</body>
 </html>
