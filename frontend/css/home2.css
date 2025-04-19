@@ -1,5 +1,6 @@
 *
 {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -10,9 +11,11 @@ html{
 
 
 body{
-    background-color: #f5bf7d;
+    background-color: #ffffff;
 	position: relative;
 	overflow-x: hidden;
+  font-family: "DM Sans", Arial, sans-serif;
+  color: #333;
 }
 
 
@@ -36,7 +39,7 @@ body{
   }
 
 h2 {
-    color: black;
+    color: #333;
     font-family: Faculty Glyphic, serif;
     text-align: center;
     margin-top: 20px;
@@ -86,7 +89,7 @@ h2 {
 
 .navbar h1{
 	font-size: 24px;
-    color: white;
+    color: #333;
     font-family: Faculty Glyphic, sans-serif;
 }
 
@@ -95,21 +98,24 @@ h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #56aab3;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 0.5rem 1rem;
 }
 
 .navbar li a {
     font-size: 18px;
     padding: 10px 15px;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease;
 	font-family: Faculty Glyphic, serif;
-
+    color: #333;
+    text-decoration: none;
 }
 
 .navbar li a:hover {
-    background: rgba(255, 255, 255, 0.2);
-	border-radius: 5px;
-
+    background: #f5bf7d;
+    color: white;
+    border-radius: 5px;
 }
 
 .nav-right img {
@@ -129,8 +135,12 @@ h2 {
     align-items: left;
     gap: 20px; /* Space between text and image */
     max-width: 100%;
-    padding-top: 0px;
+    padding: 2rem;
     flex-wrap: wrap;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin: 2rem;
 }
 
 .hero-image {
@@ -144,7 +154,7 @@ h2 {
 .hero-image img {
     max-width: 100%;
     height: 100%;
-    border-radius: 0;
+    border-radius: 8px;
     float: left;
 }
 
@@ -154,44 +164,51 @@ h2 {
 }
 
 .hero-text h1 {
-    color: black;
+    color: #333;
     font-family: Faculty Glyphic, serif;
     padding: 20px;
-    font-size: 48px;
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
 }
 
 .hero-text p {
     font-family: Poppins, sans-serif;
     padding: 20px;
-    font-size: 20px;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
 }
 
 .hero-text .learn-more {
     padding: 15px 30px;
     font-size: 16px;
-    /*font-weight: bold;*/
     background-color: #56aab3;
-    border: solid 2px white;
+    border: none;
     border-radius: 25px;
     color: white;
     cursor: pointer;
     justify-content: center;
-    float: center;
-    margin-left: 250px;
-	/*margin-top: 10px;*/
-	margin-bottom: 20px;
+    margin: 20px auto;
+    display: block;
     font-family: Faculty Glyphic, serif;
+    transition: all 0.3s ease;
+}
+
+.hero-text .learn-more:hover {
+    background-color: #f5bf7d;
+    transform: translateY(-2px);
 }
 
 /* link styling */
 
 a:link {
     text-decoration: none;
-	color: white;
+	color: #333;
 }
 
 a:visited {
-    color: white;
+    color: #333;
 }
 
 /* order section */
@@ -200,7 +217,11 @@ a:visited {
 	display: flex;
     align-items: center; 
     justify-content: space-between; 
-	background-color: #56aab3;
+	background-color: white;
+  border: 2px solid #56aab3;
+  border-radius: 8px;
+  margin: 2rem;
+  padding: 2rem;
 }
 
 .order-text {
@@ -211,40 +232,46 @@ a:visited {
 }
 
 .order-text h1 {
-	color: black;
+	color: #333;
     font-family: Faculty Glyphic, serif;
     text-align: left;
     margin-bottom: 10px;
-	font-size: 36px;
+	font-size: 2.5rem;
+    line-height: 1.2;
 }
 
 .order-text p {
 	font-family: Poppins, sans-serif;
-    font-size: 20px;
+    font-size: 1rem;
+    line-height: 1.6;
     text-align: left;
-    margin: 0;
+    margin: 0 0 1rem 0;
 }
 
 .order img {
 	width: 40%;
     height: 40%;
     flex-shrink: 0;
+    border-radius: 8px;
 }
 
 .order .menu {
     padding: 15px 30px;
     font-size: 16px;
-    /*font-weight: bold;*/
-    background-color: #f5bf7d;
-    border: solid 2px white;
+    background-color: #56aab3;
+    border: none;
     border-radius: 25px;
     color: white;
     cursor: pointer;
     justify-content: center;
-    float: center;
-	margin-top: 20px;
-	margin-bottom: 20px;
+    margin: 20px 0;
     font-family: Faculty Glyphic, serif;
+    transition: all 0.3s ease;
+}
+
+.order .menu:hover {
+    background-color: #f5bf7d;
+    transform: translateY(-2px);
 }
 
 /* location section */
@@ -332,4 +359,38 @@ a:visited {
   text-align: left;
   font-family: DM Sans, sans-serif;
   padding: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-content {
+    flex-direction: column;
+  }
+  
+  .order {
+    flex-direction: column;
+  }
+  
+  .hero-text h1 {
+    font-size: 32px;
+  }
+  
+  .order-text {
+    margin-left: 0;
+    max-width: 100%;
+  }
+  
+  .order img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Interactive Elements */
+button, a {
+  transition: all 0.3s ease;
+}
+
+button:hover, a:hover {
+  transform: translateY(-2px);
 }
