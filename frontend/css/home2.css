@@ -275,122 +275,152 @@ a:visited {
 }
 
 /* location section */
-.address{
-	display: flex;
-    align-items: center; 
-    justify-content: space-between; 
-}
-.address-text{
-    flex: 1;
-    max-width: 50%; 
-}
-
-.address h1 {
-    color: black;
-    font-family: Faculty Glyphic, serif;
-    text-align: center;
-    margin-bottom: 25px;
-}
-
-.address p {
-    font-family: Poppins, sans-serif;
-    font-size: 20px;
-    text-align: center;
-    margin: 0;
-	padding: 0px 40px;
-}
-
-.address img {
-    width: 700px;
-    height: auto;
-    flex-shrink: 0; /* Prevents image from shrinking */
-}
-
-
-  
-
-/* map section */
-
-.map {
+.address {
     display: flex;
     align-items: center; 
     justify-content: space-between; 
-	/*gap: 50px;
-    padding: 50px;*/
-	background-color: #56aab3;
-}
-
-.map-text {
-    flex: 1; /* Allows text to take up available space */
+    background-color: white;
+    border: 2px solid #56aab3;
+    border-radius: 8px;
+    margin: 2rem;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  .address-text {
+    flex: 1;
     max-width: 50%; 
-	gap: 50px;
-    padding: 125px 50px;
-}
-
-.map h1 {
-    color: black;
+    padding: 1rem;
+  }
+  
+  .address h1 {
+    color: #333;
+    font-family: Faculty Glyphic, serif;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+  
+  .address p {
+    font-family: Poppins, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: center;
+    margin: 0 0 1rem 0;
+    padding: 0 1rem;
+  }
+  
+  .address img {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    flex-shrink: 0;
+    border-radius: 8px;
+  }
+  
+  /* map section */
+  .map {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; 
+    background-color: white;
+    border: 2px solid #f5bf7d;
+    border-radius: 8px;
+    margin: 2rem;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  .map-text {
+    flex: 1;
+    max-width: 50%; 
+    padding: 1rem;
+  }
+  
+  .map h1 {
+    color: #333;
     font-family: Faculty Glyphic, serif;
     text-align: left;
-    margin-bottom: 10px;
-}
-
-.map p {
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+  
+  .map p {
     font-family: Poppins, sans-serif;
-    font-size: 20px;
+    font-size: 1rem;
+    line-height: 1.6;
     text-align: left;
-    margin: 0;
-}
-
-.map img {
-    width: 700px;
-    height: auto;
-    flex-shrink: 0; /* Prevents image from shrinking */
-}
-
-/* footer section */
-
-.footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: #007a87;
-  color: white;
-  text-align: left;
-  font-family: DM Sans, sans-serif;
-  padding: 15px;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .hero-content {
-    flex-direction: column;
+    margin: 0 0 1rem 0;
   }
   
-  .order {
-    flex-direction: column;
-  }
-  
-  .hero-text h1 {
-    font-size: 32px;
-  }
-  
-  .order-text {
-    margin-left: 0;
-    max-width: 100%;
-  }
-  
-  .order img {
+  .map img {
     width: 100%;
+    max-width: 700px;
     height: auto;
+    flex-shrink: 0;
+    border-radius: 8px;
   }
-}
-
-/* Interactive Elements */
-button, a {
-  transition: all 0.3s ease;
-}
-
-button:hover, a:hover {
-  transform: translateY(-2px);
-}
+  
+  /* footer section */
+  .footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #56aab3;
+    color: white;
+    text-align: left;
+    font-family: DM Sans, sans-serif;
+    padding: 15px;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .hero-content {
+      flex-direction: column;
+    }
+    
+    .order {
+      flex-direction: column;
+    }
+    
+    .hero-text h1 {
+      font-size: 32px;
+    }
+    
+    .order-text {
+      margin-left: 0;
+      max-width: 100%;
+    }
+    
+    .order img {
+      width: 100%;
+      height: auto;
+    }
+    
+    .address, .map {
+      flex-direction: column;
+    }
+    
+    .address-text, .map-text {
+      max-width: 100%;
+      margin-bottom: 1rem;
+    }
+    
+    .address img, .map img {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+  
+  /* Interactive Elements */
+  button, a {
+    transition: all 0.3s ease;
+  }
+  
+  button:hover, a:hover {
+    transform: translateY(-2px);
+  }
