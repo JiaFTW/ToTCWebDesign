@@ -14,10 +14,10 @@ $activePage = basename($_SERVER['PHP_SELF']);
   <nav>
     <ul>
       <li><a href="index.php" class="<?= $activePage == 'index.php' ? 'active' : '' ?>">Home</a></li>
-      <li><a href="menu.php" class="<?= $activePage == 'menu.html' ? 'active' : '' ?>">Menu</a></li>
-      <li><a href="map.php" class="<?= $activePage == 'map.html' ? 'active' : '' ?>">Map</a></li>
+      <li><a href="menu.php" class="<?= $activePage == 'menu.php' ? 'active' : '' ?>">Menu</a></li>
+      <li><a href="map.php" class="<?= $activePage == 'map.php' ? 'active' : '' ?>">Map</a></li>
       <li><a href="order.php" class="<?= $activePage == 'order.php' ? 'active' : '' ?>">Order</a></li>
-      <li><a href="profile.html" class="<?= $activePage == 'profile.html' ? 'active' : '' ?>">Profile</a></li>
+      <li><a href="profile.php" class="<?= $activePage == 'profile.php' ? 'active' : '' ?>">Profile</a></li>
       <li><a href="login.php" class="<?= $activePage == 'login.php' ? 'active' : '' ?>">Login</a></li>
     </ul>
   </nav>
