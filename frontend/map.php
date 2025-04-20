@@ -1,13 +1,26 @@
+<?php
+session_start();
+if (isset($_SESSION['username'])) {
+  include 'includes/header_user.php';
+} else {
+  include 'includes/header_guest.php';
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taste of the Caribbean</title>
+    <link rel="stylesheet" href="css/navbar.css">
+
     <link rel="stylesheet" href="css/styles.css"><link rel="stylesheet" href="css/map.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
+    <!-- Navigation Bar
     <nav>
         <ul>
             <li><a href="#">Menu</a></li>
@@ -16,7 +29,7 @@
             <li><a href="profile.html">Profile</a></li>
             <li><a href="index1.html">Login</a></li>
         </ul>
-    </nav>
+    </nav> -->
 
     <!-- Hero Section -->
     <header class="hero">
@@ -32,11 +45,11 @@
 
         <map name="test">
             <!-- Href is field to change where the part of the map links to -->
-            <area shape="circle" coords="589,345,44" alt="Cuba" href="category/breakfast.html" onmouseover="showCountryImage(event, 'cuba', 589, 345)" onmouseout="hideCountryImage('cuba')" id="cubaArea">
-            <area shape="circle" coords="540,477,44" alt="Jamaica" href="category/carribeanlunchbox.html" onmouseover="showCountryImage(event, 'jamaica', 540, 477)" onmouseout="hideCountryImage('jamaica')" id="jamaicaArea">
-            <area shape="circle" coords="790,408,44" alt="Haiti" href="category/dessert.html" onmouseover="showCountryImage(event, 'haiti', 790, 408)" onmouseout="hideCountryImage('haiti')" id="haitiArea">
-            <area shape="circle" coords="926,450,44" alt="DominicanR" href="category/saladsbowls.html" onmouseover="showCountryImage(event, 'dominican', 926, 450)" onmouseout="hideCountryImage('dominican')" id="dominicanArea">
-            <area shape="circle" coords="1110,477,44" alt="PuertoR" href="category/soups.html" onmouseover="showCountryImage(event, 'puerto', 1110, 477)" onmouseout="hideCountryImage('puerto')" id="puertoArea">
+            <area shape="circle" coords="589,345,44" alt="Cuba" href="category/breakfast.php" onmouseover="showCountryImage(event, 'cuba', 589, 345)" onmouseout="hideCountryImage('cuba')" id="cubaArea">
+            <area shape="circle" coords="540,477,44" alt="Jamaica" href="category/carribeanlunchbox.php" onmouseover="showCountryImage(event, 'jamaica', 540, 477)" onmouseout="hideCountryImage('jamaica')" id="jamaicaArea">
+            <area shape="circle" coords="790,408,44" alt="Haiti" href="category/dessert.php" onmouseover="showCountryImage(event, 'haiti', 790, 408)" onmouseout="hideCountryImage('haiti')" id="haitiArea">
+            <area shape="circle" coords="926,450,44" alt="DominicanR" href="category/saladsbowls.php" onmouseover="showCountryImage(event, 'dominican', 926, 450)" onmouseout="hideCountryImage('dominican')" id="dominicanArea">
+            <area shape="circle" coords="1110,477,44" alt="PuertoR" href="category/soups.php" onmouseover="showCountryImage(event, 'puerto', 1110, 477)" onmouseout="hideCountryImage('puerto')" id="puertoArea">
         </map>
 
         <!-- Country Images and Texts -->

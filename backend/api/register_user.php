@@ -1,4 +1,7 @@
 <?php
+session_start();
+include_once isset($_SESSION['username']) ? '../../frontend/includes/header_user.php' : '../../frontend/includes/header_guest.php';
+
 require_once __DIR__ . '/../../vendor/autoload.php';
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
@@ -25,15 +28,13 @@ if ($password !== $confirmPassword) {
     die("❌ Passwords do not match.");
 }
 
-// Hash the password securely
 $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-// Connect to RabbitMQ
+// Send to RabbitMQ
 $connection = new AMQPStreamConnection('98.82.149.231', 5672, 'totc', 'Totc2025');
 $channel = $connection->channel();
 $channel->queue_declare('user_requests', false, true, false, false);
 
-// Create RabbitMQ message
 $data = json_encode([
     "action" => "register",
     "email" => $email,
@@ -48,5 +49,10 @@ $channel->basic_publish($msg, '', 'user_requests');
 $channel->close();
 $connection->close();
 
-echo "✅ Registration request sent!";
+// Auto login
+$_SESSION['username'] = $email;
+
+// Redirect to welcome page or homepage
+header("Location: ../../frontend/index.php");
+exit;
 ?>

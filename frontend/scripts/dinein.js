@@ -7,21 +7,44 @@ var foodsize = '';
 var addon = '';
 
 function Aseasonal() {
-    location.replace("../dinein/appetizers/Aseasonal.html")
+    location.replace("../dinein/appetizers/Aseasonal.php")
 }
 
 //Methods for cancelling and submitting the order
 function cancelling() {
-    location.replace("../../category/dinein.html");
+    location.replace("../../category/dinein.php");
 }
 
 function submitting() {
     if(quantity == 0) console.log("You havent added anything!");
     else if(foodsize == '') console.log("Please select the size of the item!")
     if(!(quantity == 0) && !(foodsize == '')) {
-        location.replace("../../category/dinein.html");
+        location.replace("../../cart.php");
         console.log("Your item has been added in the cart!");
     }
+
+    // Get item details
+    let foodName = document.querySelector(".rightfields p").innerText; 
+    let finalPrice = value.toFixed(2);
+
+    // Prepare data for sending
+    let cartData = new FormData();
+    cartData.append("name", foodName);
+    cartData.append("size", foodsize);
+    cartData.append("quantity", quantity);
+    cartData.append("price", finalPrice);
+
+    // Send data to add_to_cart.php
+    fetch("../../backend/api/add_to_cart.php", {
+        method: "POST",
+        body: cartData
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log("Item added to cart:", data);
+        window.location.href = "../../cart.php"; // Redirect to cart page
+    })
+    .catch(error => console.error("Error adding to cart:", error));
 }
 
 //Gets the size of the food from the selected radio options
@@ -63,7 +86,7 @@ function decrement() {
         else if(foodsize == 'm') value -= 7;
         else if(foodsize == 'l') value -= 10;
         change();
-        if(quantity == 0) {
+        if(quantity == 0 && !(foodsize == '')) {
             document.getElementById("no").checked = true;
             value -= 4;
             change();
