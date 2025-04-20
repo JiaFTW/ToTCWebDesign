@@ -61,7 +61,7 @@ if (isset($_SESSION['username'])) {
 			<h1>Feeling Hungry?</h1>
 			<p>Delight in the bold flavors, fresh aromas, and joyful spirit of the Caribbean with every meal at Taste of the Caribbean.
 			View our menu and order now!</p>
-			<a href="#"><button class="menu">Our Menu</button></a>
+			<a href="menu.php"><button class="menu">Our Menu</button></a>
 		</div>
 			<img src="images/Chicken.png" alt="pot of cooked chicken and potatoes">
 	</div>
@@ -75,6 +75,7 @@ if (isset($_SESSION['username'])) {
 	<div class="map">
 		<div class="map-text">
 			<h1>Interactive Food Map</h1>
+			<a href="map.php"><button>Interactive Map</button></a>
 			<p>Hover over the map to see the most popular dish in that Caribbean country!</p>
 		</div>
 		<img src="images/placehold_map.png" alt="vector map of the caribbean">
