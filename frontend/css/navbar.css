@@ -1,63 +1,88 @@
-/* ---------- Navbar Base ---------- */
+/* ─── Navbar Container ─── */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #ff6b35;
-  height: 60px;           /* fixed height so it never “grows” */
-  padding: 0 20px;
-  box-sizing: border-box;
-  font-family: "DM Sans", Arial, sans-serif;
-  z-index: 1000;
+  background: #ffffff;
+  padding: 8px 16px;
+  border-bottom: 2px solid #ff6b35;
+  position: relative;
+  z-index: 10;
 }
 
-/* ---------- Left & Right Groups ---------- */
+/* ─── Hamburger Button (hidden on desktop) ─── */
+.hamburger {
+  display: none;
+  font-size: 28px;
+  background: none;
+  border: none;
+  color: #ff6b35;
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* ─── Logo & Brand in Center ─── */
+.nav-center {
+  flex: 1;
+  text-align: center;
+}
+.nav-center .logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+.nav-center .logo img {
+  height: 60px;
+  width: auto;
+}
+.nav-center .brand {
+  margin-left: 8px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ff6b35 !important;
+}
+
+/* ─── Left & Right Groups ─── */
 .nav-left,
 .nav-right {
   display: flex;
   align-items: center;
 }
-
-/* ---------- Logo ---------- */
-.nav-left .logo img {
-  height: 40px;           /* maintain aspect ratio */
-  width: auto;
-  margin-right: 20px;
-}
-
-/* ---------- Links ---------- */
 .nav-left a,
 .nav-right a {
-  color: #fff !important;  /* force white over any global a:link */
+  color: #ff6b35 !important;
   text-decoration: none;
-  margin: 0 10px;
-  padding: 0 6px;
-  line-height: 60px;       /* vertically center text */
+  padding: 6px 8px;
+  margin: 0 6px;
   font-size: 14px;
   font-weight: 500;
   transition: background 0.2s;
 }
 .nav-left a.active,
-.nav-right a.active {
-  background: rgba(255,255,255,0.2);
+.nav-right a.active,
+.nav-left a:hover,
+.nav-right a:hover {
+  background: rgba(255,107,53,0.1);
   border-radius: 4px;
 }
 
-/* ---------- Cart Icon ---------- */
+/* ─── Cart Icon ─── */
 .cart-icon {
   position: relative;
   margin-left: 12px;
+  background-color: #ff6b35;
+  padding: 6px;
+  border-radius: 50%;
 }
 .cart-icon img {
   height: 24px;
   width: 24px;
-  vertical-align: middle;
-  margin-top: 18px;       /* centers within the 60px navbar */
+  display: block;
 }
 .cart-count {
   position: absolute;
-  top: 8px;
-  right: 0;
+  top: -4px;
+  right: -6px;
   background: #fff;
   color: #ff6b35;
   font-size: 10px;
@@ -66,9 +91,30 @@
   padding: 2px 5px;
 }
 
-/* ---------- Hover States ---------- */
-.nav-left a:hover,
-.nav-right a:hover,
-.cart-icon:hover img {
-  opacity: 0.8;
+/* ─── Mobile Styles ─── */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+  .nav-left,
+  .nav-center,
+  .nav-right {
+    display: none;
+    flex-direction: column;
+    background: #fff;
+    width: 100%;
+    text-align: center;
+  }
+  .navbar.open .nav-left,
+  .navbar.open .nav-center,
+  .navbar.open .nav-right {
+    display: flex;
+  }
+  .nav-left a,
+  .nav-right a {
+    margin: 8px 0;
+  }
+  .nav-right {
+    padding-bottom: 8px;
+  }
 }
