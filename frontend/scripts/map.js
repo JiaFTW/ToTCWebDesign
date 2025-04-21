@@ -10,7 +10,7 @@ function showCountryImage(event, country, x, y) {
 
     // Image realitive to mouse placement
     image.style.left = `${mouseX - imageWidth / 2}px`;
-    image.style.top = `${mouseY + 10}px`; 
+    image.style.top = `${mouseY - 100}px`; 
     text.style.left = `${mouseX - 70}px`;
     text.style.top = `${mouseY + imageHeight + 20}px`;  
 
