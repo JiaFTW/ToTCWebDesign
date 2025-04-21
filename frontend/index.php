@@ -5,44 +5,25 @@ session_start();
 include __DIR__ . '/scripts/check-services.php';
 
 if (isset($_SESSION['username'])) {
-  include 'includes/header_user.php';
+    include __DIR__ . '/includes/header_user.php';
 } else {
-  include 'includes/header_guest.php';
+    include __DIR__ . '/includes/header_guest.php';
 }
 ?>
-
 
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Taste of the Carribean</title>
+    <link rel="stylesheet" href="/css/home2.css">
 	<link rel="stylesheet" href="css/navbar.css">
-
-    <link rel="stylesheet" href="./css/home2.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,900;1,9..40,900&family=Faculty+Glyphic&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   </head>
   <body>
-	<!-- <div class="navbar">
-		<ul>
-			<div class="nav-left">
-				<li><img src="images/TOC_Logo.png" alt="taste of the caribbean logo"></li>
-				<li><h1>Taste of the Caribbean</h1></li>
-			</div>
-			<div class="nav-right">
-
-				<li><a href="map.html">Map</a></li>
-				<li><a href="index1.html">Login</a></li>
-				<li><a href="#contact">Catering</a></li>
-				<li><a href="#about">Hours and Location</a></li>
-				<li><a href="#about">About</a></li>
-				<li><a href="cart.php"><img src="images/cart_icon.png" alt="Go to cart page"></a></li>
-			</div>
-		</ul>
-	</div> -->
     <div class="hero">
       <div class="hero-content">
         <div class="hero-image">

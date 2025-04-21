@@ -4,9 +4,9 @@ session_start();
 include __DIR__ . '/scripts/check-services.php';
 
 if (isset($_SESSION['username'])) {
-  include 'includes/header_user.php';
+    include __DIR__ . '/includes/header_user.php';
 } else {
-  include 'includes/header_guest.php';
+    include __DIR__ . '/includes/header_guest.php';
 }
 // Sample cart structure (this should come from session)
 $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
@@ -17,8 +17,9 @@ $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 <html lang="en">
   <head>
     <title>Taste of the Carribean</title>
-    <link rel="stylesheet" href="./css/home2.css">
+    <!-- <link rel="stylesheet" href="./css/home2.css"> -->
     <link rel="stylesheet" href="./css/cart.css">
+    <link rel="stylesheet" href="css/navbar.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">

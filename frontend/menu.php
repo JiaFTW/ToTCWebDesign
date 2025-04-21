@@ -2,10 +2,24 @@
 // frontend/menu.php
 session_start();
 include __DIR__ . '/scripts/check-services.php';
+
 if (isset($_SESSION['username'])) {
   include __DIR__ . '/includes/header_user.php';
 } else {
   include __DIR__ . '/includes/header_guest.php';
+}
+
+// ←――― FLASH MESSAGE ―――→
+if (!empty($_SESSION['flash_added'])) {
+    $added = $_SESSION['flash_added']['name'];
+    unset($_SESSION['flash_added']);
+    echo <<<HTML
+    <div class="alert alert-success flash-added">
+      “{$added}” has been added to your cart.
+      <a href="/menu.php" class="btn btn-sm btn-outline-primary ml-2">Continue Shopping</a>
+      <a href="/cart.php" class="btn btn-sm btn-primary ml-1">View Cart</a>
+    </div>
+HTML;
 }
 
 // load categories
@@ -31,20 +45,8 @@ $selCat = $_GET['category'] ?? '';
 
 </head>
 <body>
-  <!-- 1. Category nav -->
-  <nav class="category-nav">
-    <a href="menu.php" class="<?= $selCat==''?'active':'' ?>">All</a>
-    <?php foreach($cats as $c): 
-      $slug = urlencode($c);
-      $active = $c === $selCat ? 'active':'';
-    ?>
-      <a href="menu.php?category=<?= $slug ?>" class="<?= $active ?>">
-        <?= htmlspecialchars($c) ?>
-      </a>
-    <?php endforeach; ?>
-  </nav>
 
-  <!-- 2. Menu grid -->
+  <!-- Menu grid -->
   <div class="container py-5">
     <h1 class="display-4 text-center mb-4">
       <?= $selCat ?: 'All' ?> Menu
@@ -52,7 +54,7 @@ $selCat = $_GET['category'] ?? '';
     <div id="menu-grid" class="row"></div>
   </div>
 
-  <!-- 3. JS loader -->
+  <!--  JS loader -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script>
   $(function(){
