@@ -2,6 +2,12 @@
 // frontend/payment.php
 session_start();
 include 'scripts/check-services.php';
+
+if (isset($_SESSION['username'])) {
+  include __DIR__ . '/includes/header_user.php';
+} else {
+  include __DIR__ . '/includes/header_guest.php';
+}
 include isset($_SESSION['username'])
   ? 'includes/header_user.php'
   : 'includes/header_guest.php';
@@ -21,8 +27,8 @@ $price = $stmt->fetchColumn() * $qty;
 <head>
   <meta charset="UTF-8">
   <title>Payment • Taste of the Caribbean</title>
+  <link rel="stylesheet" href="css/menu.css">
   <link rel="stylesheet" href="css/navbar.css">
-  <link rel="stylesheet" href="css/menu2.css">
 </head>
 <body>
   <div class="container py-5">

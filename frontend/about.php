@@ -5,9 +5,9 @@ session_start();
 include __DIR__ . '/scripts/check-services.php';
 
 if (isset($_SESSION['username'])) {
-  include 'includes/header_user.php';
+    include __DIR__ . '/includes/header_user.php';
 } else {
-  include 'includes/header_guest.php';
+    include __DIR__ . '/includes/header_guest.php';
 }
 ?>
 
@@ -15,7 +15,6 @@ if (isset($_SESSION['username'])) {
 <html lang="en">
   <head>
     <title>Taste of the Carribean</title>
-	<link rel="stylesheet" href="css/navbar.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,900;1,9..40,900&family=Faculty+Glyphic&display=swap" rel="stylesheet">
@@ -67,6 +66,7 @@ if (isset($_SESSION['username'])) {
             margin-bottom: 20px;
         }
     </style>
+    <link rel="stylesheet" href="css/navbar.css">
   </head>
   <body>
     <div class="container">
