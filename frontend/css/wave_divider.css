@@ -7,6 +7,7 @@
     height: 50px;
     overflow: hidden;
     margin-top: 40px;
+    z-index: 10;
   }
   
   .wave-divider-top::before {
@@ -28,6 +29,7 @@
     height: 50px;
     overflow: hidden;
     margin-bottom: 40px;
+    z-index: 10;
   }
   
   .wave-divider-bottom::before {
@@ -49,6 +51,8 @@
     height: 50px;
     overflow: hidden;
     margin: 40px 0;
+    z-index: 10;
+    display: block;
   }
   
   .wave-divider-blue::before {
@@ -69,6 +73,8 @@
     height: 50px;
     overflow: hidden;
     margin: 40px 0;
+    z-index: 10;
+    display: block;
   }
   
   .wave-divider-white::before {
@@ -90,6 +96,8 @@
     height: 50px;
     overflow: hidden;
     margin: 40px 0;
+    z-index: 10;
+    display: block;
   }
   
   .wave-divider-curved::before {
@@ -115,3 +123,4 @@
       margin: 20px 0;
     }
   } 
+  

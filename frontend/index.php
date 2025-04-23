@@ -77,5 +77,19 @@ if (isset($_SESSION['username'])) {
 	<div class="footer">
 		<p> &copy; Taste of the Caribbean 2025</p>
 	</div>
+
+	<style>
+      /* Additional inline styles to ensure wave dividers are visible */
+      .wave-divider-blue, 
+      .wave-divider-orange, 
+      .wave-divider-curved, 
+      .wave-divider-bottom {
+        position: relative;
+        width: 100%;
+        height: 50px;
+        margin: 40px 0;
+        z-index: 10;
+      }
+    </style>
 </body>
 </html>
