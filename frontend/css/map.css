@@ -1,10 +1,18 @@
-
-.countryImage {
+.countryLink {
   display: none;
   position: absolute;
+  z-index: 1001;
+  text-decoration: none; 
+}
+
+
+.countryImage {
+  display: block; 
   width: 300px;
   height: 300px;
-  z-index: 9999;
+  border: 3px solid white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  pointer-events: auto; 
 }
 
 .countryText {
@@ -14,8 +22,6 @@
   color: white;
   padding: 10px;
   font-size: 20px;
-  z-index: 9999;
-
+  z-index: 1001;
+  pointer-events: none; 
 }
-
-
