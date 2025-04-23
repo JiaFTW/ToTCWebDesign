@@ -22,6 +22,7 @@ $cartCount = (isset($_SESSION['cart']) && is_array($_SESSION['cart']))
   </div>
 
   <div class="nav-right">
+  <a href="/contact.php" class="<?= $active=='contact.php'  ? 'active':''?>">Catering</a>
     <a href="/about.php"   class="<?= $active=='about.php'   ? 'active':'' ?>">About Us</a>
 
       <a href="/login.php"    class="<?= $active=='login.php'   ? 'active':'' ?>">Login</a>
