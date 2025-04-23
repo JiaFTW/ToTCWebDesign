@@ -18,6 +18,7 @@ if (isset($_SESSION['username'])) {
     <title>Taste of the Carribean</title>
     <link rel="stylesheet" href="/css/home2.css">
 	<link rel="stylesheet" href="css/navbar.css">
+	<link rel="stylesheet" href="css/wave_divider.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,900;1,9..40,900&family=Faculty+Glyphic&display=swap" rel="stylesheet">
@@ -37,6 +38,9 @@ if (isset($_SESSION['username'])) {
         </div>
       </div>
     </div>
+
+	<div class="wave-divider-blue"></div>
+
 	<div class="order">
 		<div class="order-text">
 			<h1>Feeling Hungry?</h1>
@@ -46,6 +50,9 @@ if (isset($_SESSION['username'])) {
 		</div>
 			<img src="images/Chicken.png" alt="pot of cooked chicken and potatoes">
 	</div>
+
+	<div class="wave-divider-white"></div>
+
 	<div class="address">
 		<img src="images/location.jpg" alt="picture of caribbean food on plates on a table">
 		<div class="address-text">
@@ -53,6 +60,9 @@ if (isset($_SESSION['username'])) {
 			<p>Check <a href="#">here</a> for our hours and location! We will be happy to see and serve up delicious meals that will keep you coming back!</p>
 		</div>
 	</div>
+
+	<div class="wave-divider-curved"></div>
+
 	<div class="map">
 		<div class="map-text">
 			<h1>Interactive Food Map</h1>
@@ -61,6 +71,9 @@ if (isset($_SESSION['username'])) {
 		</div>
 		<img src="images/placehold_map.png" alt="vector map of the caribbean">
 	</div>
+
+	<div class="wave-divider-bottom"></div>
+
 	<div class="footer">
 		<p> &copy; Taste of the Caribbean 2025</p>
 	</div>
