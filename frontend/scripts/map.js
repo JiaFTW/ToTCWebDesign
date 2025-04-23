@@ -1,5 +1,6 @@
 function showCountryImage(event, country, x, y) {
-    const image = document.getElementById(country + 'Image');
+    const link = document.getElementById(country + 'Link'); 
+    const image = document.getElementById(country + 'Image'); 
     const text = document.getElementById(country + 'Text');
     const imageWidth = 300;
     const imageHeight = 300;
@@ -8,12 +9,17 @@ function showCountryImage(event, country, x, y) {
     const mouseX = event.clientX;
     const mouseY = event.clientY;
 
-    // Image realitive to mouse placement
-    image.style.left = `${mouseX - imageWidth / 2}px`;
-    image.style.top = `${mouseY - 100}px`; 
-    text.style.left = `${mouseX - 70}px`;
-    text.style.top = `${mouseY + imageHeight + 20}px`;  
+    // Position the a tag (hopeflly over the image)
+    link.style.position = 'absolute';
+    link.style.left = `${mouseX - imageWidth / 2}px`;
+    link.style.top = `${mouseY - 100}px`;
+    link.style.display = 'block';
 
+    // Place image in a tag
+    image.style.display = 'block';
+    image.style.width = `${imageWidth}px`;
+    image.style.height = `${imageHeight}px`;
+    
     // Display the image and text
     image.style.display = 'block';
     text.style.display = 'block';
