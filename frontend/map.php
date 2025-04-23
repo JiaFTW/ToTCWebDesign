@@ -50,27 +50,27 @@ if (isset($_SESSION['username'])) {
 
         <map name="test">
             <!-- Href is field to change where the part of the map links to -->
-            <area shape="circle" coords="589,345,44" alt="Cuba" href="category/breakfast.php" onmouseover="showCountryImage(event, 'cuba', 589, 345)" onmouseout="hideCountryImage('cuba')" id="cubaArea">
-            <area shape="circle" coords="540,477,44" alt="Jamaica" href="category/carribeanlunchbox.php" onmouseover="showCountryImage(event, 'jamaica', 540, 477)" onmouseout="hideCountryImage('jamaica')" id="jamaicaArea">
-            <area shape="circle" coords="790,408,44" alt="Haiti" href="category/dessert.php" onmouseover="showCountryImage(event, 'haiti', 790, 408)" onmouseout="hideCountryImage('haiti')" id="haitiArea">
-            <area shape="circle" coords="926,450,44" alt="DominicanR" href="category/saladsbowls.php" onmouseover="showCountryImage(event, 'dominican', 926, 450)" onmouseout="hideCountryImage('dominican')" id="dominicanArea">
-            <area shape="circle" coords="1110,477,44" alt="PuertoR" href="category/soups.php" onmouseover="showCountryImage(event, 'puerto', 1110, 477)" onmouseout="hideCountryImage('puerto')" id="puertoArea">
+            <area shape="circle" coords="589,345,44" alt="Cuba" href="item.php?item_id=4" onmouseover="showCountryImage(event, 'cuba', 589, 345)" onmouseout="hideCountryImage('cuba')" id="cubaArea">
+            <area shape="circle" coords="540,477,44" alt="Jamaica" href="item.php?item_id=7" onmouseover="showCountryImage(event, 'jamaica', 540, 477)" onmouseout="hideCountryImage('jamaica')" id="jamaicaArea">
+            <area shape="circle" coords="790,408,44" alt="Haiti" href="item.php?item_id=6" onmouseover="showCountryImage(event, 'haiti', 790, 408)" onmouseout="hideCountryImage('haiti')" id="haitiArea">
+            <area shape="circle" coords="926,450,44" alt="DominicanR" href="item.php?item_id=5" onmouseover="showCountryImage(event, 'dominican', 926, 450)" onmouseout="hideCountryImage('dominican')" id="dominicanArea">
+            <area shape="circle" coords="1110,477,44" alt="PuertoR" href="item.php?item_id=8" onmouseover="showCountryImage(event, 'puerto', 1110, 477)" onmouseout="hideCountryImage('puerto')" id="puertoArea">
         </map>
 
         <!-- Country Images and Texts -->
-        <img id="cubaImage" class="countryImage" src="images/cuba.jpg" alt="Cuba">
+        <img id="cubaImage" class="countryImage" src="images/cuba.jpg" alt="Cuba" href="item.php?item_id=4">
         <div id="cubaText" class="countryText">Test Cuba</div>
 
-        <img id="jamaicaImage" class="countryImage" src="images/jamaica.jpg" alt="Jamaica">
+        <img id="jamaicaImage" class="countryImage" src="images/jamaica.jpg" href="item.php?item_id=7" alt="Jamaica">
         <div id="jamaicaText" class="countryText">Test Jamaica</div>
 
-        <img id="haitiImage" class="countryImage" src="images/haiti.jpg" alt="Haiti">
+        <img id="haitiImage" class="countryImage" src="images/haiti.jpg" href="item.php?item_id=6" alt="Haiti">
         <div id="haitiText" class="countryText">Test Haiti</div>
 
-        <img id="dominicanImage" class="countryImage" src="images/dominican.jpg" alt="Dominican Republic">
+        <img id="dominicanImage" class="countryImage" src="images/dominican.jpg" href="item.php?item_id=5" alt="Dominican Republic">
         <div id="dominicanText" class="countryText">Test Dominican Republic</div>
 
-        <img id="puertoImage" class="countryImage" src="images/puerto.jpg" alt="Puerto Rico">
+        <img id="puertoImage" class="countryImage" src="images/puerto.jpg" href="item.php?item_id=8" alt="Puerto Rico">
         <div id="puertoText" class="countryText">Test Puerto Rico</div>
     </section>
 
