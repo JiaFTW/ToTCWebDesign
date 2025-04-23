@@ -37,6 +37,7 @@ if (isset($_SESSION['username'])) {
         </div>
       </div>
     </div>
+
 	<div class="order">
 		<div class="order-text">
 			<h1>Feeling Hungry?</h1>
@@ -46,6 +47,7 @@ if (isset($_SESSION['username'])) {
 		</div>
 			<img src="images/Chicken.png" alt="pot of cooked chicken and potatoes">
 	</div>
+
 	<div class="address">
 		<img src="images/location.jpg" alt="picture of caribbean food on plates on a table">
 		<div class="address-text">
@@ -53,6 +55,7 @@ if (isset($_SESSION['username'])) {
 			<p>Check <a href="#">here</a> for our hours and location! We will be happy to see and serve up delicious meals that will keep you coming back!</p>
 		</div>
 	</div>
+
 	<div class="map">
 		<div class="map-text">
 			<h1>Interactive Food Map</h1>
@@ -61,6 +64,7 @@ if (isset($_SESSION['username'])) {
 		</div>
 		<img src="images/placehold_map.png" alt="vector map of the caribbean">
 	</div>
+
 	<div class="footer">
 		<p> &copy; Taste of the Caribbean 2025</p>
 	</div>

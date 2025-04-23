@@ -2,6 +2,7 @@
 {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html{
@@ -10,9 +11,11 @@ html{
 
 
 body{
-  background-color: #f5bf7d;
+  background-color: #ffffff;
 	position: relative;
 	overflow-x: hidden;
+  font-family: "DM Sans", Arial, sans-serif;
+  color: #333;
 }
 
 
@@ -36,111 +39,40 @@ body{
   }
 
 h2 {
-  color: black;
+  color: #333;
   font-family: Faculty Glyphic, serif;
   text-align: center;
   margin-top: 20px;
 }
 
-/* navbar section */
-
-/*.navbar ul {
-  list-style-type: none;
-  margin: 0;
-  overflow: hidden;
-  background-color: #007a87;
-  display: flex;
-  align-items: center;
-}*/
-
-.nav-left {
-  display: flex;
-  align-items: center;
-}
-
-.nav-right {
-  display: flex;
-  align-items: center;
-  margin-left: auto;
-  
-}
-
-.navbar li {
-  display: flex;
-}
-
-/*.navbar li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 15px 15px;
-  text-decoration: none;
-  font-size: 16px;
-  font-family: Faculty Glyphic, serif;
-}*/
-
-.navbar img {
-	width: 100px;
-	height: 100px;
-}
-
-.navbar h1{
-	font-size: 24px;
-    color: white;
-    font-family: Faculty Glyphic, sans-serif;
-}
-
-.navbar ul {
-    list-style-type: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #56aab3;
-}
-
-.navbar li a {
-    font-size: 18px;
-    padding: 10px 15px;
-    transition: all 0.3s ease-in-out;
-	font-family: Faculty Glyphic, serif;
-
-}
-
-.navbar li a:hover {
-    background: rgba(255, 255, 255, 0.2);
-	border-radius: 5px;
-
-}
-
-.nav-right img {
-    width: 20px; /* Adjust width as needed */
-    height: 20px; /* Maintains aspect ratio */
-}
-
 /* form section */
 
 h1{
-    color: white;
+    color: #333;
     font-family: Faculty Glyphic, serif;
     text-align: center;
     margin-top: 20px;
+    margin-bottom: 20px;
     font-size: 36px;
 }
 
 p{
-    color: white;
+    color: #333;
     font-family: Poppins, sans-serif;
     text-align: center;
     font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 30px;
 }
 
 .container {
   max-width: 800px;
   margin: 40px auto;
-  background-color: var(--white);
+  background-color: white;
   padding: 40px;
   border-radius: 12px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border: 2px solid #56aab3;
 }
 
 .form-group {
@@ -151,7 +83,7 @@ label {
   display: block;
   margin-bottom: 8px;
   font-weight: 500;
-  color: var(--black);
+  color: #333;
 }
 
 .required::after {
@@ -163,7 +95,7 @@ label {
 input, textarea, select {
   width: 100%;
   padding: 12px 15px;
-  border: 1px solid var(--gray);
+  border: 1px solid #ddd;
   border-radius: 6px;
   font-family: 'Poppins', sans-serif;
   font-size: 15px;
@@ -172,7 +104,7 @@ input, textarea, select {
 
 input:focus, textarea:focus, select:focus {
   outline: none;
-  border-color: var(--primary);
+  border-color: #56aab3;
   box-shadow: 0 0 0 2px rgba(86, 170, 179, 0.2);
 }
 
@@ -195,12 +127,12 @@ textarea {
 
 .btn {
   display: inline-block;
-  background-color: var(--primary);
-  color: var(--white);
+  background-color: #56aab3;
+  color: white;
   padding: 14px 28px;
   border: none;
   border-radius: 6px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Faculty Glyphic', serif;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
@@ -208,7 +140,7 @@ textarea {
 }
 
 .btn:hover {
-  background-color: #4a9aa3;
+  background-color: #f5bf7d;
   transform: translateY(-2px);
 }
 
@@ -224,7 +156,7 @@ textarea {
 }
 
 .accent {
-  color: var(--secondary);
+  color: #f5bf7d;
 }
 
 @media (max-width: 600px) {
