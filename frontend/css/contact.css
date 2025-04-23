@@ -45,8 +45,6 @@ h2 {
   margin-top: 20px;
 }
 
-/* navbar section - now handled by navbar.css */
-
 /* form section */
 
 h1{
@@ -54,6 +52,7 @@ h1{
     font-family: Faculty Glyphic, serif;
     text-align: center;
     margin-top: 20px;
+    margin-bottom: 20px;
     font-size: 36px;
 }
 
@@ -62,6 +61,8 @@ p{
     font-family: Poppins, sans-serif;
     text-align: center;
     font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 30px;
 }
 
 .container {
