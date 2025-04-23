@@ -1,25 +1,45 @@
 <?php
 session_start();
-$activePage = basename($_SERVER['PHP_SELF']);
+$active    = basename($_SERVER['PHP_SELF']);
+$cartCount = (isset($_SESSION['cart']) && is_array($_SESSION['cart']))
+           ? count($_SESSION['cart'])
+           : 0;
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Taste of the Caribbean</title>
-  <link rel="stylesheet" href="../css/navbar.css"> <!-- 🌟 use shared navbar styling -->
-</head>
-<body>
-  <nav>
-    <ul>
-      <li><a href="index.php" class="<?= $activePage == 'index.php' ? 'active' : '' ?>">Home</a></li>
-      <li><a href="menu.php" class="<?= $activePage == 'menu.php' ? 'active' : '' ?>">Menu</a></li>
-      <li><a href="map.php" class="<?= $activePage == 'map.php' ? 'active' : '' ?>">Map</a></li>
-      <li><a href="order.php" class="<?= $activePage == 'order.php' ? 'active' : '' ?>">Order</a></li>
-      <li><a href="profile.php" class="<?= $activePage == 'profile.php' ? 'active' : '' ?>">Profile</a></li>
-      <li><a href="login.php" class="<?= $activePage == 'login.php' ? 'active' : '' ?>">Login</a></li>
-    </ul>
-  </nav>
-</body>
-</html>
+<nav class="navbar" id="site-nav">
+  <button class="hamburger" id="hamburger">&#9776;</button>
+
+  <div class="nav-left">
+    <a href="/index.php" class="<?= $active=='index.php' ? 'active':'' ?>">Home</a>
+    <a href="/menu.php"  class="<?= $active=='menu.php'  ? 'active':'' ?>">Menu</a>
+    <a href="/map.php"   class="<?= $active=='map.php'   ? 'active':'' ?>">Map</a>
+  </div>
+
+  <div class="nav-center">
+    <a href="/index.php" class="logo">
+      <img src="/images/TOC_Logo.png" alt="Taste of the Caribbean">
+      <span class="brand">Taste of the Caribbean</span>
+    </a>
+  </div>
+
+  <div class="nav-right">
+    <a href="/about.php"   class="<?= $active=='about.php'   ? 'active':'' ?>">About Us</a>
+
+      <a href="/login.php"    class="<?= $active=='login.php'   ? 'active':'' ?>">Login</a>
+      <a href="/register.php" class="<?= $active=='register.php'? 'active':'' ?>">Register</a>
+  
+
+    <a href="/cart.php" class="cart-icon <?= $active=='cart.php'?'active':'' ?>">
+      <img src="/images/cart_icon.png" alt="Cart">
+      <?php if($cartCount): ?>
+        <span class="cart-count"><?= $cartCount ?></span>
+      <?php endif; ?>
+    </a>
+  </div>
+</nav>
+
+<script>
+  // Toggle mobile menu
+  document.getElementById('hamburger').addEventListener('click', ()=>{
+    document.getElementById('site-nav').classList.toggle('open');
+  });
+</script>

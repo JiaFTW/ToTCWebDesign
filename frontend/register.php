@@ -5,13 +5,11 @@ session_start();
 include __DIR__ . '/scripts/check-services.php';
 
 if (isset($_SESSION['username'])) {
-  include 'includes/header_user.php';
+    include __DIR__ . '/includes/header_user.php';
 } else {
-  include 'includes/header_guest.php';
+    include __DIR__ . '/includes/header_guest.php';
 }
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +18,7 @@ if (isset($_SESSION['username'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - Taste of the Caribbean</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/navbar.css">
     <script>
         function validateForm() {
             let email = document.getElementById("email").value.trim();
