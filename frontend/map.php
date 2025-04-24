@@ -40,7 +40,7 @@ if (isset($_SESSION['username'])) {
     <header class="hero">
         <h1>Welcome to Taste of the Caribbean</h1>
         <p>Explore authentic Caribbean dishes and flavors.</p>
-        <a href="menu.html" class="btn">View Menu</a>
+        <a href="menu.php" class="btn">View Menu</a>
     </header>
 
     <!-- Map Section -->
