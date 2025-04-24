@@ -46,7 +46,7 @@ if (isset($_SESSION['username'])) {
     <!-- Map Section -->
     <section class="map-section">
         <h2>Find Your Favorite Caribbean Dish</h2>
-        <img src="images/map.jpg" alt="Caribbean Map" usemap="#test" width="1596" height="924">
+        <img src="images/map.png" alt="Caribbean Map" usemap="#test" width="1596" height="924">
 
         <map name="test">
             <!-- Href is field to change where the part of the map links to -->
@@ -61,31 +61,31 @@ if (isset($_SESSION['username'])) {
 
         <!-- Country Images and Texts Images and text are currently placeholder unti; the menu is finished -->
         <a href="item.php?item_id=4" id="cubaLink" class="countryLink">
-        <img id="cubaImage" class="countryImage" src="images/cuba.jpg" alt="Cuba">
+        <img id="cubaImage" class="countryImage" src="images/cuba.png" alt="Cuba">
         </a>
 
         <a href="item.php?item_id=7" id="jamicaLink" class="countryLink">
-        <img id="jamaicaImage" class="countryImage" src="images/jamaica.jpg" alt="Jamaica">
+        <img id="jamaicaImage" class="countryImage" src="images/jamaica.png" alt="Jamaica">
         </a>
 
         <a href="item.php?item_id=6" id="haitiLink" class="countryLink">
-        <img id="haitiImage" class="countryImage" src="images/haiti.jpg" alt="Haiti">
+        <img id="haitiImage" class="countryImage" src="images/haiti.png" alt="Haiti">
         </a>
 
         <a href="item.php?item_id=5" id="dominicanLink" class="countryLink">
-        <img id="dominicanImage" class="countryImage" src="images/dominican.jpg" alt="Dominican Republic">
+        <img id="dominicanImage" class="countryImage" src="images/dominican.png" alt="Dominican Republic">
         </a>
 
         <a href="item.php?item_id=8" id="puertoLink" class="countryLink">
-        <img id="puertoImage" class="countryImage" src="images/puerto.jpg" alt="Puerto Rico">
+        <img id="puertoImage" class="countryImage" src="images/puerto.png" alt="Puerto Rico">
         </a>
         
         <a href="item.php?item_id=1" id="hondurasLink" class="countryLink">
-        <img id="houndurasImage" class="countryImage" src="images/hounduras.jpg" alt="Hounduras">
+        <img id="houndurasImage" class="countryImage" src="images/hounduras.png" alt="Hounduras">
         </a>
 
         <a href="item.php?item_id=2" id="nicaraguaLink" class="countryLink">
-        <img id="nicaraguaImage" class="countryImage" src="images/nicaragua.jpg" alt="Nicaragua">
+        <img id="nicaraguaImage" class="countryImage" src="images/nicaragua.png" alt="Nicaragua">
         </a>
 <!--    old version of the code, not used anymore
         <img id="cubaImage" class="countryImage" src="images/cuba.jpg" alt="Cuba" href="item.php?item_id=4">
