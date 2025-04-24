@@ -19,23 +19,12 @@ if (isset($_SESSION['username'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taste of the Caribbean</title>
+    <link rel="stylesheet" href="css/styles.css"><link rel="stylesheet" href="css/map.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/navbar.css">
 
-    <link rel="stylesheet" href="css/styles.css"><link rel="stylesheet" href="css/map.css">
 </head>
 <body>
-    <!-- Navigation Bar
-    <nav>
-        <ul>
-            <li><a href="#">Menu</a></li>
-            <li><a href="map.html">Map</a></li>
-            <li><a href="order.html">Order</a></li>
-            <li><a href="profile.html">Profile</a></li>
-            <li><a href="index1.html">Login</a></li>
-        </ul>
-    </nav> -->
-
     <!-- Hero Section -->
     <header class="hero">
         <h1>Welcome to Taste of the Caribbean</h1>
@@ -46,7 +35,7 @@ if (isset($_SESSION['username'])) {
     <!-- Map Section -->
     <section class="map-section">
         <h2>Find Your Favorite Caribbean Dish</h2>
-        <img src="images/map.jpg" alt="Caribbean Map" usemap="#test" width="1596" height="924">
+        <img src="images/map.png" alt="Caribbean Map" usemap="#test" width="1596" height="924">
 
         <map name="test">
             <!-- Href is field to change where the part of the map links to -->
@@ -61,19 +50,19 @@ if (isset($_SESSION['username'])) {
 
         <!-- Country Images and Texts Images and text are currently placeholder unti; the menu is finished -->
         <a href="item.php?item_id=4" id="cubaLink" class="countryLink">
-        <img id="cubaImage" class="countryImage" src="images/cuba.jpg" alt="Cuba">
+        <img id="cubaImage" class="countryImage" src="images/cuba.png" alt="Cuba">
         </a>
 
         <a href="item.php?item_id=7" id="jamicaLink" class="countryLink">
-        <img id="jamaicaImage" class="countryImage" src="images/jamaica.jpg" alt="Jamaica">
+        <img id="jamaicaImage" class="countryImage" src="images/jamaica.png" alt="Jamaica">
         </a>
 
         <a href="item.php?item_id=6" id="haitiLink" class="countryLink">
-        <img id="haitiImage" class="countryImage" src="images/haiti.jpg" alt="Haiti">
+        <img id="haitiImage" class="countryImage" src="images/haiti.png" alt="Haiti">
         </a>
 
         <a href="item.php?item_id=5" id="dominicanLink" class="countryLink">
-        <img id="dominicanImage" class="countryImage" src="images/dominican.jpg" alt="Dominican Republic">
+        <img id="dominicanImage" class="countryImage" src="images/dominican.png" alt="Dominican Republic">
         </a>
 
         <a href="item.php?item_id=8" id="puertoLink" class="countryLink">
@@ -81,35 +70,13 @@ if (isset($_SESSION['username'])) {
         </a>
         
         <a href="item.php?item_id=1" id="hondurasLink" class="countryLink">
-        <img id="houndurasImage" class="countryImage" src="images/hounduras.jpg" alt="Hounduras">
+        <img id="houndurasImage" class="countryImage" src="images/hounduras.png" alt="Hounduras">
         </a>
 
         <a href="item.php?item_id=2" id="nicaraguaLink" class="countryLink">
-        <img id="nicaraguaImage" class="countryImage" src="images/nicaragua.jpg" alt="Nicaragua">
+        <img id="nicaraguaImage" class="countryImage" src="images/nicaragua.png" alt="Nicaragua">
         </a>
-<!--    old version of the code, not used anymore
-        <img id="cubaImage" class="countryImage" src="images/cuba.jpg" alt="Cuba" href="item.php?item_id=4">
-        <div id="cubaText" class="countryText">Test Cuba</div>
 
-        <img id="jamaicaImage" class="countryImage" src="images/jamaica.jpg" href="item.php?item_id=7" alt="Jamaica">
-        <div id="jamaicaText" class="countryText">Test Jamaica</div>
-
-        <img id="haitiImage" class="countryImage" src="images/haiti.jpg" href="item.php?item_id=6" alt="Haiti">
-        <div id="haitiText" class="countryText">Test Haiti</div>
-
-        <img id="dominicanImage" class="countryImage" src="images/dominican.jpg" href="item.php?item_id=5" alt="Dominican Republic">
-        <div id="dominicanText" class="countryText">Test Dominican Republic</div>
-
-        <img id="puertoImage" class="countryImage" src="images/puerto.jpg" href="item.php?item_id=8" alt="Puerto Rico">
-        <div id="puertoText" class="countryText">Test Puerto Rico</div>
-
-        <img id="houndurasImage" class="countryImage" src="images/hounduras.jpg" href="item.php?item_id=1" alt="Hounduras">
-        <div id="houndurasText" class="countryText">Test Hounduras</div>
-
-        <img id="nicaraguaImage" class="countryImage" src="images/nicaragua.jpg" href="item.php?item_id=2" alt="Nicaragua">
-        <div id="nicaraguaText" class="countryText">Test Nicaragua</div>
-    </section>
--->
     <!-- Footer -->
     <footer>
         <p>&copy; 2025 Taste of the Caribbean. All Rights Reserved.</p>
