@@ -25,6 +25,6 @@ $connection->close();
 
 // Simulate successful login until RabbitMQ consumer response is implemented
 $_SESSION['username'] = $email;
-header("Location: ../../frontend/index.php");
+header("Location: ../../index.php");
 exit;
 ?>
