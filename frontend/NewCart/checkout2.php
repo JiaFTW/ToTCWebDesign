@@ -2,107 +2,156 @@
 <?php
 session_start();
 // CHANGE IT WITH OUR DATABASE
-require_once('database2.php');
+require_once('database.php');
+
+if (isset($_SESSION['cart'])) {
+    $cart = $_SESSION['cart'];
+} else {
+    $cart = [];
+}
 
 // Check if user is logged in
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login2.php");
-    exit();
-}
-
-$user_id = $_SESSION['user_id'];
-
-// Get total amount from cart2.php
-if (isset($_POST['total_amount'])) {
-    $total_amount = floatval($_POST['total_amount']);
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
 } else {
-    $total_amount = 0.00;
+    $user_id = null;
 }
 
-// Connect to database
-$db = getDB();
+$username = null;
+$loyalty_points = 0;
 
-// Fetch user loyalty points
-$stmt = $db->prepare("SELECT loyalty_points FROM users WHERE user_id = :user_id");
-$stmt->execute([':user_id' => $user_id]);
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
+if ($user_id) {
+    // Get user info (username and loyalty points)
+    try {
+        $db = getDB();
+        $stmt = $db->prepare("SELECT username, loyalty_points FROM users WHERE user_id = :user_id");
+        $stmt->execute([':user_id' => $user_id]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if ($user) {
-    $loyalty_points = intval($user['loyalty_points']);
-} else {
-    $loyalty_points = 0;
+        if ($user) {
+            $username = $user['username'];
+            $loyalty_points = intval($user['loyalty_points']);
+        }
+    } catch (PDOException $e) {
+        die("DB error: " . $e->getMessage());
+    }
 }
 
-// Convert points to dollar equivalent (100 points = $1.00)
-$max_redeemable_dollars = $loyalty_points / 100.0;
+/* QUERY CREATED LOCALLY TO MAKE THIS WORK
 
-// Don't allow user to redeem more than the total
-$max_redeemable_dollars = min($max_redeemable_dollars, $total_amount);
-$max_redeemable_points = intval($max_redeemable_dollars * 100);
+CREATE TABLE users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,  
+    email VARCHAR(255) NOT NULL UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+VALUES INSERTED INTO users:
+
+INSERT INTO users (username, password_hash, email)
+VALUES	('john123', 'smith456', 'johnsmith@gmail.com'),
+		('sarah890', 'park321', 'sarahpark@gmail.com');
+*/
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>Checkout</title>
+  <head>
+    <title>Taste of the Carribean</title>
     <link rel="stylesheet" href="./css/home2.css">
-    <link rel="stylesheet" href="./css/cart2.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="./css/cart.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,900;1,9..40,900&family=Faculty+Glyphic&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-</head>
-<body>
-    <h1>Checkout</h1>
-    
-    <p>Total Amount: $<?php echo number_format($total_amount, 2); ?></p>
-    <p>Your Points: <?php echo $loyalty_points; ?> points (=$<?php echo number_format($loyalty_points / 100, 2); ?>)</p>
+  </head>
+  <body>
+	<div class="navbar">
+		<ul>
+			<div class="nav-left">
+				<li><img src="images/TOC_Logo.png" /></li>
+				<li><a href="home.php"><h1>Taste of the Caribbean<h1></a></li>
+			</div>
+			<div class="nav-right">
+				<li><a href="menu.php">Menu</a></li>
+				<li><a href="map.html">Map</a></li>
+				<li><a href="#contact">Catering</a></li>
+				<li><a href="#about">Hours and Location</a></li>
+				<li><a href="#about">About</a></li>
+                <?php if ($user_id): ?>
+                    <li><a href="profile.php">Hi, <?php echo htmlspecialchars($username); ?>!</a></li>
+                    <li><a href="cart.php">Rewards: <?php echo $loyalty_points; ?> pts</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                <?php else: ?>
+                    <li><a href="login.php">Login</a></li>
+                <?php endif; ?>
+                <li><a href="cart.php"><img src="images/cart_icon.png" alt="Go to cart page"></a></li>
+			</div>
+		</ul>
+	</div>
+  <h2>Your Cart</h2>
+    <div class="cart-container">
+        <?php if (empty($cart)): ?>
+            <p>Your cart is empty. <a class="a" href="menu.php">Browse our menu</a> to add delicious items!</p>
+        <?php else: ?>
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $subtotal = 0;
+                    foreach ($cart as $item):
+                        $total = $item['price'] * $item['quantity'];
+                        $subtotal += $total;
+                    ?>
+                        <tr>
+                            <td>
+                                <?php echo htmlspecialchars($item['name']); ?>
+                            </td>
+                            <td>
+                                $<?php echo number_format($item['price'], 2); ?>
+                            </td>
+                            <td>
+                                <?php echo $item['quantity']; ?>
+                            </td>
+                            <td>
+                                $<?php echo number_format($total, 2); ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
 
-    <form action="process_payment2.php" method="post">
-        <input type="hidden" name="original_total" value="<?php echo $total_amount; ?>">
+            <?php
+                $tax = $subtotal * 0.06625;
+                $grand_total = $subtotal + $tax;
+            ?>
 
-        <label>
-            <input type="checkbox" name="redeem_points_checkbox" id="redeem_points_checkbox" onchange="toggleRedemption()" />
-            Redeem Points
-        </label><br>
+            <div class="cart-summary">
+                <p>Subtotal: $<?php echo number_format($subtotal, 2); ?></p>
+                <p>Tax: $<?php echo number_format($tax, 2); ?></p>
+                <p><strong>Total: $<?php echo number_format($grand_total, 2); ?></strong></p>
+                <form method="POST" action="checkout.php">
+                    <input type="hidden" name="total_amount" value="<?php echo number_format($grand_total, 2, '.', ''); ?>">
+                    <button class="checkout-btn" type="submit">Proceed to Checkout</button>
+                </form>
+            </div>
+        <?php endif; ?>
+        <form action="clear_cart.php" method="POST">
+            <button type="submit">Clear Cart</button>
+        </form>
+    </div>
 
-        <div id="redeem_input_section" style="display: none;">
-            <label for="redeem_points_amount">
-                Enter points to redeem (Max: <?php echo $max_redeemable_points; ?>):
-            </label>
-            <input type="number" 
-                   name="redeem_points_amount" 
-                   id="redeem_points_amount" 
-                   min="0" 
-                   max="<?php echo $max_redeemable_points; ?>" /><br>
-        </div>
-
-        <div id="payment-section">
-            <label>Card Number:</label>
-            <input type="text" name="card_number" required><br>
-
-            <label>Expiry Date:</label>
-            <input type="text" name="expiry_date" required><br>
-
-            <label>CVV:</label>
-            <input type="text" name="cvv" required><br>
-        </div>
-
-        <button type="submit">Complete Payment</button>
-    </form>
-
-    <script>
-        function toggleRedemption() {
-            const checkbox = document.getElementById('redeem_points_checkbox');
-            const redeemInputSection = document.getElementById('redeem_input_section');
-            if (checkbox.checked) {
-                redeemInputSection.style.display = 'block';
-            } else {
-                redeemInputSection.style.display = 'none';
-            }
-        }
-    </script>
+    <div class="footerc">
+        <p>&copy; Taste of the Caribbean 2025</p>
+    </div>
 </body>
 </html>
