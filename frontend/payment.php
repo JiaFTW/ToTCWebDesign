@@ -58,7 +58,7 @@ $tax   = round($subtotal * 0.06625, 2);
     <?php else: ?>
       <div class="payment-summary">
         <p>Subtotal: <strong>$<?= number_format($subtotal,2) ?></strong></p>
-        <p>Tax (8%): <strong>$<?= number_format($tax,2) ?></strong></p>
+        <p>Tax (6.625%): <strong>$<?= number_format($tax,2) ?></strong></p>
         <p>Total Due: <strong>$<?= number_format($total,2) ?></strong></p>
       </div>
 
