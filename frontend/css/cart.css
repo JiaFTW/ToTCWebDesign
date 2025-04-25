@@ -3,9 +3,10 @@
     width: 80%;
     margin: 20px auto;
     padding: 20px;
-    background-color: #fff8f0;
+    background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid #56aab3;
     display: flex;
     flex-direction: column;
     flex-grow: 1; /* Pushes the footer to the bottom */
@@ -17,7 +18,18 @@
 }
 
 .cart-container button {
-    font-family: Poppins, sans-serif;
+    display: inline-block;
+    background-color: #56aab3;
+    color: white;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Faculty Glyphic', serif;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
 }
 
 /* Styling for the cart table */
@@ -35,7 +47,7 @@
 }
 
 .cart-table th {
-    background-color: #ffcc66;
+    background-color: #56aab3;
     color: #333;
     font-weight: bold;
 }
@@ -48,7 +60,7 @@
     text-align: right;
     font-size: 18px;
     padding: 10px;
-    background-color: #ffebcc;
+    background-color: #f3ece1f9;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
@@ -60,7 +72,7 @@
 
 .cart-summary strong {
     font-size: 20px;
-    color: #d9534f;
+    color: #56aab3;
 }
 
 /* Checkout button styling */
@@ -77,24 +89,24 @@
 }
 
 .checkout-btn:hover {
-    background-color: #d9432a;
+    background-color: #f5bf7d;
 }
 
 /* Link colors */
 .a:link {
-    color: #007a87;
+    color: #56aab3;
     background-color: transparent;
     text-decoration: none;
 }
   
 .a:visited {
-    color: orange;
+    color: #56aab3;
     background-color: transparent;
     text-decoration: none;
 }
   
 .a:hover {
-    color: #007a87;
+    color: #f5bf7d;
     background-color: transparent;
     text-decoration: underline;
 }
@@ -116,10 +128,3 @@
     font-family: DM Sans, sans-serif;
     padding: 10px;
 }
-
-nav a.active {
-    font-weight: bold;
-    text-decoration: underline;
-    color: #ff6b35;
-  }
-  
