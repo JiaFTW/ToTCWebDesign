@@ -65,6 +65,26 @@ $tax   = round($subtotal * 0.06625, 2);
       <form action="backend/api/process_payment.php" method="POST" class="payment-form">
         <input type="hidden" name="total" value="<?= $total ?>">
 
+        <?php if (isset($_SESSION['user_id'])): ?>
+            <p>Your Points: <?php echo $loyalty_points; ?> (=$<?php echo number_format($loyalty_points / 100.0, 2); ?>)</p>
+
+            <label>
+                <input type="checkbox" name="redeem_points_checkbox" id="redeem_points_checkbox" onchange="toggleRedemption()" />
+                Redeem Points
+            </label><br>
+
+            <div id="redeem_input_section" style="display: none;">
+                <label for="redeem_points_amount">
+                    Enter points to redeem (Max: <?php echo $max_redeemable_points; ?>):
+                </label>
+                <input type="number" 
+                       name="redeem_points_amount" 
+                       id="redeem_points_amount" 
+                       min="0" 
+                       max="<?php echo $max_redeemable_points; ?>" /><br>
+            </div>
+        <?php endif; ?>
+
         <div class="form-group">
           <label for="card_number">Card Number</label>
           <input type="text" id="card_number" name="card_number" required placeholder="1234 5678 9012 3456">
@@ -84,6 +104,18 @@ $tax   = round($subtotal * 0.06625, 2);
           Submit Payment
         </button>
       </form>
+
+      <script>
+        function toggleRedemption() {
+            const checkbox = document.getElementById('redeem_points_checkbox');
+            const redeemInputSection = document.getElementById('redeem_input_section');
+            if (checkbox.checked) {
+                redeemInputSection.style.display = 'block';
+            } else {
+                redeemInputSection.style.display = 'none';
+            }
+        }
+      </script>
     <?php endif; ?>
   </div>
 </body>
