@@ -10,6 +10,16 @@ if (isset($_SESSION['username'])) {
     include __DIR__ . '/includes/header_guest.php';
 }
 
+//ADDED BY DIEGO FROM CHECKOUT2.PHP
+if (isset($_POST['total_amount'])) {
+  $total = floatval($_POST['total_amount']);
+} else {
+  $total = 0.00;
+}
+
+$loyalty_points = 0;
+$max_redeemable_points = 0;
+
 // Grab the cart from session
 $cart = $_SESSION['cart'] ?? [];
 
@@ -19,8 +29,8 @@ $subtotal = array_reduce(
     fn($sum, $item) => $sum + ($item['price'] * $item['quantity']),
     0
 );
-$tax   = round($subtotal * 0.08, 2);
-$total = round($subtotal + $tax, 2);
+$tax   = round($subtotal * 0.06625, 2);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
