@@ -31,6 +31,24 @@ $subtotal = array_reduce(
 );
 $tax   = round($subtotal * 0.06625, 2);
 
+//CHANGE THIS WITH THE RIGHT WAY TO CONNECT TO THE SERVER (IN BETWEEN ***)
+// ***
+if (isset($_SESSION['user_id'])) {
+  $user_id = $_SESSION['user_id'];
+  $db = getDB();
+// ***
+  // Fetch loyalty points
+  $stmt = $db->prepare("SELECT loyalty_points FROM users WHERE user_id = :user_id");
+  $stmt->execute([':user_id' => $user_id]);
+  $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+  if ($user) {
+      $loyalty_points = intval($user['loyalty_points']);
+      $max_redeemable_dollars = min($loyalty_points / 100.0, $total_amount);
+      $max_redeemable_points = intval($max_redeemable_dollars * 100);
+  }
+}
+?>
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,6 +83,7 @@ $tax   = round($subtotal * 0.06625, 2);
       <form action="backend/api/process_payment.php" method="POST" class="payment-form">
         <input type="hidden" name="total" value="<?= $total ?>">
 
+        <!--THIS IS OPTION IF USER IS LOGGED IN (LOYAL POINTS)-->
         <?php if (isset($_SESSION['user_id'])): ?>
             <p>Your Points: <?php echo $loyalty_points; ?> (=$<?php echo number_format($loyalty_points / 100.0, 2); ?>)</p>
 
