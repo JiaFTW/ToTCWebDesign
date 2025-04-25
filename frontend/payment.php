@@ -1,59 +1,80 @@
 <?php
-// frontend/payment.php
 session_start();
-include 'scripts/check-services.php';
+// Critical services health-check
+include __DIR__ . '/scripts/check-services.php';
 
+// Shared navbar
 if (isset($_SESSION['username'])) {
-  include __DIR__ . '/includes/header_user.php';
+    include __DIR__ . '/includes/header_user.php';
 } else {
-  include __DIR__ . '/includes/header_guest.php';
+    include __DIR__ . '/includes/header_guest.php';
 }
-include isset($_SESSION['username'])
-  ? 'includes/header_user.php'
-  : 'includes/header_guest.php';
 
-$item_id = intval($_GET['item_id']);
-$qty     = intval($_GET['qty']);
-$size    = $_GET['size'];
-// fetch price
-require __DIR__.'/backend/api/database.php';
-$db = getDB();
-$stmt = $db->prepare('SELECT price FROM menu_items WHERE id=:id');
-$stmt->execute(['id'=>$item_id]);
-$price = $stmt->fetchColumn() * $qty;
+// Grab the cart from session
+$cart = $_SESSION['cart'] ?? [];
+
+// Compute totals
+$subtotal = array_reduce(
+    $cart,
+    fn($sum, $item) => $sum + ($item['price'] * $item['quantity']),
+    0
+);
+$tax   = round($subtotal * 0.08, 2);
+$total = round($subtotal + $tax, 2);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Payment • Taste of the Caribbean</title>
-  <link rel="stylesheet" href="css/menu.css">
   <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/cart.css"> <!-- reuse your cart styles -->
+  <style>
+    .payment-container { max-width:600px; margin:40px auto; font-family:"DM Sans",sans-serif; }
+    .payment-summary p { margin:8px 0; font-size:1rem; }
+    .payment-form { margin-top:20px; }
+    .payment-form .form-group { margin-bottom:15px; }
+    .payment-form label { display:block; margin-bottom:5px; font-weight:500; }
+    .payment-form input { width:100%; padding:8px; box-sizing:border-box; }
+    .btn-submit { margin-top:10px; }
+  </style>
 </head>
 <body>
-  <div class="container py-5">
-    <h2>Payment</h2>
-    <p>Amount: <strong>$<?= number_format($price,2) ?></strong></p>
-    <form action="../backend/api/process_payment.php" method="POST">
-      <input type="hidden" name="item_id" value="<?=$item_id?>">
-      <input type="hidden" name="qty" value="<?=$qty?>">
-      <input type="hidden" name="size" value="<?=$size?>">
+  <div class="payment-container">
+    <h2>Checkout</h2>
 
-      <div class="form-group">
-        <label>Card Number:</label>
-        <input type="text" name="card" class="form-control w-50" required>
-      </div>
-      <div class="form-group">
-        <label>Expiration:</label>
-        <input type="month" name="exp" class="form-control w-25" required>
-      </div>
-      <div class="form-group">
-        <label>CVC:</label>
-        <input type="text" name="cvc" class="form-control w-25" required>
+    <?php if (empty($cart)): ?>
+      <p>Your cart is empty. <a href="menu.php">Browse our menu</a>.</p>
+    <?php else: ?>
+      <div class="payment-summary">
+        <p>Subtotal: <strong>$<?= number_format($subtotal,2) ?></strong></p>
+        <p>Tax (8%): <strong>$<?= number_format($tax,2) ?></strong></p>
+        <p>Total Due: <strong>$<?= number_format($total,2) ?></strong></p>
       </div>
 
-      <button type="submit" class="btn btn-primary">Submit Payment</button>
-    </form>
+      <form action="backend/api/process_payment.php" method="POST" class="payment-form">
+        <input type="hidden" name="total" value="<?= $total ?>">
+
+        <div class="form-group">
+          <label for="card_number">Card Number</label>
+          <input type="text" id="card_number" name="card_number" required placeholder="1234 5678 9012 3456">
+        </div>
+
+        <div class="form-group">
+          <label for="expiry_date">Expiration</label>
+          <input type="month" id="expiry_date" name="expiry_date" required>
+        </div>
+
+        <div class="form-group">
+          <label for="cvv">CVC</label>
+          <input type="text" id="cvv" name="cvv" required placeholder="123">
+        </div>
+
+        <button type="submit" class="btn btn-success btn-submit">
+          Submit Payment
+        </button>
+      </form>
+    <?php endif; ?>
   </div>
 </body>
 </html>
