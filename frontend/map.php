@@ -33,8 +33,10 @@ if (isset($_SESSION['username'])) {
     </header>
 
     <!-- Map Section -->
-    <section class="map-section">
+    <section  class="map-section">
+    
         <h2>Find Your Favorite Caribbean Dish</h2>
+        <div class="map-container">
         <img src="images/map.png" alt="Caribbean Map" usemap="#test" width="1596" height="924">
 
         <map name="test">
@@ -47,7 +49,7 @@ if (isset($_SESSION['username'])) {
             <area shape="circle" coords="1110,477,44" alt="Hounduras" href="item.php?item_id=8" onmouseover="showCountryImage(event, 'hounduras', 35, 680)" onmouseout="hideCountryImage('hounduras')" id="houndurasArea">
             <area shape="circle" coords="1110,477,44" alt="Nicaragua" href="item.php?item_id=8" onmouseover="showCountryImage(event, 'nicaragua', 1110, 477)" onmouseout="hideCountryImage('nicaragua')" id="nicaraguaArea">
         </map>
-
+        </div>
         <!-- Country Images and Texts Images and text are currently placeholder unti; the menu is finished -->
         <a href="item.php?item_id=4" id="cubaLink" class="countryLink">
         <img id="cubaImage" class="countryImage" src="images/cuba.png" alt="Cuba">
