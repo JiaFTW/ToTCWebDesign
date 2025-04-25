@@ -69,7 +69,7 @@ $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
                 <p>Subtotal: $<?php echo number_format($subtotal, 2); ?></p>
                 <p>Tax: $<?php echo number_format($subtotal * 0.08, 2); ?></p>
                 <p><strong>Total: $<?php echo number_format($subtotal * 1.08, 2); ?></strong></p>
-                <a href="payment.php" class="checkout-btn btn btn-primary">Proceed to Checkout</a>
+                <a href="payment.php"><button class="checkout-btn" type="submit">Proceed to Checkout</button></a>
             </div>
         <?php endif; ?>
         <form action="backend/api/clear_cart.php" method="POST">
