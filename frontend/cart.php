@@ -19,11 +19,11 @@ $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
     <title>Taste of the Carribean</title>
     <link rel="stylesheet" href="./css/home2.css">
     <link rel="stylesheet" href="./css/cart.css">
-   	<link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/navbar.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,900;1,9..40,900&family=Faculty+Glyphic&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,900;1,9..40,900&family=Faculty+Glyphic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   </head>
   <body>
 
@@ -65,11 +65,19 @@ $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
                     <?php endforeach; ?>
                 </tbody>
             </table>
+
+            <?php
+                $tax = $subtotal * 0.06625;
+                $grand_total = $subtotal + $tax;
+            ?>
             <div class="cart-summary">
                 <p>Subtotal: $<?php echo number_format($subtotal, 2); ?></p>
-                <p>Tax: $<?php echo number_format($subtotal * 0.08, 2); ?></p>
-                <p><strong>Total: $<?php echo number_format($subtotal * 1.08, 2); ?></strong></p>
-                <a href="payment.php"><button class="checkout-btn" type="submit">Proceed to Checkout</button></a>
+                <p>Tax: $<?php echo number_format($tax, 2); ?></p>
+                <p><strong>Total: $<?php echo number_format($grand_total, 2); ?></strong></p>
+                <form method="POST" action="payment.php">
+                    <input type="hidden" name="total_amount" value="<?php echo number_format($grand_total, 2, '.', ''); ?>">
+                    <button class="checkout-btn" type="submit">Proceed to Checkout</button>
+                </form>
             </div>
         <?php endif; ?>
         <form action="backend/api/clear_cart.php" method="POST">

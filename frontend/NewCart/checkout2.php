@@ -1,44 +1,33 @@
 <!--WORKED FROM LOCAL MACHINE BY DIEGO STILL NEED TO CHANGE TO MAKE IT WORK ON OUR SERVER-->
 <?php
 session_start();
-// CHANGE IT WITH OUR DATABASE
-require_once('database2.php');
+require_once('database.php');
 
-// Check if user is logged in
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login2.php");
-    exit();
-}
-
-$user_id = $_SESSION['user_id'];
-
-// Get total amount from cart2.php
+// Get total amount from cart.php
 if (isset($_POST['total_amount'])) {
     $total_amount = floatval($_POST['total_amount']);
 } else {
     $total_amount = 0.00;
 }
 
-// Connect to database
-$db = getDB();
+$loyalty_points = 0;
+$max_redeemable_points = 0;
 
-// Fetch user loyalty points
-$stmt = $db->prepare("SELECT loyalty_points FROM users WHERE user_id = :user_id");
-$stmt->execute([':user_id' => $user_id]);
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+    $db = getDB();
 
-if ($user) {
-    $loyalty_points = intval($user['loyalty_points']);
-} else {
-    $loyalty_points = 0;
+    // Fetch loyalty points
+    $stmt = $db->prepare("SELECT loyalty_points FROM users WHERE user_id = :user_id");
+    $stmt->execute([':user_id' => $user_id]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($user) {
+        $loyalty_points = intval($user['loyalty_points']);
+        $max_redeemable_dollars = min($loyalty_points / 100.0, $total_amount);
+        $max_redeemable_points = intval($max_redeemable_dollars * 100);
+    }
 }
-
-// Convert points to dollar equivalent (100 points = $1.00)
-$max_redeemable_dollars = $loyalty_points / 100.0;
-
-// Don't allow user to redeem more than the total
-$max_redeemable_dollars = min($max_redeemable_dollars, $total_amount);
-$max_redeemable_points = intval($max_redeemable_dollars * 100);
 ?>
 
 <!DOCTYPE html>
@@ -46,38 +35,38 @@ $max_redeemable_points = intval($max_redeemable_dollars * 100);
 <head>
     <title>Checkout</title>
     <link rel="stylesheet" href="./css/home2.css">
-    <link rel="stylesheet" href="./css/cart2.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,900;1,9..40,900&family=Faculty+Glyphic&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/cart.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&family=Faculty+Glyphic&family=Poppins&display=swap" rel="stylesheet">
 </head>
 <body>
     <h1>Checkout</h1>
     
     <p>Total Amount: $<?php echo number_format($total_amount, 2); ?></p>
-    <p>Your Points: <?php echo $loyalty_points; ?> points (=$<?php echo number_format($loyalty_points / 100, 2); ?>)</p>
 
-    <form action="process_payment2.php" method="post">
+    <form action="process_payment.php" method="post">
         <input type="hidden" name="original_total" value="<?php echo $total_amount; ?>">
 
-        <label>
-            <input type="checkbox" name="redeem_points_checkbox" id="redeem_points_checkbox" onchange="toggleRedemption()" />
-            Redeem Points
-        </label><br>
+        <?php if (isset($_SESSION['user_id'])): ?>
+            <p>Your Points: <?php echo $loyalty_points; ?> (=$<?php echo number_format($loyalty_points / 100.0, 2); ?>)</p>
 
-        <div id="redeem_input_section" style="display: none;">
-            <label for="redeem_points_amount">
-                Enter points to redeem (Max: <?php echo $max_redeemable_points; ?>):
-            </label>
-            <input type="number" 
-                   name="redeem_points_amount" 
-                   id="redeem_points_amount" 
-                   min="0" 
-                   max="<?php echo $max_redeemable_points; ?>" /><br>
-        </div>
+            <label>
+                <input type="checkbox" name="redeem_points_checkbox" id="redeem_points_checkbox" onchange="toggleRedemption()" />
+                Redeem Points
+            </label><br>
+
+            <div id="redeem_input_section" style="display: none;">
+                <label for="redeem_points_amount">
+                    Enter points to redeem (Max: <?php echo $max_redeemable_points; ?>):
+                </label>
+                <input type="number" 
+                       name="redeem_points_amount" 
+                       id="redeem_points_amount" 
+                       min="0" 
+                       max="<?php echo $max_redeemable_points; ?>" /><br>
+            </div>
+        <?php else: ?>
+            <p>Enter your card information below to complete your purchase.</p>
+        <?php endif; ?>
 
         <div id="payment-section">
             <label>Card Number:</label>
