@@ -15,6 +15,10 @@ class ComposerStaticInitff03fe99b1bb5687cd1ba26b0aa5ddad
         array (
             'phpseclib3\\' => 11,
         ),
+        'S' => 
+        array (
+            'Stripe\\' => 7,
+        ),
         'P' => 
         array (
             'PhpAmqpLib\\' => 11,
@@ -26,6 +30,10 @@ class ComposerStaticInitff03fe99b1bb5687cd1ba26b0aa5ddad
         'phpseclib3\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib',
+        ),
+        'Stripe\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
         ),
         'PhpAmqpLib\\' => 
         array (

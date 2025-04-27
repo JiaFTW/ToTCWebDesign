@@ -1,92 +1,100 @@
 <?php
 session_start();
-// Check critical services FIRST (before anything else that depends on them)
+// 1) Health check
 include __DIR__ . '/scripts/check-services.php';
 
-if (isset($_SESSION['username'])) {
-    include __DIR__ . '/includes/header_user.php';
-} else {
-    include __DIR__ . '/includes/header_guest.php';
+// 2) Force login: guests get forwarded here after login
+if (!isset($_SESSION['username'])) {
+    $_SESSION['after_login'] = '/cart.php';
+    header('Location: /login.php');
+    exit;
 }
-// Sample cart structure (this should come from session)
-$cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 
+// 3) Shared navbar
+include __DIR__ . '/includes/header_user.php';
+
+// 4) CSRF token for the checkout form
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
+// 5) Load the cart from session
+$cart = $_SESSION['cart'] ?? [];
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Taste of the Carribean</title>
-    <link rel="stylesheet" href="./css/home2.css">
-    <link rel="stylesheet" href="./css/cart.css">
-    <link rel="stylesheet" href="css/navbar.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,900;1,9..40,900&family=Faculty+Glyphic&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-  </head>
-  <body>
-
+<head>
+  <meta charset="UTF-8">
+  <title>Your Cart • Taste of the Caribbean</title>
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/cart.css">
+</head>
+<body>
   <h2>Your Cart</h2>
-    <div class="cart-container">
-        <?php if (empty($cart)): ?>
-            <p>Your cart is empty. <a class="a" href="menu.php">Browse our menu</a> to add delicious items!</p>
-        <?php else: ?>
-            <table class="cart-table">
-                <thead>
-                    <tr>
-                        <th>Item</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $subtotal = 0;
-                    foreach ($cart as $item):
-                        $total = $item['price'] * $item['quantity'];
-                        $subtotal += $total;
-                    ?>
-                        <tr>
-                            <td>
-                                <?php echo htmlspecialchars($item['name']); ?>
-                            </td>
-                            <td>
-                                $<?php echo number_format($item['price'], 2); ?>
-                            </td>
-                            <td>
-                                <?php echo $item['quantity']; ?>
-                            </td>
-                            <td>
-                                $<?php echo number_format($total, 2); ?>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
 
-            <?php
-                $tax = $subtotal * 0.06625;
-                $grand_total = $subtotal + $tax;
-            ?>
-            <div class="cart-summary">
-                <p>Subtotal: $<?php echo number_format($subtotal, 2); ?></p>
-                <p>Tax: $<?php echo number_format($tax, 2); ?></p>
-                <p><strong>Total: $<?php echo number_format($grand_total, 2); ?></strong></p>
-                <form method="POST" action="payment.php">
-                    <input type="hidden" name="total_amount" value="<?php echo number_format($grand_total, 2, '.', ''); ?>">
-                    <button class="checkout-btn" type="submit">Proceed to Checkout</button>
-                </form>
-            </div>
-        <?php endif; ?>
-        <form action="backend/api/clear_cart.php" method="POST">
-            <button type="submit">Clear Cart</button>
+  <div class="cart-container">
+    <?php if (empty($cart)): ?>
+      <p>Your cart is empty. <a href="menu.php">Browse our menu</a> to add items!</p>
+    <?php else: ?>
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th>Item</th><th>Price</th><th>Quantity</th><th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          $subtotal = 0;
+          foreach ($cart as $item):
+            $line = $item['price'] * $item['quantity'];
+            $subtotal += $line;
+          ?>
+            <tr>
+              <td><?= htmlspecialchars($item['name']) ?></td>
+              <td>$<?= number_format($item['price'],2) ?></td>
+              <td><?= $item['quantity'] ?></td>
+              <td>$<?= number_format($line,2) ?></td>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+
+      <?php
+        $tax = round($subtotal * 0.08, 2);
+        $total = round($subtotal + $tax, 2);
+      ?>
+      <div class="cart-summary">
+        <p>Subtotal: $<?= number_format($subtotal,2) ?></p>
+        <p>Tax (8%): $<?= number_format($tax,2) ?></p>
+        <p><strong>Total: $<?= number_format($total,2) ?></strong></p>
+
+        <!-- 6) Stripe Checkout form -->
+        <form 
+          method="POST" 
+          action="/backend/api/create_checkout_session.php"
+        >
+          <input 
+            type="hidden" 
+            name="csrf_token" 
+            value="<?= $_SESSION['csrf_token'] ?>">
+          <button 
+            type="submit" 
+            class="checkout-btn"
+          >
+            Pay $<?= number_format($total,2) ?> with Stripe
+          </button>
         </form>
-    </div>
+      </div>
+    <?php endif; ?>
 
-    <div class="footerc">
-        <p>&copy; Taste of the Caribbean 2025</p>
-    </div>
+    <!-- 7) Clear cart (optional) -->
+    <form action="backend/api/clear_cart.php" method="POST">
+      <button type="submit">Clear Cart</button>
+    </form>
+  </div>
+
+  <div class="footerc">
+    <p>&copy; Taste of the Caribbean 2025</p>
+  </div>
 </body>
 </html>
