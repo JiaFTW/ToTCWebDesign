@@ -42,7 +42,8 @@ if (isset($_SESSION['username'])) {
                 <area shape="circle" coords="926,450,44" alt="Explore Dominican Cuisine" href="item.php?item_id=5" onmouseover="showCountryImage(event, 'dominican', 926, 450)" onmouseout="hideCountryImage('dominican')" id="dominicanArea" />
                 <area shape="circle" coords="1110,477,44" alt="Explore Puerto Rican Cuisine" href="item.php?item_id=8" onmouseover="showCountryImage(event, 'puerto', 1110, 477)" onmouseout="hideCountryImage('puerto')" id="puertoArea" />
                 <area shape="circle" coords="35,680,44" alt="Explore Honduran Cuisine" href="item.php?item_id=1" onmouseover="showCountryImage(event, 'honduras', 35, 680)" onmouseout="hideCountryImage('honduras')" id="hondurasArea" />
-                <area shape="circle" coords="189,191,44" alt="Explore Nicaraguan Cuisine" href="item.php?item_id=2" onmouseover="showCountryImage(event, 'nicaragua', 189, 191)" onmouseout="hideCountryImage('nicaragua')" id="nicaraguaArea" />
+                <area shape="circle" coords="189,827,44" alt="Explore Nicaraguan Cuisine" href="item.php?item_id=2" onmouseover="showCountryImage(event, 'nicaragua', 189, 827)" onmouseout="hideCountryImage('nicaragua')" id="nicaraguaArea" />
+                <area shape="circle" coords="515,148,44" alt="Explore Bahamian Cuisine" href="item.php?item_id=3" onmouseover="showCountryImage(event, 'bahamas', 189, 827)" onmouseout="hideCountryImage('bahamas')" id="bahamasArea" />
             </map>
         </div>
 
@@ -73,6 +74,10 @@ if (isset($_SESSION['username'])) {
 
         <a href="item.php?item_id=2" id="nicaraguaLink" class="countryLink">
             <img id="nicaraguaImage" class="countryImage" src="images/nicaragua.png" alt="Nicaragua Highlight" />
+        </a>
+
+        <a href="item.php?item_id=3" id="bahamasLink" class="countryLink">
+            <img id="bahamasImage" class="countryImage" src="images/bahamas.png" alt="Bahamas Highlight" />
         </a>
     </section>
 
