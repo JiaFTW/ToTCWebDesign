@@ -1,60 +1,86 @@
 <?php
-// backend/api/process_payment.php
 session_start();
-
 require_once __DIR__ . '/../../vendor/autoload.php';
+
+use Stripe\Stripe;
+use Stripe\Charge;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
-// Verify cart and form data
-$cart = $_SESSION['cart'] ?? [];
+// 1) Gather & validate cart + form
+$cart  = $_SESSION['cart'] ?? [];
 $total = $_POST['total'] ?? null;
 $card  = $_POST['card_number'] ?? '';
 $exp   = $_POST['expiry_date'] ?? '';
 $cvv   = $_POST['cvv'] ?? '';
+$user  = $_SESSION['username'] ?? 'guest';
 
 if (empty($cart) || !$total || !$card || !$exp || !$cvv) {
-    // Missing data: send user back to payment page
     header('Location: /payment.php');
     exit;
 }
 
-// Build order payload
+// 2) Charge via Stripe
+Stripe::setApiKey('sk_test_YOUR_SECRET_KEY');
+
+try {
+    $charge = Charge::create([
+        'amount'      => intval($total * 100), // in cents
+        'currency'    => 'usd',
+        'source'      => [
+            'object'        => 'card',
+            'number'        => $card,
+            'exp_month'     => explode('-', $exp)[1],
+            'exp_year'      => explode('-', $exp)[0],
+            'cvc'           => $cvv
+        ],
+        'description' => "Order for {$user}"
+    ]);
+} catch (\Exception $e) {
+    // Payment failed: send back with error
+    $_SESSION['payment_error'] = $e->getMessage();
+    header('Location: /payment.php');
+    exit;
+}
+
+// 3) Enqueue order for restaurant
 $order = [
-    'user'      => $_SESSION['username'] ?? 'guest',
+    'user'      => $user,
     'items'     => $cart,
     'total'     => $total,
-    'payment'   => [
-        'card_number' => $card,
-        'expiry_date' => $exp,
-        'cvv'         => $cvv
-    ],
-    'timestamp' => date('c')
+    'charge_id' => $charge->id,
+    'timestamp' => date('c'),
 ];
 
-// Publish to RabbitMQ
 $connection = new AMQPStreamConnection(
-    '98.82.149.231', 5672,
-    'totc', 'Totc2025'
+    '98.82.149.231', 5672, 'totc', 'Totc2025'
 );
 $channel = $connection->channel();
-$channel->queue_declare(
-    'payments',    // queue name
-    false, true, false, false
-);
+$channel->queue_declare('orders', false, true, false, false);
 
 $msg = new AMQPMessage(
     json_encode($order),
     ['delivery_mode' => AMQPMessage::DELIVERY_MODE_PERSISTENT]
 );
 
-$channel->basic_publish($msg, '', 'payments');
+$channel->basic_publish($msg, '', 'orders');
 $channel->close();
 $connection->close();
 
-// Clear the cart so it doesn’t persist
-unset($_SESSION['cart']);
+// 4) Persist in database for records
+require __DIR__ . '/database.php';
+$db = getDB();
+$stmt = $db->prepare(
+  'INSERT INTO orders (user_id,total,charge_id,created_at)
+   VALUES (:user,:total,:cid,NOW())'
+);
+$stmt->execute([
+  'user'  => $user,
+  'total' => $total,
+  'cid'   => $charge->id
+]);
 
-// Redirect to confirmation
+// 5) Clear cart & redirect
+unset($_SESSION['cart']);
 header('Location: /confirmation.php');
 exit;
