@@ -6,7 +6,7 @@
 }
 body {
   font-family: "DM Sans", Arial, sans-serif;
-  background-color: #f8f9fa;
+  background-color: #e59d3e;
   color: #333;
 }
 
@@ -14,7 +14,7 @@ body {
 .category-nav {
   display: flex;
   justify-content: center;
-  background: #ffe8d6;
+  background: #f9916c;
   padding: 10px 0;
   flex-wrap: wrap;
   list-style: none;
