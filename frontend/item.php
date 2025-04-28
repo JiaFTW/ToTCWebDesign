@@ -3,11 +3,7 @@
 session_start();
 include __DIR__ . '/scripts/check-services.php';
 
-if (isset($_SESSION['username'])) {
-    include __DIR__ . '/includes/header_user.php';
-} else {
-    include __DIR__ . '/includes/header_guest.php';
-}
+
 
 // ←――― FLASH MESSAGE GOES HERE ―――→
 if (!empty($_SESSION['flash_added'])) {
@@ -45,8 +41,16 @@ $item = $stmt->fetch(PDO::FETCH_ASSOC);
   </title>
   <link rel="stylesheet" href="css/menu.css">
   <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/global.css">
 </head>
 <body>
+  <?php
+    if (isset($_SESSION['username'])) {
+      include __DIR__ . '/includes/header_user.php';
+    } else {
+      include __DIR__ . '/includes/header_guest.php';
+    } 
+  ?>
   <div class="container py-5">
 
     <?php if (!$item): ?>
@@ -171,5 +175,8 @@ $item = $stmt->fetch(PDO::FETCH_ASSOC);
 
     <?php endif; ?>
   </div>
+  <div>
+    <?php include __DIR__.'/includes/footer.php'; ?>
+  </div>  
 </body>
 </html>

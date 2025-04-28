@@ -42,6 +42,9 @@ body {
   max-width: 1200px;
   margin: auto;
 }
+#menu-grid {
+  margin-top:20px;
+}
 
 /* ---------- Card Styles (unchanged) ---------- */
 #menu-grid .card {
