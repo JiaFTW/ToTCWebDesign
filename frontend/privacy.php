@@ -63,7 +63,8 @@ include __DIR__ . '/scripts/check-services.php';
             </main>
         </div>
     </div>
-    
-    <?php include __DIR__ . '/includes/footer.php'; ?>
+    <div>
+      <?php include __DIR__.'/includes/footer.php'; ?>
+    </div>  
 </body>
 </html>
