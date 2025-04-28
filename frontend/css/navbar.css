@@ -3,12 +3,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #fcfcfc;
+  background: #007a87;
   padding: 8px 16px;
-  border-bottom: 2px solid #ff6b35;
+  border-bottom: 2px solid #007a87;
   position: relative;
   z-index: 10;
   width: 100%;
+  position:calc(800px - 2px) fixed;
 }
 
 /* ─── Hamburger Button (hidden on desktop) ─── */
@@ -17,7 +18,7 @@
   font-size: 28px;
   background: none;
   border: none;
-  color: #ff6b35;
+  color: #cd9137;
   cursor: pointer;
   padding: 4px;
 }
@@ -37,14 +38,14 @@
   justify-content: center;
 }
 .nav-center .logo img {
-  height: 60px;
+  height: 90px;
   width: auto;
 }
 .nav-center .brand {
   margin-left: 8px;
   font-size: 1.2rem;
   font-weight: 700;
-  color: #ff6b35 !important;
+  color: #e59d3e !important;
 }
 
 /* ─── Left & Right Groups ─── */
@@ -59,11 +60,11 @@
 }
 .nav-left a,
 .nav-right a {
-  color: #ff6b35 !important;
+  color: #e59d3e !important;
   text-decoration: none;
   padding: 6px 8px;
   margin: 0 6px;
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 500;
   transition: background 0.2s;
 }

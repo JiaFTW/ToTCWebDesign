@@ -1,0 +1,29 @@
+.profile-container {
+    max-width:700px;
+    margin:40px auto;
+    padding:20px;
+    background:#fff;
+    border-radius:8px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    font-family:"DM Sans",sans-serif;
+  }
+  .profile-container h2,
+  .profile-container h3 {
+    color:#007a87;
+    margin-bottom:16px;
+  }
+  .userinfo p {
+    margin:8px 0;
+    font-size:1rem;
+  }
+  .history-table {
+    width:100%;
+    border-collapse:collapse;
+    margin-top:12px;
+  }
+  .history-table th,
+  .history-table td {
+    text-align:left;
+    padding:8px;
+    border-bottom:1px solid #eee;
+  }

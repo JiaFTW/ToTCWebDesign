@@ -5,27 +5,6 @@ body {
     background-color: #f8f9fa;
 }
 
-nav {
-    background: #ff6b35;
-    padding: 15px;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    padding: 0;
-}
-
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-}
 
 .hero {
     text-align: center;
