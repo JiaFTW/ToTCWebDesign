@@ -10,8 +10,8 @@ if (!isset($_SESSION['username'])) {
     exit;
 }
 
-// Shared navbar
-include __DIR__ . '/includes/header_user.php';
+// // Shared navbar
+// include __DIR__ . '/includes/header_user.php';
 
 // CSRF token
 if (empty($_SESSION['csrf_token'])) {
@@ -28,11 +28,22 @@ $cart = $_SESSION['cart'] ?? [];
   <title>Your Cart • Taste of the Caribbean</title>
   <link rel="stylesheet" href="css/navbar.css">
   <link rel="stylesheet" href="css/cart.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Faculty+Glyphic&display=swap">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/global.css">
+
 </head>
 <body>
+  <?php
+    if (isset($_SESSION['username'])) {
+      include __DIR__ . '/includes/header_user.php';
+    } else {
+      include __DIR__ . '/includes/header_guest.php';
+    } ?>
 
-  <h2>Your Cart</h2>
+  
   <div class="cart-container">
+  <h2>Your Cart</h2>
 
     <?php if (empty($cart)): ?>
       <p>Your cart is empty. <a href="menu.php">Browse our menu</a> to add items!</p>
@@ -105,8 +116,8 @@ $cart = $_SESSION['cart'] ?? [];
     </form>
   </div>
 
-  <div class="footerc">
-    <p>&copy; Taste of the Caribbean 2025</p>
-  </div>
+  <div>
+    <?php include __DIR__.'/includes/footer.php'; ?>
+  </div> 
 </body>
 </html>
