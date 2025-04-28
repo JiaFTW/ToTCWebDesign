@@ -3,12 +3,6 @@
 session_start();
 include __DIR__ . '/scripts/check-services.php';
 
-if (isset($_SESSION['username'])) {
-  include __DIR__ . '/includes/header_user.php';
-} else {
-  include __DIR__ . '/includes/header_guest.php';
-}
-
 // ←――― FLASH MESSAGE ―――→
 if (!empty($_SESSION['flash_added'])) {
     $added = $_SESSION['flash_added']['name'];
@@ -41,10 +35,17 @@ $selCat = $_GET['category'] ?? '';
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Faculty+Glyphic&display=swap">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/menu.css">
-  <link rel="stylesheet" href="css/global.css">
+  <!-- <link rel="stylesheet" href="css/global.css"> -->
+  <link rel="stylesheet" href="css/footer.css">
+
 </head>
 <body>
-  <div class="wrapper">
+  <?php
+  if (isset($_SESSION['username'])) {
+    include __DIR__ . '/includes/header_user.php';
+  } else {
+    include __DIR__ . '/includes/header_guest.php';
+  } ?>
     <div class="main-content">
 
       <!-- Category nav -->
@@ -103,8 +104,8 @@ $selCat = $_GET['category'] ?? '';
             });
         });
       </script>
-    </div>
-    <?php include __DIR__.'/includes/footer.php'; ?>
-  </div>  
+    <div>
+      <?php include __DIR__.'/includes/footer.php'; ?>
+    </div>  
 </body>
 </html>

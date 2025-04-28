@@ -4,12 +4,12 @@ session_start();
 // Check critical services FIRST (before anything else that depends on them)
 include __DIR__ . '/scripts/check-services.php';
 
-if (isset($_SESSION['username'])) {
-    include __DIR__ . '/includes/header_user.php';
-} else {
-    include __DIR__ . '/includes/header_guest.php';
-}
-?>
+// if (isset($_SESSION['username'])) {
+//     include __DIR__ . '/includes/header_user.php';
+// } else {
+//     include __DIR__ . '/includes/header_guest.php';
+// }
+// ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -51,6 +51,13 @@ if (isset($_SESSION['username'])) {
     </script>
 </head>
 <body>
+    <?php
+    if (isset($_SESSION['username'])) {
+        include __DIR__.'/includes/header_user.php';
+    } else {
+        include __DIR__.'/includes/header_guest.php';
+    }
+    ?>
     <div class="container">
         <h1>Create an Account</h1>
 
@@ -85,8 +92,8 @@ if (isset($_SESSION['username'])) {
 
         <p>Already have an account? <a href="login.php">Login here</a></p>
     </div>
-    <div class="footer">
-		<p> &copy; Taste of the Caribbean 2025</p>
-	</div>
+    <div>
+        <?php include __DIR__.'/includes/footer.php'; ?>
+    </div> 
 </body>
 </html>

@@ -65,5 +65,8 @@ if (empty($_SESSION['csrf_token'])) {
       </form>
     </div>
   </div>
+  <div>
+		<?php include __DIR__.'/includes/footer.php'; ?>
+	</div> 
 </body>
 </html>

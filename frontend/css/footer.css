@@ -1,0 +1,25 @@
+.site-footer {
+    background: #007a87;
+    color: #fff;
+    padding: 16px 20px;
+    text-align: center;
+    margin-top: 40px;
+  }
+  .footer-container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-nav a {
+    color: #e59d3e;
+    margin: 0 8px;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .footer-nav a:hover {
+    text-decoration: underline;
+  }
+  

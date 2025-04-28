@@ -1,82 +1,72 @@
-/* ─── Base Navbar Styles (no position/margin/padding) ─── */
+/* ─── Navbar Container ─── */
 .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
   background: #007a87;
-  padding: 2px 30px;
-  border-bottom: 2px solid #007a87;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 8px 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 1000;
 }
 
-/* ─── Hamburger Button (hidden on desktop) ─── */
-.hamburger {
-  display: none;
-  font-size: 28px;
-  background: none;
-  border: none;
-  color: #cd9137;
-  cursor: pointer;
-  padding: 4px;
-}
-
-/* ─── Logo & Brand in Center ─── */
-.nav-center {
-  flex: 1;
-  text-align: center;
+/* ─── Left & Right Groups ─── */
+.nav-left, .nav-right {
   display: flex;
-  justify-content: center;
   align-items: center;
 }
-.nav-center .logo img {
-  height: 80px;
-  width: auto;
+.nav-left {
+  flex: 0 0 auto;
 }
-.nav-center .brand {
-  margin-left: 8px;
-  font-size: 1.2rem;
+.nav-right {
+  flex: 1 1 auto;
+  justify-content: flex-end;
+}
+
+/* ─── Logo & Brand ─── */
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+.logo img {
+  height: 60px;
+  margin-right: 8px;
+}
+.brand {
+  font-size: 1.25rem;
   font-weight: 700;
   color: #e59d3e;
 }
 
-/* ─── Left & Right Groups ─── */
-.nav-left,
-.nav-right {
-  display: flex;
-  align-items: center;
-  flex: 0 1 auto;
-}
-.nav-right {
-  justify-content: flex-end;
-}
-.nav-left a,
+/* ─── Nav Links ─── */
 .nav-right a {
   color: #e59d3e;
   text-decoration: none;
-  padding: 6px 2px;
-  margin: 0 6px;
+  margin-left: 16px;
+  padding: 6px 8px;
   font-size: 16px;
-  font-weight: 500;
   transition: background 0.2s;
 }
-.nav-left a.active,
 .nav-right a.active,
-.nav-left a:hover,
 .nav-right a:hover {
-  background: rgba(255,107,53,0.1);
+  background: rgba(255,107,53,0.2);
   border-radius: 4px;
 }
 
-/* ─── Cart Icon ─── */
-.cart-icon {
-  position: relative;
-  margin-left: 12px;
-  background-color: #ff6b35;
-  padding: 6px;
-  border-radius: 50%;
-}
+/* ─── Icon Links ─── */
+.icon-link img,
 .cart-icon img {
   height: 24px;
   width: 24px;
+}
+.cart-icon {
+  position: relative;
+  background: #ff6b35;
+  border-radius: 50%;
+  padding: 4px;
 }
 .cart-count {
   position: absolute;
@@ -87,30 +77,34 @@
   font-size: 10px;
   font-weight: bold;
   border-radius: 50%;
-  padding: 2px 5px;
+  padding: 2px 4px;
+}
+
+/* ─── Hamburger Button ─── */
+.hamburger {
+  display: none;
+  font-size: 28px;
+  color: #e59d3e;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 12px;
 }
 
 /* ─── Mobile Styles ─── */
 @media (max-width: 768px) {
-  .hamburger {
-    display: block;
-  }
-  .nav-left,
-  .nav-center,
+  .hamburger { display: block; }
+  .nav-left img { height: 50px; }
   .nav-right {
     display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #007a87;
     flex-direction: column;
-    background: #fff;
-    width: 100%;
-    text-align: center;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   }
-  .navbar.open .nav-left,
-  .navbar.open .nav-center,
-  .navbar.open .nav-right {
-    display: flex;
-  }
-  .nav-left a,
-  .nav-right a {
-    margin: 8px 0;
-  }
+  .navbar.open .nav-right { display: flex; }
+  .nav-right a { margin: 8px 0; }
 }

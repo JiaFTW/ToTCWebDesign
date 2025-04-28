@@ -67,8 +67,8 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
       </table>
     <?php endif; ?>
   </div>
-  <div class="footer">
-		<p> &copy; Taste of the Caribbean 2025</p>
-	</div>
+  <div>
+    <?php include __DIR__.'/includes/footer.php'; ?>
+  </div>
 </body>
 </html>
