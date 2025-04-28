@@ -18,6 +18,7 @@ $cartCount = (isset($_SESSION['cart']) && is_array($_SESSION['cart']))
     <a href="/index.php" class="logo">
       <img src="/images/TOC_Logo.png" alt="Taste of the Caribbean">
       <span class="brand">Taste of the Caribbean</span>
+      <!-- <span class="tagline">Restaurant & Catering</span> -->
     </a>
   </div>
 

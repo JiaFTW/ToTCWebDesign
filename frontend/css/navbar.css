@@ -1,15 +1,11 @@
-/* ─── Navbar Container ─── */
+/* ─── Base Navbar Styles (no position/margin/padding) ─── */
 .navbar {
+  background: #007a87;
+  padding: 2px 30px;
+  border-bottom: 2px solid #007a87;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #007a87;
-  padding: 8px 16px;
-  border-bottom: 2px solid #007a87;
-  position: relative;
-  z-index: 10;
-  width: 100%;
-  position:calc(800px - 2px) fixed;
 }
 
 /* ─── Hamburger Button (hidden on desktop) ─── */
@@ -31,21 +27,15 @@
   justify-content: center;
   align-items: center;
 }
-.nav-center .logo {
-  display: inline-flex;
-  align-items: center;
-  text-decoration: none;
-  justify-content: center;
-}
 .nav-center .logo img {
-  height: 90px;
+  height: 80px;
   width: auto;
 }
 .nav-center .brand {
   margin-left: 8px;
   font-size: 1.2rem;
   font-weight: 700;
-  color: #e59d3e !important;
+  color: #e59d3e;
 }
 
 /* ─── Left & Right Groups ─── */
@@ -53,18 +43,18 @@
 .nav-right {
   display: flex;
   align-items: center;
-  flex: 1;
+  flex: 0 1 auto;
 }
-.nav-right{
+.nav-right {
   justify-content: flex-end;
 }
 .nav-left a,
 .nav-right a {
-  color: #e59d3e !important;
+  color: #e59d3e;
   text-decoration: none;
-  padding: 6px 8px;
+  padding: 6px 2px;
   margin: 0 6px;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
   transition: background 0.2s;
 }
@@ -87,7 +77,6 @@
 .cart-icon img {
   height: 24px;
   width: 24px;
-  display: block;
 }
 .cart-count {
   position: absolute;
@@ -123,8 +112,5 @@
   .nav-left a,
   .nav-right a {
     margin: 8px 0;
-  }
-  .nav-right {
-    padding-bottom: 8px;
   }
 }

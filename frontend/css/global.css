@@ -1,0 +1,54 @@
+:root {
+  --navbar-bg:   #007a87;
+  --footer-bg:   #56aab3;
+  --nav-padding: 16px;
+  --nav-offset:  120px; /* enough to clear logo + text */
+}
+
+/* ─── FIXED NAVBAR ─── */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--navbar-bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--nav-padding);
+  z-index: 1000;
+}
+
+/* center logo/brand without forcing height */
+.nav-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ─── BODY LAYOUT ─── */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-top: var(--nav-offset);
+}
+
+/* ─── MAIN CONTENT ─── */
+.main-content {
+  flex: 1;
+}
+
+/* ─── FLEX STICKY FOOTER ─── */
+.footer, .footerc {
+  background: var(--footer-bg);
+  color: #fff;
+  text-align: center;
+  padding: 15px 0;
+  /* no position:fixed here—footer will sit at bottom when content is short, or scroll if content is long */
+}

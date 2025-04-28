@@ -36,6 +36,7 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <title>Profile • Taste of the Caribbean</title>
   <link rel="stylesheet" href="css/navbar.css">
   <link rel="stylesheet" href="css/profile.css">
+  <link rel="stylesheet" href="css/global.css">
 </head>
 <body>
   <div class="profile-container">
@@ -66,5 +67,8 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
       </table>
     <?php endif; ?>
   </div>
+  <div class="footer">
+		<p> &copy; Taste of the Caribbean 2025</p>
+	</div>
 </body>
 </html>

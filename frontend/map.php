@@ -18,17 +18,22 @@ if (isset($_SESSION['username'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Taste of the Caribbean</title>
+    <link rel="stylesheet" href="css/navbar.css" />
+
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/map.css" />
-    <link rel="stylesheet" href="css/navbar.css" />
+    <link rel="stylesheet" href="css/global.css">
+
 </head>
 <body>
-    <!-- Hero Section -->
-    <header class="hero">
-        <h1>Welcome to Taste of the Caribbean</h1>
-        <p>Explore authentic Caribbean dishes and flavors.</p>
-        <a href="menu.php" class="btn">View Menu</a>
-    </header>
+    <div class="wrapper">
+        <div class="main-content">
+            <!-- Hero Section -->
+            <header class="hero">
+                <h1>Welcome to Taste of the Caribbean</h1>
+                <p>Explore authentic Caribbean dishes and flavors.</p>
+                <a href="menu.php" class="btn">View Menu</a>
+            </header>
 
     <!-- Map Section -->
     <section class="map-section">
@@ -48,10 +53,10 @@ if (isset($_SESSION['username'])) {
             </map>
         </div>
 
-        <!-- Country Popups -->
-        <a href="item.php?item_id=4" id="cubaLink" class="countryLink">
-            <img id="cubaImage" class="countryImage" src="images/cuba.png" alt="Cuba Highlight" />
-        </a>
+                <!-- Country Popups -->
+                <a href="item.php?item_id=4" id="cubaLink" class="countryLink">
+                    <img id="cubaImage" class="countryImage" src="images/cuba.png" alt="Cuba Highlight" />
+                </a>
 
         <a href="item.php?item_id=13" id="jamaicaLink" class="countryLink">
             <img id="jamaicaImage" class="countryImage" src="images/jamaica.png" alt="Jamaica Highlight" />
@@ -61,9 +66,9 @@ if (isset($_SESSION['username'])) {
             <img id="haitiImage" class="countryImage" src="images/ackee_saltfish.png" alt="Haiti Highlight" />
         </a>
 
-        <a href="item.php?item_id=5" id="dominicanLink" class="countryLink">
-            <img id="dominicanImage" class="countryImage" src="images/dominican.png" alt="Dominican Republic Highlight" />
-        </a>
+                <a href="item.php?item_id=5" id="dominicanLink" class="countryLink">
+                    <img id="dominicanImage" class="countryImage" src="images/dominican.png" alt="Dominican Republic Highlight" />
+                </a>
 
         <a href="item.php?item_id=8" id="puertoLink" class="countryLink">
             <img id="puertoImage" class="countryImage" src="images/puerto.jpg" alt="Puerto Rico Highlight" />

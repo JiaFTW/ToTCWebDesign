@@ -38,5 +38,8 @@ if (isset($_SESSION['username'])) {
     <p>We’re preparing your Caribbean dishes now and will notify you shortly.</p>
     <a href="/index.php">Return to Home</a>
   </div>
+  <div class="footer">
+		<p> &copy; Taste of the Caribbean 2025</p>
+	</div>
 </body>
 </html>

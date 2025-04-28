@@ -1,11 +1,13 @@
-body {
-    font-family: Arial, sans-serif;
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa;
-}
-
-
+  }
+  body {
+    font-family: "DM Sans", Arial, sans-serif;
+    background-color: #e59d3e;
+    color: #333;
+  }
 .hero {
     text-align: center;
     padding: 50px 20px;
@@ -43,16 +45,9 @@ body {
     border-radius: 5px;
 }
 
-footer {
+/* footer {
     text-align: center;
     padding: 20px;
     background: #333;
     color: white;
-}
-
-nav a.active {
-    font-weight: bold;
-    text-decoration: underline;
-    color: #ff6b35;
-  }
-  
+} */

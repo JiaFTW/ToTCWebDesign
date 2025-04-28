@@ -2,7 +2,7 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  padding: 0;
+  padding-top: 0px;
 }
 body {
   font-family: "DM Sans", Arial, sans-serif;
@@ -14,7 +14,7 @@ body {
 .category-nav {
   display: flex;
   justify-content: center;
-  background: #f9916c;
+  background: #e59d3e;
   padding: 10px 0;
   flex-wrap: wrap;
   list-style: none;
@@ -64,7 +64,7 @@ body {
 
 /* Card Body */
 .card-body {
-  padding: 15px;
+  padding: 5px;
 }
 .card-title {
   font-size: 1.25rem;
