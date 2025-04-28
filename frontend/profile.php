@@ -1,36 +1,33 @@
 <?php
+// frontend/profile.php
 session_start();
-include __DIR__ . '/scripts/check-services.php';
-
-// Force login
+include __DIR__.'/scripts/check-services.php';
 if (!isset($_SESSION['username'])) {
     $_SESSION['after_login'] = '/profile.php';
-    header('Location: /login.php');
+    header('Location:/login.php');
     exit;
 }
+include __DIR__.'/includes/header_user.php';
+require __DIR__.'/backend/api/database.php';
 
-// Navbar
-include __DIR__ . '/includes/header_user.php';
-
-// DB connection
-require __DIR__ . '/backend/api/database.php';
 $db = getDB();
-
-// Fetch user
-$username = $_SESSION['username'];
-$stmt = $db->prepare("SELECT id, email, loyalty_points FROM users WHERE username=:u");
-$stmt->execute(['u'=>$username]);
+// 1) Get user info
+$stmt = $db->prepare(
+  "SELECT full_name,email,phone,loyalty_points,created_at
+   FROM users WHERE email=:e"
+);
+$stmt->execute(['e'=>$_SESSION['username']]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Fetch purchase history
-$stmt = $db->prepare("
-  SELECT id, items, total, purchase_date
-    FROM purchases
-   WHERE user_id = :uid
-   ORDER BY purchase_date DESC
-");
-$stmt->execute(['uid'=>$user['id']]);
-$history = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// 2) Get orders
+$stmt = $db->prepare(
+  "SELECT order_id,total,created_at 
+   FROM orders 
+   WHERE user_id=(SELECT user_id FROM users WHERE email=:e)
+   ORDER BY created_at DESC"
+);
+$stmt->execute(['e'=>$_SESSION['username']]);
+$orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,32 +39,29 @@ $history = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
   <div class="profile-container">
-    <h2>Hello, <?= htmlspecialchars($username) ?></h2>
-    <p class="points">Your Loyalty Points: <strong><?= $user['loyalty_points'] ?></strong></p>
+    <h2>Your Profile</h2>
+    <div class="userinfo">
+      <p><strong>Name:</strong> <?=htmlspecialchars($user['full_name'])?></p>
+      <p><strong>Email:</strong> <?=htmlspecialchars($user['email'])?></p>
+      <p><strong>Phone:</strong> <?=htmlspecialchars($user['phone']?:'—')?></p>
+      <p><strong>Member Since:</strong> <?=$user['created_at']?></p>
+      <p><strong>Loyalty Points:</strong> <?=$user['loyalty_points']?></p>
+    </div>
 
     <h3>Purchase History</h3>
-    <?php if (empty($history)): ?>
-      <p>No purchases yet. <a href="menu.php">Order now</a>!</p>
+    <?php if (empty($orders)): ?>
+      <p>No orders yet.</p>
     <?php else: ?>
       <table class="history-table">
-        <thead>
-          <tr><th>Date</th><th>Items</th><th>Total</th></tr>
-        </thead>
+        <thead><tr><th>ID</th><th>Date</th><th>Total</th></tr></thead>
         <tbody>
-        <?php foreach ($history as $order): ?>
+          <?php foreach($orders as $o): ?>
           <tr>
-            <td><?= htmlspecialchars($order['purchase_date']) ?></td>
-            <td>
-              <?php 
-                $items = json_decode($order['items'], true);
-                foreach ($items as $it) {
-                  echo htmlspecialchars($it['name']) . " ×{$it['quantity']}<br>";
-                }
-              ?>
-            </td>
-            <td>$<?= number_format($order['total'],2) ?></td>
+            <td><?=$o['order_id']?></td>
+            <td><?=$o['created_at']?></td>
+            <td>$<?=number_format($o['total'],2)?></td>
           </tr>
-        <?php endforeach; ?>
+          <?php endforeach; ?>
         </tbody>
       </table>
     <?php endif; ?>
