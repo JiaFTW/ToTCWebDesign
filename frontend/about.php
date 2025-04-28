@@ -15,7 +15,7 @@ if (isset($_SESSION['username'])) {
 <html lang="en">
   <head>
     <title>Taste of the Carribean</title>
-    <link rel="stylesheet" href="/css/home2.css">
+    <link rel="stylesheet" href="/css/home.css">
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,7 +26,7 @@ if (isset($_SESSION['username'])) {
     <div class="hero">
       <div class="hero-content">
         <div class="hero-image">
-          <img src="/api/placeholder/250/250" alt="Chanice Fish">
+          <img src="/images/CEO.jpg" alt="Chanice Fish">
         </div>
         <div class="hero-text">
           <h1>About Taste of the Caribbean</h1>
