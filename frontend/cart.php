@@ -2,7 +2,8 @@
 session_start();
 // Health check
 include __DIR__ . '/scripts/check-services.php';
-
+include __DIR__ . '/backend/api/cart_sync.php';
+refreshCart(true); // Sync cart with DB if logged in
 // Enforce login
 if (!isset($_SESSION['username'])) {
     $_SESSION['after_login'] = '/cart.php';
@@ -100,23 +101,27 @@ $cart = $_SESSION['cart'] ?? [];
           You’ll earn <strong><?= $pointsEarned ?></strong> loyalty points on this order.
         </p>
 
+        <!-- ── Payment section ─────────────────────────────── -->
+        <h4 class="pay-title">Pay with:</h4>
+
         <div class="payment-options">
           <!-- Stripe -->
           <form action="/backend/api/create_checkout_session.php" method="POST">
             <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
-            <button type="submit" class="btn-stripe">
-              <img src="/images/stripe.svg" alt="Pay with Stripe">
+            <button type="submit" class="pay-btn btn-stripe" title="Stripe Checkout">
+              <img src="/images/stripe.svg" class="pay-logo" alt="Stripe">
             </button>
           </form>
 
           <!-- Toast POS -->
           <form action="/backend/api/process_toast_payment.php" method="POST">
             <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
-            <button type="submit" class="btn-toast">
-              <img src="/images/toast.svg" alt="Pay with Toast POS">
+            <button type="submit" class="pay-btn btn-toast" title="Toast POS">
+              <img src="/images/toast.svg" class="pay-logo" alt="Toast POS">
             </button>
           </form>
         </div>
+
       </div>
     <?php endif; ?>
 
