@@ -1,6 +1,9 @@
 <?php
 // frontend/includes/header_user.php
 session_start();
+include_once $_SERVER['DOCUMENT_ROOT'].'/backend/api/cart_sync.php';
+refreshCart();              // only if $_SESSION['cart'] is empty
+$cartCount = count($_SESSION['cart'] ?? []);
 $active    = basename($_SERVER['PHP_SELF']);
 $cartCount = isset($_SESSION['cart']) && is_array($_SESSION['cart'])
            ? count($_SESSION['cart'])
@@ -21,11 +24,12 @@ $cartCount = isset($_SESSION['cart']) && is_array($_SESSION['cart'])
     <a href="/menu.php"  class="<?= $active=='menu.php'  ? 'active':'' ?>">Menu</a>
     <a href="/map.php"   class="<?= $active=='map.php'   ? 'active':'' ?>">Map</a>
     <a href="/contact.php" class="<?= $active=='contact.php'? 'active':'' ?>">Catering</a>
-    <a href="/about.php" class="<?= $active=='about.php'   ? 'active':'' ?>">About Us</a>
+    <!-- <a href="/about.php" class="<?= $active=='about.php'   ? 'active':'' ?>">About Us</a> -->
 
     <!-- Profile Icon -->
     <a href="/profile.php" class="icon-link <?= $active=='profile.php'?'active':'' ?>" title="Profile">
-      <img src="/images/user_icon.png" alt="Profile">
+      <img src="/images/profile.svg" alt="Profile">
+      <a href="/logout.php"  class="<?= $active=='logout.php' ? 'active':'' ?>">Logout</a>
     </a>
 
     <!-- Cart Icon -->

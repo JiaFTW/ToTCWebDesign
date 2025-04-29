@@ -9,10 +9,19 @@ if (!isset($_SESSION['username'])) {
     header('Location: /login.php');
     exit;
 }
-
-// // Shared navbar
-// include __DIR__ . '/includes/header_user.php';
-
+if (!isset($_SESSION['cart']) && !empty($_SESSION['username'])) {
+  require_once __DIR__.'/backend/api/database.php';
+  $db = getDB();
+  $stmt = $db->prepare("
+      SELECT cart FROM user_carts
+      JOIN users USING(user_id)
+      WHERE email = ?
+  ");
+  $stmt->execute([$_SESSION['username']]);
+  if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+      $_SESSION['cart'] = json_decode($row['cart'], true) ?: [];
+  }
+}
 // CSRF token
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
@@ -96,7 +105,7 @@ $cart = $_SESSION['cart'] ?? [];
           <form action="/backend/api/create_checkout_session.php" method="POST">
             <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
             <button type="submit" class="btn-stripe">
-              <img src="/images/stripe_logo.png" alt="Pay with Stripe">
+              <img src="/images/stripe.svg" alt="Pay with Stripe">
             </button>
           </form>
 
@@ -104,7 +113,7 @@ $cart = $_SESSION['cart'] ?? [];
           <form action="/backend/api/process_toast_payment.php" method="POST">
             <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
             <button type="submit" class="btn-toast">
-              <img src="/images/toast_logo.png" alt="Pay with Toast POS">
+              <img src="/images/toast.svg" alt="Pay with Toast POS">
             </button>
           </form>
         </div>
