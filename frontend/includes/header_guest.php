@@ -21,11 +21,11 @@ $cartCount = isset($_SESSION['cart']) && is_array($_SESSION['cart'])
     <a href="/menu.php"  class="<?= $active=='menu.php'  ? 'active':'' ?>">Menu</a>
     <a href="/map.php"   class="<?= $active=='map.php'   ? 'active':'' ?>">Map</a>
     <a href="/contact.php" class="<?= $active=='contact.php'? 'active':'' ?>">Catering</a>
-    <a href="/about.php" class="<?= $active=='about.php'   ? 'active':'' ?>">About Us</a>
+    <!-- <a href="/about.php" class="<?= $active=='about.php'   ? 'active':'' ?>">About Us</a> -->
 
     <!-- Profile Icon links to login when guest -->
     <a href="/login.php" class="icon-link <?= $active=='login.php'?'active':'' ?>" title="Login / Profile">
-      <img src="/images/user_icon.png" alt="Profile">
+      <img src="/images/profile.svg" alt="Profile">
     </a>
 
     <!-- Cart Icon -->
