@@ -2,16 +2,15 @@
 // frontend/includes/header_user.php
 session_start();
 include_once $_SERVER['DOCUMENT_ROOT'].'/backend/api/cart_sync.php';
-refreshCart();              // only if $_SESSION['cart'] is empty
-$cartCount = count($_SESSION['cart'] ?? []);
+refreshCart();                              // sync if empty
+
 $active    = basename($_SERVER['PHP_SELF']);
-$cartCount = isset($_SESSION['cart']) && is_array($_SESSION['cart'])
-           ? count($_SESSION['cart'])
-           : 0;
+$cartCount = count($_SESSION['cart'] ?? []);
 ?>
 <nav class="navbar" id="site-nav">
   <button class="hamburger" id="hamburger">&#9776;</button>
 
+  <!-- logo & brand -->
   <div class="nav-left">
     <a href="/index.php" class="logo">
       <img src="/images/TOC_Logo.png" alt="Taste of the Caribbean">
@@ -19,23 +18,33 @@ $cartCount = isset($_SESSION['cart']) && is_array($_SESSION['cart'])
     </a>
   </div>
 
+  <!-- main nav & icons -->
   <div class="nav-right">
     <a href="/index.php" class="<?= $active=='index.php' ? 'active':'' ?>">Home</a>
     <a href="/menu.php"  class="<?= $active=='menu.php'  ? 'active':'' ?>">Menu</a>
     <a href="/map.php"   class="<?= $active=='map.php'   ? 'active':'' ?>">Map</a>
     <a href="/contact.php" class="<?= $active=='contact.php'? 'active':'' ?>">Catering</a>
-    <!-- <a href="/about.php" class="<?= $active=='about.php'   ? 'active':'' ?>">About Us</a> -->
 
-    <!-- Profile Icon -->
-    <a href="/profile.php" class="icon-link <?= $active=='profile.php'?'active':'' ?>" title="Profile">
-      <img src="/images/profile.svg" alt="Profile">
-      <a href="/logout.php"  class="<?= $active=='logout.php' ? 'active':'' ?>">Logout</a>
-    </a>
+    <!-- profile icon → profile page -->
+  <!-- Profile (always visible when logged-in) -->
+  <a href="/profile.php"
+    class="icon-link <?= $active=='profile.php'?'active':'' ?>"
+    title="Profile">
+    <img src="/images/profile.svg" alt="Profile">
+  </a>
 
-    <!-- Cart Icon -->
-    <a href="/cart.php" class="cart-icon <?= $active=='cart.php'?'active':'' ?>" title="Cart">
+  <!-- Logout (text or icon, your choice) -->
+  <a href="/logout.php"
+    class="icon-link"
+    title="Logout">
+    Logout
+  </a>
+    <!-- cart icon -->
+    <a href="/cart.php"
+       class="cart-icon <?= $active=='cart.php'?'active':'' ?>"
+       title="Cart">
       <img src="/images/cart_icon.png" alt="Cart">
-      <?php if($cartCount): ?>
+      <?php if ($cartCount): ?>
         <span class="cart-count"><?= $cartCount ?></span>
       <?php endif; ?>
     </a>
@@ -43,7 +52,7 @@ $cartCount = isset($_SESSION['cart']) && is_array($_SESSION['cart'])
 </nav>
 
 <script>
-  document.getElementById('hamburger').addEventListener('click', ()=>{
-    document.getElementById('site-nav').classList.toggle('open');
-  });
+document.getElementById('hamburger')
+        .addEventListener('click', () =>
+            document.getElementById('site-nav').classList.toggle('open'));
 </script>

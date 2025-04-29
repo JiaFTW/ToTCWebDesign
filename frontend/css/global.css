@@ -26,3 +26,5 @@ body {
   text-align: center;
   padding: 15px 0;
 }
+main{ flex:1 0 auto; }          /* page content grows */
+.site-footer{ flex-shrink:0; }  /* footer stays last */

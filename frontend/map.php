@@ -63,10 +63,10 @@ if (isset($_SESSION['username'])) {
             </map>
         </div>
 
-                <!-- Country Popups -->
-                <a href="item.php?item_id=4" id="cubaLink" class="countryLink">
-                    <img id="cubaImage" class="countryImage" src="images/cuba.png" alt="Cuba Highlight" />
-                </a>
+        <!-- Country Popups -->
+        <a href="item.php?item_id=4" id="cubaLink" class="countryLink">
+            <img id="cubaImage" class="countryImage" src="images/cuba.png" alt="Cuba Highlight" />
+        </a>
 
         <a href="item.php?item_id=13" id="jamaicaLink" class="countryLink">
             <img id="jamaicaImage" class="countryImage" src="images/jamaica.png" alt="Jamaica Highlight" />

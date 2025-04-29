@@ -1,3 +1,7 @@
+/* auto-recalculate area coords on resize */
+document.addEventListener('DOMContentLoaded', ()=> imageMapResize());
+
+
 function showCountryImage(event, country, x, y) {
     const link = document.getElementById(country + 'Link'); 
     const image = document.getElementById(country + 'Image'); 

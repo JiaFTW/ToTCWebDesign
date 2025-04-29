@@ -122,9 +122,55 @@ body{
     background-color: transparent;
     text-decoration: underline;
 }
+
+/* ---- Payment title ---- */
+.pay-title {
+    margin: 20px 0 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  /* ---- Payment buttons ---- */
+  .payment-options {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
+  }
+  
+  .pay-btn {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: box-shadow .2s;
+  }
+  
+  .pay-logo {
+    width: 90px;        /* uniform width */
+    height: 28px;       /* uniform height  */
+    object-fit: contain;
+  }
+  
+  .pay-btn:hover {
+    box-shadow: 0 0 6px rgba(0,0,0,.25);
+  }
+  
+  /* brand-accent borders (optional) */
+  .btn-stripe { border-color: #6772e5; }
+  .btn-toast  { border-color: #ff6b35; }
+    .btn-apple  { border-color: #000; }
+    .btn-google { border-color: #4285f4; }
+    .btn-venmo  { border-color: #00bfae; }
+    .btn-amazon { border-color: #ff9900; }
+    .btn-amex   { border-color: #2d5a9c; }
+    .btn-visa   { border-color: #1a1f71; }
+    .btn-master { border-color: #ff5f00; }
+      
   
 /* .a:active {
     color: orange;
-    background-color: transparent;
+    background-color: brown;
     text-decoration: underline;
 } */
