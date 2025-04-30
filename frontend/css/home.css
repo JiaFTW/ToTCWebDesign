@@ -348,7 +348,7 @@ a:visited {
   }
   
   /* footer section */
-  .footer {
+  /*.footer {
     position: absolute;
     left: 0;
     bottom: 0;
@@ -359,7 +359,7 @@ a:visited {
     font-family: DM Sans, sans-serif;
     padding: 15px;
     box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
-  }
+  }*/
   
   /* Responsive Design */
   @media (max-width: 768px) {
