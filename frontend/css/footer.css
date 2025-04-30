@@ -1,5 +1,5 @@
 .site-footer {
-    background: #007a87;
+    background: #56aab3;
     color: #fff;
     padding: 16px 20px;
     text-align: center;
@@ -18,8 +18,26 @@
     margin: 0 8px;
     text-decoration: none;
     font-weight: 500;
+    transition: color 0.3s ease;
   }
   .footer-nav a:hover {
-    text-decoration: underline;
+    color: #f5bf7d;
+    text-decoration: none;
   }
+
+  @media screen and (max-width: 600px) {
+    .footer-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .footer-nav {
+        margin-top: 10px;
+    }
+    
+    .footer-nav a {
+        display: block;
+        margin: 5px 0;
+    }
+}
   
