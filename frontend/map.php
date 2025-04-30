@@ -37,11 +37,11 @@ if (isset($_SESSION['username'])) {
     <div class="wrapper">
         <div class="main-content">
             <!-- Hero Section -->
-            <header class="hero">
+            <!--<header class="hero">
                 <h1>Welcome to Taste of the Caribbean</h1>
                 <p>Explore authentic Caribbean dishes and flavors.</p>
                 <a href="menu.php" class="btn">View Menu</a>
-            </header>
+            </header>-->
 
     <!-- Map Section -->
     <section class="map-section">
