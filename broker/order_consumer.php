@@ -1,11 +1,11 @@
 <?php
 // broker/order_consumer.php
 
-// 1) Autoload RabbitMQ & PDO helper
+// Autoload RabbitMQ & PDO helper
 require_once __DIR__ . '/../vendor/autoload.php';
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 
-// 2) Connect to RabbitMQ
+// Connect to RabbitMQ
 $conn = new AMQPStreamConnection(
     '98.82.149.231', 5672,
     'totc', 'Totc2025'
@@ -13,11 +13,11 @@ $conn = new AMQPStreamConnection(
 $ch = $conn->channel();
 $ch->queue_declare('orders', false, true, false, false);
 
-// 3) Get a PDO instance via your shared database helper
+//Get a PDO instance via your shared database helper
 require_once __DIR__ . '/../backend/api/database.php';
 $db = getDB();
 
-// 4) Callback to process each order
+// Callback to process each order
 $callback = function($msg) use ($db) {
     $data = json_decode($msg->body, true);
     $userEmail = $data['user'] ?? '';
@@ -84,7 +84,7 @@ $callback = function($msg) use ($db) {
     $msg->ack();
 };
 
-// 5) Start consuming
+// Start consuming
 $ch->basic_qos(null, 1, null);
 $ch->basic_consume('orders', '', false, false, false, false, $callback);
 

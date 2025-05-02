@@ -1,11 +1,11 @@
 <?php
 // stripe_webhook.php
 require_once __DIR__.'/../../vendor/autoload.php';
-\Stripe\Stripe::setApiKey('sk_test_YOUR_SECRET_KEY');
+\Stripe\Stripe::setApiKey('sk_test_51OUuyNFk9hFFCZHm45YAgkWPkFRExEQKVGHEz3Keho528FEq0UJjkWyocUlGRLSxgFbG3VmVTOksI6rWRkjLDl1M00lo0DeZVO');
 
 $payload    = @file_get_contents('php://input');
 $sig_header= $_SERVER['HTTP_STRIPE_SIGNATURE'];
-$endpoint_secret = 'whsec_YOUR_WEBHOOK_SECRET';
+$endpoint_secret = 'whsec_NXpPB8PErF3cGuKdlXthlz68o5TaefrQT';
 
 try {
     $event = \Stripe\Webhook::constructEvent(
