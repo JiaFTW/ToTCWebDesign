@@ -30,6 +30,7 @@ session_start();
         }
     ?>  
     <div class="main-content">
+    <div class="main-content about-page">
       <div class="hero">
         <div class="hero-content">
           <div class="hero-image">
@@ -48,6 +49,7 @@ session_start();
         </div>
       </div>
     </div>
+      </div>
 		<div>
 			<?php include __DIR__.'/includes/footer.php'; ?>
 		</div> 
