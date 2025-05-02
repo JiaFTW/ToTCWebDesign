@@ -92,9 +92,7 @@ include __DIR__ . '/scripts/check-services.php';
 
 			<div class="hero">
 			<div class="hero-content">
-				<div class="hero-image">
 				<img src="images/caribbean-food.jpg" alt="a display of caribbean food on a table near a beach during a sunset">
-				</div>
 				<div class="hero-text">
 				<h1>Welcome to the Taste of the Caribbean !</h1>
 				<p>Welcome to our vibrant Caribbean restaurant! Get ready to try delicious
