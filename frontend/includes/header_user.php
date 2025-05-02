@@ -22,6 +22,7 @@ $cartCount = count($_SESSION['cart'] ?? []);
   <div class="nav-right">
     <a href="/index.php" class="<?= $active=='index.php' ? 'active':'' ?>">Home</a>
     <a href="/menu.php"  class="<?= $active=='menu.php'  ? 'active':'' ?>">Menu</a>
+    <a href="/location.php" class="<?= $active=='hours.php' ? 'active':'' ?>">Location</a>
     <a href="/map.php"   class="<?= $active=='map.php'   ? 'active':'' ?>">Map</a>
     <a href="/contact.php" class="<?= $active=='contact.php'? 'active':'' ?>">Catering</a>
 

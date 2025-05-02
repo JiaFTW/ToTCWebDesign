@@ -119,7 +119,7 @@ include __DIR__ . '/scripts/check-services.php';
 				<div class="address-text">
 					<h1>Want to Dine In?</h1>
 					<p>Check <a href="#">here</a> for our hours and location! We will be happy to see and serve up delicious meals that will keep you coming back!</p>
-					<a href="contact.php"><button class="contact">Contact Us</button></a>
+					<a href="location.php"><button class="contact">Location and Hours</button></a>
 
 				</div>
 			</div>
