@@ -4,8 +4,16 @@ session_start();
 // Check critical services FIRST (before anything else that depends on them)
 include __DIR__ . '/scripts/check-services.php';
 
- ?>
+// Display form status messages if they exist
+$formStatus = $_SESSION['form_status'] ?? '';
+$formMessage = $_SESSION['form_message'] ?? '';
+$formData = $_SESSION['form_data'] ?? [];
 
+// Clear the session variables
+unset($_SESSION['form_status']);
+unset($_SESSION['form_message']);
+unset($_SESSION['form_data']);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,22 +40,30 @@ include __DIR__ . '/scripts/check-services.php';
 	?>
 
   	<div class="main-content">
-
 		<h1>Catering</h1>
 		<p>Let us cater your next big event! Send in a inquiry and we'll get back to you within 1-2 business days.</p>
+		
+		<?php if ($formStatus): ?>
+			<div class="form-message <?php echo $formStatus; ?>">
+				<?php echo $formMessage; ?>
+			</div>
+		<?php endif; ?>
+
 		<div class="container">
-			<form id="orderForm">
+			<form id="orderForm" action="scripts/process-catering.php" method="POST">
 				<div class="row">
 					<div class="col">
 						<div class="form-group">
 							<label for="firstName" class="required">First Name</label>
-							<input type="text" id="firstName" name="firstName" required>
+							<input type="text" id="firstName" name="firstName" required 
+								value="<?php echo htmlspecialchars($formData['firstName'] ?? ''); ?>">
 						</div>
 					</div>
 					<div class="col">
 						<div class="form-group">
 							<label for="lastName" class="required">Last Name</label>
-							<input type="text" id="lastName" name="lastName" required>
+							<input type="text" id="lastName" name="lastName" required
+								value="<?php echo htmlspecialchars($formData['lastName'] ?? ''); ?>">
 						</div>
 					</div>
 				</div>
@@ -55,23 +71,27 @@ include __DIR__ . '/scripts/check-services.php';
 				<div class="form-group">
 					<label for="email" class="required">Email Address</label>
 					<input type="email" id="email" name="email" required 
-						pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+						pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+						value="<?php echo htmlspecialchars($formData['email'] ?? ''); ?>">
 				</div>
 				
 				<div class="form-group">
 					<label for="phone">Phone Number</label>
-					<input type="tel" id="phone" name="phone">
+					<input type="tel" id="phone" name="phone" required
+						value="<?php echo htmlspecialchars($formData['phone'] ?? ''); ?>">
 				</div>
 				
 				<div class="form-group">
 					<label for="eventDate">Event Date</label>
-					<input type="date" id="eventDate" name="eventDate">
+					<input type="date" id="eventDate" name="eventDate"
+						value="<?php echo htmlspecialchars($formData['eventDate'] ?? ''); ?>">
 				</div>
 				
 				<div class="form-group">
 					<label for="orderDetails" class="required">Order Details</label>
 					<textarea id="orderDetails" name="orderDetails" 
-							placeholder="Please specify what you would like to order and the quantities..." required></textarea>
+							placeholder="Please specify what you would like to order and the quantities..." 
+							required><?php echo htmlspecialchars($formData['orderDetails'] ?? ''); ?></textarea>
 				</div>
 				
 				<div class="form-footer">
@@ -81,9 +101,31 @@ include __DIR__ . '/scripts/check-services.php';
 			</form>
 		</div>
 	</div>	
-	<div>
 		<?php include __DIR__.'/includes/footer.php'; ?>
-	</div> 
+
+	<script>
+		document.getElementById('orderForm').addEventListener('submit', function(e) {
+			// Client-side validation
+			const firstName = document.getElementById('firstName').value.trim();
+			const lastName = document.getElementById('lastName').value.trim();
+			const email = document.getElementById('email').value.trim();
+			const orderDetails = document.getElementById('orderDetails').value.trim();
+			
+			if (!firstName || !lastName || !email || !phone || !orderDetails) {
+				e.preventDefault();
+				alert('Please fill in all required fields.');
+				return false;
+			}
+			
+			// Validate email format
+			const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+			if (!emailRegex.test(email)) {
+				e.preventDefault();
+				alert('Please enter a valid email address.');
+				return false;
+			}
+		});
+	</script>
 
 </body>
 </html>

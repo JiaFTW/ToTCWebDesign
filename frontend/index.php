@@ -124,9 +124,7 @@ include __DIR__ . '/scripts/check-services.php';
 				</div>
 			</div>
 		</div>
-		<div>
-			<?php include __DIR__.'/includes/footer.php'; ?>
-		</div>  
+		<?php include __DIR__.'/includes/footer.php'; ?>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/image-map-resizer@1.0.10/js/imageMapResizer.min.js"></script>
 	<script src="scripts/map.js"></script>
