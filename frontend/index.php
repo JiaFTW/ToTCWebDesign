@@ -90,18 +90,16 @@ include __DIR__ . '/scripts/check-services.php';
         </a>
     </section>
 
-			<div class="hero">
-			<div class="hero-content">
-				<div class="hero-image">
-				<img src="images/caribbean-food.jpg" alt="a display of caribbean food on a table near a beach during a sunset">
+	<div class="hero">
+				<div class="hero-content">
+					<img src="images/caribbean-food.jpg" alt="a display of caribbean food on a table near a beach during a sunset">
+					<div class="hero-text">
+						<h1>Welcome to the Taste of the Caribbean !</h1>
+						<p>Welcome to our vibrant Caribbean restaurant! Get ready to try delicious
+						flavors, tropical vibes, and unforgettable dining experiences in paradise.</p>
+						<button class="learn-more"><a href="about.php">Learn More About Us Here</a></button>
+					</div>
 				</div>
-				<div class="hero-text">
-				<h1>Welcome to the Taste of the Caribbean !</h1>
-				<p>Welcome to our vibrant Caribbean restaurant! Get ready to try delicious
-				flavors, tropical vibes, and unforgettable dining experiences in paradise.</p>
-				<button class="learn-more"><a href="about.php">Learn More About Us Here</a></button>
-				</div>
-			</div>
 			</div>
 
 			<div class="order">
@@ -119,14 +117,12 @@ include __DIR__ . '/scripts/check-services.php';
 				<div class="address-text">
 					<h1>Want to Dine In?</h1>
 					<p>Check <a href="#">here</a> for our hours and location! We will be happy to see and serve up delicious meals that will keep you coming back!</p>
-					<a href="contact.php"><button class="contact">Contact Us</button></a>
+					<a href="location.php"><button class="contact">Location and Hours</button></a>
 
 				</div>
 			</div>
 		</div>
-		<div>
-			<?php include __DIR__.'/includes/footer.php'; ?>
-		</div>  
+		<?php include __DIR__.'/includes/footer.php'; ?>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/image-map-resizer@1.0.10/js/imageMapResizer.min.js"></script>
 	<script src="scripts/map.js"></script>

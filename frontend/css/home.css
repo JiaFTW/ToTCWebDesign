@@ -85,59 +85,53 @@ h2 {
 
 .hero {
     display: flex;
-    text-align: left;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    border: 2px solid #56aab3;
+    border-radius: 8px;
+    margin: 2rem;
+    padding: 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
 }
 
 .hero-content {
     display: flex;
-    align-items: left;
-    gap: 20px; /* Space between text and image */
-    max-width: 100%;
-    padding: 2rem;
-    flex-wrap: wrap;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    margin: 2rem;
+    width: 100%;
+    align-items: stretch;
+    gap: 0;
 }
 
-.hero-image {
-    flex: 1;
-    display: flex;
-    justify-content: right;
-    margin-right: 0;
-    right: 0px;
-    padding: 25px 25px;
-    
-} 
-
-.hero-image img {
-    max-width: 100%;
-    height: 100%;
-    border-radius: 8px;
-    float: left;
+.hero img {
+    width: 50%;
+    height: auto;
+    flex-shrink: 0;
+    border-radius: 0;
+    object-fit: cover;
 }
 
 .hero-text {
     flex: 1;
-	padding: 30px 0px;
+    padding: 2rem;
+    max-width: 50%;
 }
 
 .hero-text h1 {
     color: #333;
     font-family: Faculty Glyphic, serif;
-    padding: 20px;
+    text-align: left;
+    margin-bottom: 10px;
     font-size: 2.5rem;
     line-height: 1.2;
-    margin-bottom: 1rem;
 }
 
 .hero-text p {
     font-family: Poppins, sans-serif;
-    padding: 20px;
     font-size: 1.2rem;
     line-height: 1.6;
-    margin-bottom: 1rem;
+    text-align: left;
+    margin: 0 0 1rem 0;
 }
 
 .hero-text .learn-more {
@@ -149,8 +143,7 @@ h2 {
     color: white;
     cursor: pointer;
     justify-content: center;
-    margin: 20px auto;
-    display: block;
+    margin: 20px 0;
     font-family: Faculty Glyphic, serif;
     transition: all 0.3s ease;
 }
@@ -158,6 +151,61 @@ h2 {
 .hero-text .learn-more:hover {
     background-color: #f5bf7d;
     transform: translateY(-2px);
+}
+
+/* About page specific styling */
+.about-page .hero {
+  display: flex;
+  align-items: stretch;
+  background: white;
+  border: 2px solid #56aab3;
+  border-radius: 8px;
+  margin: 2rem;
+  padding: 0;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.about-page .hero-content {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+  gap: 0;
+}
+
+.about-page .hero-image {
+  width: 50%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f8f8;
+}
+
+.about-page .hero-image img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 600px;
+  object-fit: contain;
+}
+
+.about-page .hero-text {
+  flex: 1;
+  padding: 2rem;
+  max-width: 50%;
+}
+
+.about-page .hero-text h1 {
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+.about-page .hero-text p {
+  text-align: left;
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 /* link styling */
@@ -255,6 +303,10 @@ a:visited {
     flex: 1;
     max-width: 50%; 
     padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
   
   .address h1 {
@@ -291,9 +343,10 @@ a:visited {
     color: white;
     cursor: pointer;
     justify-content: center;
-    margin: 20px 0;
+    margin: 20px auto;
     font-family: Faculty Glyphic, serif;
     transition: all 0.3s ease;
+    display: block;
   }
 
   .address .contact:hover {
