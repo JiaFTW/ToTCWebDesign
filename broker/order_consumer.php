@@ -41,12 +41,13 @@ $callback = function($msg) use ($db) {
 
     // Insert order
     $stmt = $db->prepare(
-      "INSERT INTO orders (user_id, total) 
-             VALUES (:uid, :tot)"
+      "INSERT INTO orders (user_id,total ,stripe_session_id)
+             VALUES (:uid,:tot,:ssid)"
     );
     $stmt->execute([
       'uid' => $u['user_id'],
-      'tot' => $data['total']
+      'tot' => $data['total'],
+      'ssid' => $data['id']
     ]);
     $orderId = $db->lastInsertId();
 
@@ -67,7 +68,7 @@ $callback = function($msg) use ($db) {
     }
 
     // Update loyalty points (1 point per $10)
-    $pointsToAdd = floor($data['total'] / 10);
+    $pointsToAdd = floor($data['total']);
     if ($pointsToAdd > 0) {
         $upd = $db->prepare(
           "UPDATE users 
