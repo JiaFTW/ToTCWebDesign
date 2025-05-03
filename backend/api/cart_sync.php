@@ -27,3 +27,16 @@ function refreshCart(bool $force = false): void {
         $_SESSION['cart'] = [];
     }
 }
+
+// clear cart from DB after checkout
+// (already saved in DB by order_consumer)
+// (this is a separate function to avoid circular dependency)
+// (order_consumer requires cart_sync, which requires database)
+function clearCartStorage() {
+    if (!isset($_SESSION['username'])) return;
+    $db = getDB();
+    $db->prepare(
+        "DELETE FROM user_carts
+          WHERE user_id = (SELECT user_id FROM users WHERE email = ?)"
+    )->execute([$_SESSION['username']]);
+}
