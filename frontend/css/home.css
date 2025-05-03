@@ -101,20 +101,12 @@ h2 {
   gap: 0;
 }
 
-.hero-image {
-  display: flex;
+.hero img {
   width: 50%;
-  margin: 0;
-  padding: 0;
-  align-items: stretch;
-  justify-content: center;
-} 
-
-.hero-image img {
-  width: 100%;
-  height: 100%;
+  height: auto;
+  flex-shrink: 0;
+  border-radius: 0px;
   object-fit: cover;
-  border-radius: 0;
 }
 
 .about-page .hero-image {

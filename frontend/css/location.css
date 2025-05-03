@@ -46,7 +46,7 @@ h2 {
 }
 
 .main-content {
-    padding: 100px 0 60px; /* Account for fixed navbar */
+    padding: 100px 0 120px; /* Account for fixed navbar */
     min-height: calc(100vh - 160px); /* Account for navbar and footer */
 }
 

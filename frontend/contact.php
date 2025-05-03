@@ -109,6 +109,7 @@ unset($_SESSION['form_data']);
 			const firstName = document.getElementById('firstName').value.trim();
 			const lastName = document.getElementById('lastName').value.trim();
 			const email = document.getElementById('email').value.trim();
+			const phone = document.getElementById('phone').value.trim();
 			const orderDetails = document.getElementById('orderDetails').value.trim();
 			
 			if (!firstName || !lastName || !email || !phone || !orderDetails) {
