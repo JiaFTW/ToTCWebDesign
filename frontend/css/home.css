@@ -94,6 +94,7 @@ h2 {
   padding: 0;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   overflow: hidden;
+  max-width: 1200px;
 }
 
 .hero-content {
@@ -238,6 +239,7 @@ a:visited {
     padding: 0;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     overflow: hidden;
+    max-width: 1200px;
 }
 
 .order-text {
@@ -303,6 +305,7 @@ a:visited {
     padding: 0;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     overflow: hidden;
+    max-width: 1200px;
   }
   
   .address-text {
