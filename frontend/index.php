@@ -92,16 +92,14 @@ include __DIR__ . '/scripts/check-services.php';
     </section>
 
 	<div class="hero">
-				<div class="hero-content">
-					<img src="images/caribbean-food.jpg" alt="a display of caribbean food on a table near a beach during a sunset">
-					<div class="hero-text">
-						<h1>Welcome to the Taste of the Caribbean !</h1>
-						<p>Welcome to our vibrant Caribbean restaurant! Get ready to try delicious
-						flavors, tropical vibes, and unforgettable dining experiences in paradise.</p>
-						<button class="learn-more"><a href="about.php">Learn More About Us Here</a></button>
-					</div>
-				</div>
-			</div>
+	<img src="images/caribbean-food.jpg" alt="a display of caribbean food on a table near a beach during a sunset">
+		<div class="hero-text">
+			<h1>Welcome to the Taste of the Caribbean !</h1>
+			<p>Welcome to our vibrant Caribbean restaurant! Get ready to try delicious
+			flavors, tropical vibes, and unforgettable dining experiences in paradise.</p>
+			<button class="learn-more"><a href="about.php">Learn More About Us Here</a></button>
+		</div>
+	</div>
 
 			<div class="order">
 				<div class="order-text">
