@@ -90,6 +90,7 @@ include __DIR__ . '/scripts/check-services.php';
             <img id="bahamasImage" class="countryImage" src="images/mango.png" alt="Bahamas Highlight" />
         </a>
     </section>
+</div></div>
 
 	<div class="hero">
 	<img src="images/caribbean-food.jpg" alt="a display of caribbean food on a table near a beach during a sunset">
