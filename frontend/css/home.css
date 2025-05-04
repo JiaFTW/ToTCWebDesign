@@ -84,68 +84,74 @@ h2 {
 /* hero section */
 
 .hero {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: white;
-    border: 2px solid #56aab3;
-    border-radius: 8px;
-    margin: 2rem;
-    padding: 0;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    overflow: hidden;
+  display: flex;
+  align-items: center; 
+  justify-content: space-between; 
+  background-color: white;
+  border: 2px solid #56aab3;
+  border-radius: 8px;
+  margin: 2rem;
+  padding: 0;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
 }
 
 .hero-content {
-    display: flex;
-    width: 100%;
-    align-items: stretch;
-    gap: 0;
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+  gap: 0;
 }
 
 .hero img {
-    width: 50%;
-    height: auto;
-    flex-shrink: 0;
-    border-radius: 0;
-    object-fit: cover;
+  width: 50%;
+  height: auto;
+  flex-shrink: 0;
+  border-radius: 0;
+  object-fit: cover;
 }
 
 .hero-text {
-    flex: 1;
-    padding: 2rem;
-    max-width: 50%;
+  flex: 1;
+  max-width: 50%; 
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .hero-text h1 {
-    color: #333;
-    font-family: Faculty Glyphic, serif;
-    text-align: left;
-    margin-bottom: 10px;
-    font-size: 2.5rem;
-    line-height: 1.2;
+  color: #333;
+  font-family: Faculty Glyphic, serif;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  line-height: 1.2;
 }
 
 .hero-text p {
-    font-family: Poppins, sans-serif;
-    font-size: 1.2rem;
-    line-height: 1.6;
-    text-align: left;
-    margin: 0 0 1rem 0;
+  font-family: Poppins, sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  text-align: center;
+  margin: 0 0 1rem 0;
+  padding: 0 1rem;
 }
 
 .hero-text .learn-more {
-    padding: 15px 30px;
-    font-size: 16px;
-    background-color: #56aab3;
-    border: none;
-    border-radius: 25px;
-    color: white;
-    cursor: pointer;
-    justify-content: center;
-    margin: 20px 0;
-    font-family: Faculty Glyphic, serif;
-    transition: all 0.3s ease;
+  padding: 15px 30px;
+  font-size: 16px;
+  background-color: #56aab3;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  cursor: pointer;
+  justify-content: center;
+  margin: 20px auto;
+  font-family: Faculty Glyphic, serif;
+  transition: all 0.3s ease;
+  display: block;
 }
 
 .hero-text .learn-more:hover {
@@ -228,7 +234,7 @@ a:visited {
 	background-color: white;
     border: 2px solid #56aab3;
     border-radius: 8px;
-    margin: 2rem;
+    margin: 1rem;
     padding: 0;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     overflow: hidden;
@@ -293,7 +299,7 @@ a:visited {
     background-color: white;
     border: 2px solid #56aab3;
     border-radius: 8px;
-    margin: 2rem;
+    margin: 1rem;
     padding: 0;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     overflow: hidden;

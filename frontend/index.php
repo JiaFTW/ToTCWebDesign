@@ -36,7 +36,8 @@ include __DIR__ . '/scripts/check-services.php';
 		<div class="main-content">
 			 <!-- ── 1. INTERACTIVE MAP ─ -->
 			 <section class="map-section index-map">
-				<h2>Interactive Food Map</h2>
+				<h2>Welcome to Taste of the Caribbean Restaurant & Catering</h2>
+				<p>Interactive Food Map</p>
 				<p class="map-sub">Hover over a country to see its signature dish.<br>
 					Click for details!</p>
 
@@ -89,18 +90,17 @@ include __DIR__ . '/scripts/check-services.php';
             <img id="bahamasImage" class="countryImage" src="images/mango.png" alt="Bahamas Highlight" />
         </a>
     </section>
+</div></div>
 
 	<div class="hero">
-				<div class="hero-content">
-					<img src="images/caribbean-food.jpg" alt="a display of caribbean food on a table near a beach during a sunset">
-					<div class="hero-text">
-						<h1>Welcome to the Taste of the Caribbean !</h1>
-						<p>Welcome to our vibrant Caribbean restaurant! Get ready to try delicious
-						flavors, tropical vibes, and unforgettable dining experiences in paradise.</p>
-						<button class="learn-more"><a href="about.php">Learn More About Us Here</a></button>
-					</div>
-				</div>
-			</div>
+	<img src="images/caribbean-food.jpg" alt="a display of caribbean food on a table near a beach during a sunset">
+		<div class="hero-text">
+			<h1>Welcome to the Taste of the Caribbean !</h1>
+			<p>Welcome to our vibrant Caribbean restaurant! Get ready to try delicious
+			flavors, tropical vibes, and unforgettable dining experiences in paradise.</p>
+			<button class="learn-more"><a href="about.php">Learn More About Us Here</a></button>
+		</div>
+	</div>
 
 			<div class="order">
 				<div class="order-text">
