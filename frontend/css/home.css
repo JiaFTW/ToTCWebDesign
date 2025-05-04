@@ -98,10 +98,7 @@ h2 {
 }
 
 .hero-content {
-  display: flex;
-  width: 100%;
-  align-items: stretch;
-  gap: 0;
+  margin: 40px auto;
 }
 
 .hero img {
@@ -242,6 +239,10 @@ a:visited {
     max-width: 1200px;
 }
 
+.order-content{
+  margin: 40px auto;
+}
+
 .order-text {
     flex: 1; 
     max-width: 50%; 
@@ -306,6 +307,10 @@ a:visited {
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     overflow: hidden;
     max-width: 1200px;
+  }
+
+  .address-content{
+    margin: 40px auto;
   }
   
   .address-text {

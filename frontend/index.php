@@ -93,6 +93,7 @@ include __DIR__ . '/scripts/check-services.php';
 </div></div>
 
 	<div class="hero">
+	<div class="hero-content">
 	<img src="images/caribbean-food.jpg" alt="a display of caribbean food on a table near a beach during a sunset">
 		<div class="hero-text">
 			<h1>Welcome to the Taste of the Caribbean !</h1>
@@ -101,8 +102,10 @@ include __DIR__ . '/scripts/check-services.php';
 			<button class="learn-more"><a href="about.php">Learn More About Us Here</a></button>
 		</div>
 	</div>
+	</div>
 
 			<div class="order">
+			<div class="order-content">
 				<div class="order-text">
 					<h1>Feeling Hungry?</h1>
 					<p>Delight in the bold flavors, fresh aromas, and joyful spirit of the Caribbean with every meal at Taste of the Caribbean.
@@ -111,14 +114,16 @@ include __DIR__ . '/scripts/check-services.php';
 				</div>
 					<img src="images/Chicken.png" alt="pot of cooked chicken and potatoes">
 			</div>
+			</div>
 
 			<div class="address">
+			<div class="address-content">
 				<img src="images/location.jpg" alt="picture of caribbean food on plates on a table">
 				<div class="address-text">
 					<h1>Want to Dine In?</h1>
 					<p>Check <a href="#">here</a> for our hours and location! We will be happy to see and serve up delicious meals that will keep you coming back!</p>
 					<a href="location.php"><button class="contact">Location and Hours</button></a>
-
+</div>
 				</div>
 			</div>
 		</div>
