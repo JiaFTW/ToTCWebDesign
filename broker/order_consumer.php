@@ -4,6 +4,8 @@
 // Autoload RabbitMQ & PDO helper
 require_once __DIR__ . '/../vendor/autoload.php';
 use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PHPMailer\PHPMailer\PHPMailer;
+
 
 // Connect to RabbitMQ
 $conn = new AMQPStreamConnection(
