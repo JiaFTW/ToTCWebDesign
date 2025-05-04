@@ -36,7 +36,8 @@ include __DIR__ . '/scripts/check-services.php';
 		<div class="main-content">
 			 <!-- ── 1. INTERACTIVE MAP ─ -->
 			 <section class="map-section index-map">
-				<h2>Interactive Food Map</h2>
+				<h2>Welcome to Taste of the Caribbean Restaurant & Catering</h2>
+				<p>Interactive Food Map</p>
 				<p class="map-sub">Hover over a country to see its signature dish.<br>
 					Click for details!</p>
 
