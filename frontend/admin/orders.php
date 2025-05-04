@@ -2,7 +2,7 @@
 // admin/orders.php
 session_start();
 if (empty($_SESSION['is_admin'])) {
-    header('Location: login.php');
+    header('Location: order_login.php');
     exit;
 }
 require_once __DIR__ . '/../backend/api/database.php';
@@ -32,7 +32,7 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
   <h1>Incoming Orders</h1>
-  <a href="logout.php" class="logout">Log Out</a>
+  <a href="admin_logout.php" class="logout">Log Out</a>
   <?php if (!$orders): ?>
     <p>No orders yet.</p>
   <?php else: ?>

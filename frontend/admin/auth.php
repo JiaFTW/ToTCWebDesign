@@ -13,6 +13,6 @@ if ($u === $_ENV['ADMIN_USER'] && $p === $_ENV['ADMIN_PASS']) {
     header('Location: orders.php');
     exit;
 } else {
-    header('Location: login.php?error=' . urlencode('Invalid credentials'));
+    header('Location: admin_login.php?error=' . urlencode('Invalid credentials'));
     exit;
 }

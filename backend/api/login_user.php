@@ -1,59 +1,53 @@
 <?php
 // backend/api/login_user.php
 session_start();
-require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/database.php';
 
-use PhpAmqpLib\Connection\AMQPStreamConnection;
-use PhpAmqpLib\Message\AMQPMessage;
+$email    = trim($_POST['email']    ?? '');
+$password =           $_POST['password'] ?? '';
 
-//  Capture credentials ─────────────────────────────────────────
-$email    = $_POST['email'] ?? '';
-$password = $_POST['password'] ?? '';
-
-//  Publish login request to RabbitMQ (unchanged) ───────────────
-$connection = new AMQPStreamConnection('98.82.149.231', 5672, 'totc', 'Totc2025');
-$channel    = $connection->channel();
-$channel->queue_declare('user_requests', false, true, false, false);
-
-$payload = json_encode([
-    'action'   => 'login',
-    'username' => $email,
-    'password' => $password
-]);
-$channel->basic_publish(
-    new AMQPMessage($payload, ['delivery_mode' => 2]),
-    '',
-    'user_requests'
-);
-$channel->close();
-$connection->close();
-
-// Simulate successful login until consumer reply is coded ─────
-$_SESSION['username'] = $email;
-
-// Restore saved cart (if any) ─────────────────────────────────
-try {
-    require_once __DIR__ . '/database.php';
-    $db = getDB();
-
-    // get user_id
-    $u = $db->prepare('SELECT user_id FROM users WHERE email = ?');
-    $u->execute([$email]);
-    if ($row = $u->fetch(PDO::FETCH_ASSOC)) {
-        $uid = $row['user_id'];
-
-        // fetch cart JSON (if exists)
-        $c = $db->prepare('SELECT cart FROM user_carts WHERE user_id = ?');
-        $c->execute([$uid]);
-        if ($cartRow = $c->fetch(PDO::FETCH_ASSOC)) {
-            $_SESSION['cart'] = json_decode($cartRow['cart'], true);
-        }
-    }
-} catch (Exception $e) {
-    // Log but continue redirecting
-    error_log('Cart restore error: ' . $e->getMessage());
+// Basic sanity
+if (!$email || !$password) {
+    $_SESSION['login_error'] = "Please provide both email and password.";
+    header("Location: /login.php");
+    exit;
 }
 
-//  Redirect home with absolute URI ─────────────────────────────
-header('Location: /index.php');
-exit;
+try {
+    $db = getDB();
+    $stmt = $db->prepare("SELECT password_hash FROM users WHERE email = ?");
+    $stmt->execute([$email]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$row || !password_verify($password, $row['password_hash'])) {
+        // wrong email or password
+        $_SESSION['login_error'] = "Invalid email or password.";
+        header("Location: /login.php");
+        exit;
+    }
+
+    // success
+    $_SESSION['username'] = $email;
+
+    // restore cart (if you have user_carts table)
+    $stmt = $db->prepare("SELECT cart FROM user_carts uc
+                          JOIN users u USING(user_id)
+                          WHERE u.email = ?");
+    $stmt->execute([$email]);
+    if ($r = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $_SESSION['cart'] = json_decode($r['cart'], true) ?: [];
+    }
+
+    // redirect to intended page
+    $dest = $_SESSION['after_login'] ?? '/index.php';
+    unset($_SESSION['after_login']);
+    header("Location: $dest");
+    exit;
+
+} catch (Exception $e) {
+    // log & back to login
+    error_log("Login error: " . $e->getMessage());
+    $_SESSION['login_error'] = "An internal error occurred.";
+    header("Location: /login.php");
+    exit;
+}
