@@ -82,74 +82,77 @@ h2 {
 
 
 /* hero section */
-
 .hero {
-  display: flex;
-  align-items: center; 
-  justify-content: space-between; 
-  background-color: white;
-  border: 2px solid #56aab3;
-  border-radius: 8px;
-  margin: 2rem;
-  padding: 0;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  overflow: hidden;
-  max-width: 1200px;
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; 
+    background-color: white;
+    border: 2px solid #56aab3;
+    border-radius: 8px;
+    margin: 60px auto;
+    padding: 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+    width: 90%;
+    max-width: 1200px;
 }
 
 .hero-content {
-  margin: 40px auto;
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    gap: 0;
 }
 
 .hero img {
-  width: 50%;
-  height: auto;
-  flex-shrink: 0;
-  border-radius: 0;
-  object-fit: cover;
+    width: 50%;
+    height: auto;
+    flex-shrink: 0;
+    border-radius: 0;
+    object-fit: cover;
 }
 
 .hero-text {
-  flex: 1;
-  max-width: 50%; 
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+    flex: 1;
+    max-width: 50%; 
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .hero-text h1 {
-  color: #333;
-  font-family: Faculty Glyphic, serif;
-  text-align: center;
-  margin-bottom: 1rem;
-  font-size: 2.5rem;
-  line-height: 1.2;
+    color: #333;
+    font-family: Faculty Glyphic, serif;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    line-height: 1.2;
 }
 
 .hero-text p {
-  font-family: Poppins, sans-serif;
-  font-size: 1.2rem;
-  line-height: 1.6;
-  text-align: center;
-  margin: 0 0 1rem 0;
-  padding: 0 1rem;
+    font-family: Poppins, sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    text-align: center;
+    margin: 0 0 1rem 0;
+    padding: 0 1rem;
 }
 
 .hero-text .learn-more {
-  padding: 15px 30px;
-  font-size: 16px;
-  background-color: #56aab3;
-  border: none;
-  border-radius: 25px;
-  color: white;
-  cursor: pointer;
-  justify-content: center;
-  margin: 20px auto;
-  font-family: Faculty Glyphic, serif;
-  transition: all 0.3s ease;
-  display: block;
+    padding: 15px 30px;
+    font-size: 16px;
+    background-color: #56aab3;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+    justify-content: center;
+    margin: 20px auto;
+    font-family: Faculty Glyphic, serif;
+    transition: all 0.3s ease;
+    display: block;
 }
 
 .hero-text .learn-more:hover {
@@ -226,21 +229,18 @@ a:visited {
 /* order section */
 
 .order {
-	display: flex;
+    display: flex;
     align-items: center; 
     justify-content: space-between; 
-	background-color: white;
+    background-color: white;
     border: 2px solid #56aab3;
     border-radius: 8px;
-    margin: 1rem;
+    margin: 60px auto;
     padding: 0;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     overflow: hidden;
+    width: 90%;
     max-width: 1200px;
-}
-
-.order-content{
-  margin: 40px auto;
 }
 
 .order-text {
@@ -302,18 +302,15 @@ a:visited {
     background-color: white;
     border: 2px solid #56aab3;
     border-radius: 8px;
-    margin: 1rem;
+    margin: 60px auto;
     padding: 0;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     overflow: hidden;
+    width: 90%;
     max-width: 1200px;
-  }
-
-  .address-content{
-    margin: 40px auto;
-  }
+}
   
-  .address-text {
+.address-text {
     flex: 1;
     max-width: 50%; 
     padding: 2rem;
@@ -321,34 +318,34 @@ a:visited {
     flex-direction: column;
     align-items: center;
     text-align: center;
-  }
+}
   
-  .address h1 {
+.address h1 {
     color: #333;
     font-family: Faculty Glyphic, serif;
     text-align: center;
     margin-bottom: 1rem;
     font-size: 2.5rem;
     line-height: 1.2;
-  }
+}
   
-  .address p {
+.address p {
     font-family: Poppins, sans-serif;
     font-size: 1.2rem;
     line-height: 1.6;
     text-align: center;
     margin: 0 0 1rem 0;
     padding: 0 1rem;
-  }
+}
   
-  .address img {
+.address img {
     width: 50%;
     height: auto;
     flex-shrink: 0;
     border-radius: 0;
     object-fit: cover;
-  }
-  .address .contact {
+}
+.address .contact {
     padding: 15px 30px;
     font-size: 16px;
     background-color: #56aab3;
@@ -361,15 +358,15 @@ a:visited {
     font-family: Faculty Glyphic, serif;
     transition: all 0.3s ease;
     display: block;
-  }
+}
 
-  .address .contact:hover {
-      background-color: #f5bf7d;
-      transform: translateY(-2px);
-  }
+.address .contact:hover {
+    background-color: #f5bf7d;
+    transform: translateY(-2px);
+}
 
-  /* map section */
-  .map {
+/* map section */
+.map {
     display: flex;
     align-items: center; 
     justify-content: space-between; 
@@ -381,41 +378,41 @@ a:visited {
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     margin-bottom: 4rem;
     overflow: hidden;
-  }
+}
   
-  .map-text {
+.map-text {
     flex: 1;
     max-width: 50%; 
     padding: 2rem;
-  }
+}
   
-  .map h1 {
+.map h1 {
     color: #333;
     font-family: Faculty Glyphic, serif;
     text-align: left;
     margin-bottom: 1rem;
     font-size: 2.5rem;
     line-height: 1.2;
-  }
+}
   
-  .map p {
+.map p {
     font-family: Poppins, sans-serif;
     font-size: 1.2rem;
     line-height: 1.6;
     text-align: left;
     margin: 0 0 1rem 0;
-  }
+}
   
-  .map img {
+.map img {
     width: 50%;
     height: auto;
     flex-shrink: 0;
     border-radius: 0;
     object-fit: cover;
-  }
+}
   
-  /* footer section */
-  /*.footer {
+/* footer section */
+/*.footer {
     position: absolute;
     left: 0;
     bottom: 0;
@@ -426,10 +423,10 @@ a:visited {
     font-family: DM Sans, sans-serif;
     padding: 15px;
     box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
-  }*/
+}*/
   
-  /* Responsive Design */
-  @media (max-width: 768px) {
+/* Responsive Design */
+@media (max-width: 768px) {
     .hero-content {
       flex-direction: column;
     }
@@ -465,18 +462,18 @@ a:visited {
       width: 100%;
       max-width: 100%;
     }
-  }
+}
   
-  /* Interactive Elements */
-  button, a {
+/* Interactive Elements */
+button, a {
     transition: all 0.3s ease;
-  }
+}
   
-  button:hover, a:hover {
+button:hover, a:hover {
     transform: translateY(-2px);
-  }
+}
   
-  /* ensure the map receives clicks */
+/* ensure the map receives clicks */
 .index-map .map-container { position: relative; }
 .index-map img[usemap]    { display: block; pointer-events:auto; }
 
