@@ -2,7 +2,7 @@
 // admin/orders.php
 session_start();
 if (empty($_SESSION['is_admin'])) {
-    header('Location: order_login.php');
+    header('Location: admin_login.php');
     exit;
 }
 require_once __DIR__ . '/../backend/api/database.php';

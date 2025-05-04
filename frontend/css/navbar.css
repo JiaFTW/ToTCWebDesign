@@ -38,12 +38,12 @@
 .brand {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #e59d3e;
+  color: #ffffff;
 }
 
 /* ─── Nav Links ─── */
 .nav-right a {
-  color: #e59d3e;
+  color: #ffffff;
   text-decoration: none;
   margin-left: 16px;
   padding: 6px 8px;
