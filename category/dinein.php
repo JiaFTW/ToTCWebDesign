@@ -1,0 +1,250 @@
+<?php
+session_start();
+include __DIR__ . '/../scripts/check-services.php';
+
+if (isset($_SESSION['username'])) {
+  include __DIR__ . '/../includes/header_user.php';
+} else {
+  include __DIR__ . '/../includes/header_guest.php';
+}
+?>
+
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <title>Taste of the Carribean</title>
+        <link rel="stylesheet" href="../css/navbar.css">
+
+        <link rel="stylesheet" href="../css/category.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,900;1,9..40,900&family=Faculty+Glyphic&display=swap" rel="stylesheet">
+    </head>
+    <body> 
+        <script src="../scripts/dinein.js"></script>
+        <!-- <div class="navbar">
+            <ul>
+                <div class="nav-left">
+                    <li><img src="../images/TOC_Logo.png" /></li>
+                    <li><a href="#home"><h1>Taste of the Caribbean<h1></a></li>
+                </div>
+                <div class="nav-right">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="#contact">Catering</a></li>
+                    <li><a href="#about">Hours and Location</a></li>
+                    <li><a href="#about">About</a></li>
+                </div>
+            </ul>
+        </div> -->
+
+        <div>
+            <a class="return" href="../menu.html">Back to selecting Categories?</a>
+            <div class="categorygrid">
+                <div class="headcategory">
+                    <p class="headname">Appetizers</p>
+                    <div class="dineinitems">
+                        <div class="fooditem">
+                            <p>Seasonal Salad</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png" onclick="Aseasonal()"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Caesar Salad</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Chicken Noodles Soup</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Stew Peas</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Saltfish Fritters</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Jerk Shrimp Plantain Cup</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Oxtail + Hummus + Roti</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Hummus + Roti</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Vegan Patty</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Quinoa Balls</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Truffled Breadfruit + Guacamole</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Vegan Nuggets</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Buffalo Cauliflower</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Wings</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="headcategory">
+                    <p class="headname">Main</p>
+                    <div class="dineinitems">
+                        <div class="fooditem">
+                            <p>Pasta</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Vegan Pasta</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Raviolis</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="headcategory">
+                    <p class="headname">Protien</p>
+                    <div class="dineinitems">
+                        <div class="fooditem">
+                            <p>Impossible Burger</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Fish</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Oxtail + Rice + Peas</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Jerk Chicken</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="headcategory">
+                    <p class="headname">Side</p>
+                    <div class="dineinitems">
+                        <div class="fooditem">
+                            <p>Mac & Cheese</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Rice & Peas</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Mash Potatoes</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Sweet Plantain</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Green Beans</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Roti</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Citrus Sweet Potatoes Mash</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Truffles Fries</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="headcategory">
+                    <p class="headname">Desserts</p>
+                    <div class="dineinitems">
+                        <div class="fooditem">
+                            <p>Black Cake</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Carrot Cake</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Bread Pudding</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Ice Cream</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Sorbet</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Cookies</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="headcategory">
+                    <p class="headname">Lunch Menu</p>
+                    <div class="dineinitems">
+                        <div class="fooditem">
+                            <p>Curry Chicken</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Fry Chicken</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Jerk Chicken</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Fish</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Oxtail</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Patties</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Steam Veggies</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                        <div class="fooditem">
+                            <p>Vegan Option: Callaloo + Pumpkin</p>
+                            <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+ </html>

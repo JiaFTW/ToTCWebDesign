@@ -1,0 +1,25 @@
+:root {
+  --navbar-padding-vertical: 12px;
+  --navbar-logo-height: 30px;
+}
+
+html, body {
+  margin: 0; padding: 0; height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* navbar height = logo + 2 * padding */
+  padding-top: calc(var(--navbar-logo-height) + var(--navbar-padding-vertical)*2);
+}
+
+.main-content {
+  flex: 1;
+}
+
+/* footer flows naturally at bottom */
+
+main{ flex:1 0 auto; }          /* page content grows */
+.site-footer{ flex-shrink:0; }  /* footer stays last */

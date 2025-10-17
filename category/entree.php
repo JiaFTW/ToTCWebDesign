@@ -1,0 +1,118 @@
+<?php
+session_start();
+if (isset($_SESSION['username'])) {
+  include '../includes/header_user.php';
+} else {
+  include '../includes/header_guest.php';
+}
+?>
+
+
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <title>Taste of the Carribean</title>
+        <link rel="stylesheet" href="../css/category.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,900;1,9..40,900&family=Faculty+Glyphic&display=swap" rel="stylesheet">
+    </head>
+    <body> 
+        <!-- <div class="navbar">
+            <ul>
+                <div class="nav-left">
+                    <li><img src="../images/TOC_Logo.png" /></li>
+                    <li><a href="#home"><h1>Taste of the Caribbean<h1></a></li>
+                </div>
+                <div class="nav-right">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="#contact">Catering</a></li>
+                    <li><a href="#about">Hours and Location</a></li>
+                    <li><a href="#about">About</a></li>
+                </div>
+            </ul>
+        </div> -->
+
+        <div>
+            <a class="return" href="../menu.html">Back to selecting Categories?</a>
+            <div class="categoryid">
+                <div class="horsitems">
+                    <div class="fooditem">
+                        <p>Jerk Chicken</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>Fried Chicken</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>BBQ Chicken</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>Jerk Wings</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>BBQ Wings</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>Stew Chicken</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>Curry Chicken</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>Braised Oxtail</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>Curried Goat</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>Jerk Pork</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>BBQ Ribs</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>Creole Salmon</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>Jerk Shrimp</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>Jerk Salmon</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>Teriyaki Salmon</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>Chicken Marsala</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>Chicken Parmesan</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                    <div class="fooditem">
+                        <p>Chicken Piccata</p>
+                        <div class="plus"><img src="../images/Plus_Sign.png"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
