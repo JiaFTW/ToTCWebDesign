@@ -1,0 +1,8 @@
+{
+    "name": "totc/service-checker",
+    "description": "Service availability checker for ToTC project",
+    "scripts": {
+      "check-services": "php check-services.php"
+    }
+  }
+  
