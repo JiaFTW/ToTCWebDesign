@@ -6,7 +6,7 @@
 }
 body {
   font-family: "DM Sans", Arial, sans-serif;
-  background-color: #e59d3e;   /* neutral background */
+  background-color: #ffffff;   /* neutral background */
   color: #333;
   /* 1) push content below fixed navbar (adjust if your nav is taller) */
   padding-top: 0;
@@ -16,14 +16,14 @@ body {
 .category-nav {
   display: flex;
   justify-content: center;
-  background: #e59d3e;
+  background: #ffffff;
   padding: 10px 0;
   flex-wrap: wrap;
 }
 .category-nav a {
   margin: 0 8px;
   padding: 8px 14px;
-  color: #007a87;
+  color: #078a6f;
   text-decoration: none;
   border-radius: 4px;
   font-weight: 500;
@@ -33,8 +33,8 @@ body {
   background: #ffd5a3;
 }
 .category-nav a.active {
-  background: #ff6b35;
-  color: #fff;
+  background: #078a6f;
+  color: #000000;
 }
 
 /* ---------- Menu Grid ---------- */
@@ -109,10 +109,11 @@ body {
 .item-detail .info-col h2 {
   font-size: 2rem;
   margin-bottom: 12px;
+  color: ffb300;
 }
 .item-detail .info-col .category {
   font-size: 0.9rem;
-  color: #777;
+  color: #ffb300;
   margin-bottom: 16px;
 }
 .item-detail .info-col .description {
@@ -123,16 +124,17 @@ body {
 .item-detail .info-col .price {
   font-size: 1.5rem;
   margin-bottom: 20px;
-  color: #007a87;
+  color: #ffb300;
 }
 .item-detail .order-btn {
   display: inline-block;
   padding: 10px 24px;
-  background: #ff6b35;
+  background: #078a6f;
   color: #fff;
   font-size: 1rem;
   text-decoration: none;
   border-radius: 6px;
+  border-color: transparent;
   transition: background 0.2s;
 }
 .item-detail .order-btn:hover {

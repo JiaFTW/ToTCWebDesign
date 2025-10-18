@@ -6,11 +6,11 @@ session_start();
 <html lang="en">
   <head>
     <title>Taste of the Carribean - Location</title>
-    <link rel="stylesheet" href="/css/home.css">
+    <!-- <link rel="stylesheet" href="/css/home.css"> -->
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/location.css">
     <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/global.css">
+    <!-- <link rel="stylesheet" href="css/global.css"> -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

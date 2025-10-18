@@ -7,5 +7,5 @@
 .container .row { margin-top: 2rem; }
 .img-fluid { border-radius: 8px; }
 h2 { margin-bottom: 1rem; font-family: 'Faculty Glyphic', serif; }
-.btn-primary { background: #ff6b35; border: none; }
-.btn-primary:hover { background: #e85d28; }
+.btn-primary { background: #2e8b57; border: none; }
+.btn-primary:hover { background: #2e8b57; }

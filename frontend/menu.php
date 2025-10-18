@@ -35,6 +35,7 @@ $selCat = $_GET['category'] ?? '';
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Faculty+Glyphic&display=swap">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/menu.css">
+  <!-- <link rel="stylesheet" href="css/home.css"> -->
   <!-- <link rel="stylesheet" href="css/global.css"> -->
   <link rel="stylesheet" href="css/footer.css">
 
