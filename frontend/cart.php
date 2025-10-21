@@ -95,7 +95,10 @@ $cart = $_SESSION['cart'] ?? [];
         <?php
           $tax   = round($subtotal * 0.08, 2);
           $total = round($subtotal + $tax, 2);
-          $pointsEarned = floor($total);
+          $pointsEarned = 0;
+          foreach ($cart as $item) {
+              $pointsEarned += floor($item['price'] * $item['quantity']);
+          }
         ?>
         <div class="cart-summary">
           <p>Subtotal: $<?= number_format($subtotal,2) ?></p>

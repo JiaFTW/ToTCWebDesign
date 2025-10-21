@@ -3,27 +3,34 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
 if (isset($_GET['test'])) {
     require_once __DIR__ . '/database.php';
     $db = getDB();
 
+    echo "<h3>🛠️ Cart Debug:</h3>";
+    echo "<pre>";
+    print_r($_SESSION['cart']);
+    echo "</pre>";
+
     $cart = $_SESSION['cart'] ?? [];
-    $subtotal = 0;
-    foreach ($cart as $item) {
-        $subtotal += $item['price'] * $item['quantity'];
+    if (!$cart) {
+        exit("❌ No cart found in session. Add items before testing.");
     }
-    $tax   = round($subtotal * 0.08, 2);
-    $total = round($subtotal + $tax, 2);
-    $points = floor($total);
+
+    $earnedPoints = 0;
+    foreach ($cart as $item) {
+        $earnedPoints += floor($item['price'] * $item['quantity']);
+    }
+
+    echo "<p>✅ Calculated earnedPoints: <strong>{$earnedPoints}</strong></p>";
 
     $stmt = $db->prepare("UPDATE users SET loyalty_points = loyalty_points + :points WHERE email = :email");
     $stmt->execute([
-        ':points' => $points,
+        ':points' => $earnedPoints,
         ':email' => $_SESSION['username']
     ]);
 
-    echo "✅ Test successful: {$points} points added to {$_SESSION['username']}";
+    echo "<p>✅ Test successful: {$earnedPoints} points added to {$_SESSION['username']}</p>";
     exit;
 }
 
