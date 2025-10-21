@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // If no errors, process the form
     if (empty($errors)) {
         // Set up email
-        $to = "kellyrita08@gmail.com"; // Replace with actual email
+        $to = "shigary99@gmail.com"; // Replace with actual email
         $subject = "New Catering Inquiry from " . $firstName . " " . $lastName;
         
         $message = "New Catering Inquiry:\n\n";

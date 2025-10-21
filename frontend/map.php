@@ -3,103 +3,108 @@ session_start();
 
 // Check critical services FIRST (before anything else that depends on them)
 include __DIR__ . '/scripts/check-services.php';
-
-if (isset($_SESSION['username'])) {
-    include __DIR__ . '/includes/header_user.php';
-} else {
-    include __DIR__ . '/includes/header_guest.php';
-}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <head>
+    <meta charset="utf-8">
     <title>Taste of the Caribbean</title>
-    <link rel="stylesheet" href="css/navbar.css" />
-    <link rel="stylesheet" href="css/map.css" />
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,900;1,9..40,900&family=Faculty+Glyphic&display=swap"
-        rel="stylesheet"
-    />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet"
-    />
-    <link rel="stylesheet" href="css/footer.css" />
-</head>
-<body>
-    <div class="wrapper">
-        <div class="main-content">
-            <!-- Hero Section -->
-            <!--<header class="hero">
-                <h1>Welcome to Taste of the Caribbean</h1>
-                <p>Explore authentic Caribbean dishes and flavors.</p>
-                <a href="menu.php" class="btn">View Menu</a>
-            </header>-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,500&family=Faculty+Glyphic&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/gstyles.css">
+  </head>
 
-    <!-- Map Section -->
-    <section class="map-section">
-    <h2 style="text-align: center;">Find Your Favorite Caribbean Dish</h2>
-        <div class="map-container">
-            <img src="images/map.png" alt="Caribbean Map" usemap="#caribbeanMap" width="1596" height="924" />
+  <body>
+    <?php
+    if (isset($_SESSION['username'])) {
+      include __DIR__.'/includes/header_user.php';
+    } else {
+      include __DIR__.'/includes/header_guest.php';
+    }
+    ?>
 
-            <map name="caribbeanMap">
-                <area shape="circle" coords="589,345,44" alt="Explore Cuban Cuisine" href="item.php?item_id=4" onmouseover="showCountryImage(event, 'cuba', 589, 345)" onmouseout="hideCountryImage('cuba')" id="cubaArea" />
-                <area shape="circle" coords="540,477,44" alt="Explore Jamaican Cuisine" href="item.php?item_id=7" onmouseover="showCountryImage(event, 'jamaica', 540, 477)" onmouseout="hideCountryImage('jamaica')" id="jamaicaArea" />
-                <area shape="circle" coords="790,408,44" alt="Explore Haitian Cuisine" href="item.php?item_id=6" onmouseover="showCountryImage(event, 'haiti', 790, 408)" onmouseout="hideCountryImage('haiti')" id="haitiArea" />
-                <area shape="circle" coords="926,450,44" alt="Explore Dominican Cuisine" href="item.php?item_id=5" onmouseover="showCountryImage(event, 'dominican', 926, 450)" onmouseout="hideCountryImage('dominican')" id="dominicanArea" />
-                <area shape="circle" coords="1110,477,44" alt="Explore Puerto Rican Cuisine" href="item.php?item_id=8" onmouseover="showCountryImage(event, 'puerto', 1110, 477)" onmouseout="hideCountryImage('puerto')" id="puertoArea" />
-                <area shape="circle" coords="35,680,44" alt="Explore Honduran Cuisine" href="item.php?item_id=11" onmouseover="showCountryImage(event, 'honduras', 35, 680)" onmouseout="hideCountryImage('honduras')" id="hondurasArea" />
-                <area shape="circle" coords="189,827,44" alt="Explore Nicaraguan Cuisine" href="item.php?item_id=12" onmouseover="showCountryImage(event, 'nicaragua', 189, 827)" onmouseout="hideCountryImage('nicaragua')" id="nicaraguaArea" />
-                <area shape="circle" coords="515,148,44" alt="Explore Bahamian Cuisine" href="item.php?item_id=10" onmouseover="showCountryImage(event, 'bahamas', 189, 827)" onmouseout="hideCountryImage('bahamas')" id="bahamasArea" />
-            </map>
+    <main class="main">
+
+<!-- Map -->
+<section class="map">
+        <h2>Find Your Favorite Caribbean Dish</h2>
+
+        <div class="mapbox">
+          <img src="images/caribbean-map.png" alt="Caribbean Map" class="mapimg">
+
+          <a href="item.php?item_id=10" class="bahamas">
+            <span class="popup">
+              <strong>Bahamas</strong>
+              <em>Mango Smoothie</em>
+              <img src="images/mango.png" alt="Mango Smoothie" class="popimg">
+            </span>
+          </a>
+
+          <a href="item.php?item_id=4" class="cuba">
+            <span class="popup">
+              <strong>Cuba</strong>
+              <em>Cuba Dish</em>
+              <img src="images/cuba.png" alt="Cuba Dish" class="popimg">
+            </span>
+          </a>
+
+          <a href="item.php?item_id=13" class="jamaica">
+            <span class="popup">
+              <strong>Jamaica</strong>
+              <em>Ackee & Saltfish</em>
+              <img src="images/ackee_saltfish.png" alt="Ackee & Saltfish" class="popimg">
+            </span>
+          </a>
+
+          <a href="item.php?item_id=6" class="haiti">
+            <span class="popup">
+              <strong>Haiti</strong>
+              <em>Haiti Dish</em>
+              <img src="images/haiti.png" alt="Haiti Dish" class="popimg">
+            </span>
+          </a>
+
+          <a href="item.php?item_id=5" class="dr">
+            <span class="popup">
+              <strong>Dominican Republic</strong>
+              <em>Dominican Dish</em>
+              <img src="images/dominican.png" alt="Dominican Dish" class="popimg">
+            </span>
+          </a>
+
+          <a href="item.php?item_id=8" class="puertorico">
+            <span class="popup">
+              <strong>Puerto Rico</strong>
+              <em>Alcapurrias</em>
+              <img src="images/puerto.jpg" alt="Alcapurrias" class="popimg">
+            </span>
+          </a>
+
+          <a href="item.php?item_id=11" class="honduras">
+            <span class="popup">
+              <strong>Honduras</strong>
+              <em>Coconut Rice</em>
+              <img src="images/coconut_rice.png" alt="Coconut Rice" class="popimg">
+            </span>
+          </a>
+
+          <a href="item.php?item_id=12" class="nicaragua">
+            <span class="popup">
+              <strong>Nicaragua</strong>
+              <em>Fish Tacos</em>
+              <img src="images/fish_tacos.png" alt="Fish Tacos" class="popimg">
+            </span>
+          </a>
         </div>
+      </section>
 
-        <!-- Country Popups -->
-        <a href="item.php?item_id=4" id="cubaLink" class="countryLink">
-            <img id="cubaImage" class="countryImage" src="images/cuba.png" alt="Cuba Highlight" />
-        </a>
 
-        <a href="item.php?item_id=13" id="jamaicaLink" class="countryLink">
-            <img id="jamaicaImage" class="countryImage" src="images/jamaica.png" alt="Jamaica Highlight" />
-        </a>
+    </main>
 
-        <a href="item.php?item_id=6" id="haitiLink" class="countryLink">
-            <img id="haitiImage" class="countryImage" src="images/ackee_saltfish.png" alt="Haiti Highlight" />
-        </a>
-
-                <a href="item.php?item_id=5" id="dominicanLink" class="countryLink">
-                    <img id="dominicanImage" class="countryImage" src="images/dominican.png" alt="Dominican Republic Highlight" />
-                </a>
-
-        <a href="item.php?item_id=8" id="puertoLink" class="countryLink">
-            <img id="puertoImage" class="countryImage" src="images/puerto.jpg" alt="Puerto Rico Highlight" />
-        </a>
-
-        <a href="item.php?item_id=11" id="hondurasLink" class="countryLink">
-            <img id="hondurasImage" class="countryImage" src="images/coconut_rice.png" alt="Honduras Highlight" />
-        </a>
-
-        <a href="item.php?item_id=12" id="nicaraguaLink" class="countryLink">
-            <img id="nicaraguaImage" class="countryImage" src="images/fish_tacos.png" alt="Nicaragua Highlight" />
-        </a>
-
-        <a href="item.php?item_id=10" id="bahamasLink" class="countryLink">
-            <img id="bahamasImage" class="countryImage" src="images/mango.png" alt="Bahamas Highlight" />
-        </a>
-    </section>
-
-    <!-- Footer -->
-	<div>
-		<?php include __DIR__.'/includes/footer.php'; ?>
-	</div> 
-
-    <script src="scripts/map.js"></script>
-</body>
+  </body>
+   <?php include __DIR__.'/includes/footer.php'; ?>
 </html>

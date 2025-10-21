@@ -46,46 +46,69 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
   <meta charset="UTF-8">
   <title>Profile • Taste of the Caribbean</title>
-  <link rel="stylesheet" href="css/navbar.css">
-  <link rel="stylesheet" href="css/profile.css">
-  <link rel="stylesheet" href="css/footer.css">
-  <link rel="stylesheet" href="css/global.css">
+
+  <!-- Single unified stylesheet -->
+  <link rel="stylesheet" href="css/gstyles.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,500&family=Faculty+Glyphic&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-<?php include __DIR__ . '/includes/header_user.php'; ?>
+  <?php include __DIR__ . '/includes/header_user.php'; ?>
 
-<main class="profile-container" style="padding-top:100px;">
-  <h2>Welcome to Your Profile</h2>
+  <main class="contact-container">
+    <!-- Profile card -->
+    <section class="contact-card">
+      <header>
+        <h1>My Profile</h1>
+      </header>
+      <div class="contact-form">
+        <p><strong>Name:</strong> <?= htmlspecialchars($user['full_name']) ?></p>
+        <p><strong>Email:</strong> <?= htmlspecialchars($user['email']) ?></p>
+        <p><strong>Phone:</strong> <?= $user['phone'] ? htmlspecialchars($user['phone']) : '—' ?></p>
+        <p><strong>Member Since:</strong> <?= htmlspecialchars(substr($user['created_at'], 0, 10)) ?></p>
+        <p><strong>Loyalty Points:</strong> <?= (int)$user['loyalty_points'] ?></p>
 
-  <section class="userinfo">
-    <p><strong>Name:</strong> <?= htmlspecialchars($user['full_name']) ?></p>
-    <p><strong>Email:</strong> <?= htmlspecialchars($user['email']) ?></p>
-    <p><strong>Phone:</strong> <?= htmlspecialchars($user['phone'] ?: '—') ?></p>
-    <p><strong>Member Since:</strong> <?= substr($user['created_at'], 0, 10) ?></p>
-    <p><strong>Loyalty Points:</strong> <?= $user['loyalty_points'] ?></p>
-    <p><a class="btn-logout" href="/logout.php">Logout</a></p>
-  </section>
+        <div class="form-actions" style="margin-top: 12px;">
+          <a class="btn" href="/logout.php">Logout</a>
+        </div>
+      </div>
+    </section>
 
-  <h3>Purchase History</h3>
-  <?php if (!$orders): ?>
-      <p>No orders yet.</p>
-  <?php else: ?>
-      <table class="history-table">
-        <thead><tr><th>Order #</th><th>Date</th><th>Total</th></tr></thead>
-        <tbody>
-          <?php foreach ($orders as $o): ?>
-            <tr>
-              <td><?= $o['order_id'] ?></td>
-              <td><?= substr($o['created_at'], 0, 19) ?></td>
-              <td>$<?= number_format($o['total'], 2) ?></td>
-            </tr>
-          <?php endforeach; ?>
-        </tbody>
-      </table>
-  <?php endif; ?>
-</main>
+    <!-- Order history card -->
+    <section class="contact-card">
+      <header>
+        <h1>Purchase History</h1>
+      </header>
+      <div class="contact-form">
+        <?php if (!$orders): ?>
+          <p>No orders yet.</p>
+        <?php else: ?>
+          <table class="cart-table">
+            <thead>
+              <tr>
+                <th>Order #</th>
+                <th>Date</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($orders as $o): ?>
+                <tr>
+                  <td><?= (int)$o['order_id'] ?></td>
+                  <td><?= htmlspecialchars(substr($o['created_at'], 0, 19)) ?></td>
+                  <td>$<?= number_format((float)$o['total'], 2) ?></td>
+                </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        <?php endif; ?>
+      </div>
+    </section>
+  </main>
 
-  <div>
-    <?php include __DIR__.'/includes/footer.php'; ?>
-  </div> </body>
+  <?php include __DIR__.'/includes/footer.php'; ?>
+</body>
 </html>

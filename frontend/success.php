@@ -1,16 +1,18 @@
 <?php
 // /var/www/html/success.php
 session_start();
+
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/backend/api/database.php';
+require_once __DIR__ . '/backend/api/cart_sync.php';
 
 use Dotenv\Dotenv;
 
-// load env & Stripe key
+// Load env & Stripe key
 Dotenv::createImmutable(__DIR__)->load();
 \Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
 
-// validate incoming session_id
+// Validate incoming session_id
 $sessionId = $_GET['session_id'] ?? '';
 if (!$sessionId) {
     header('Location:/');
@@ -25,9 +27,9 @@ $o = $db->prepare("
    WHERE stripe_session_id = ?
 ");
 $o->execute([$sessionId]);
-$order = $o->fetch(PDO::FETCH_ASSOC) ?: [];
+$order   = $o->fetch(PDO::FETCH_ASSOC) ?: [];
 $orderId = $order['order_id'] ?? '—';
-$total   = $order['total']    ?? 0.00;
+$total   = (float)($order['total'] ?? 0.00);
 
 // 2) Fetch the individual items for that order
 $i = $db->prepare("
@@ -42,11 +44,10 @@ $items = $i->fetchAll(PDO::FETCH_ASSOC);
 $user = $_SESSION['username'] ?? '';
 $l = $db->prepare("SELECT loyalty_points FROM users WHERE email = ?");
 $l->execute([$user]);
-$loyalty = $l->fetchColumn() ?: 0;
+$loyalty = (int)($l->fetchColumn() ?: 0);
 
 // 4) Clear the session cart
 unset($_SESSION['cart']);
-require_once __DIR__ . '/backend/api/cart_sync.php';
 clearCartStorage();
 ?>
 <!DOCTYPE html>
@@ -54,30 +55,14 @@ clearCartStorage();
 <head>
   <meta charset="UTF-8">
   <title>Order Receipt • Taste of the Caribbean</title>
-  <link rel="stylesheet" href="css/navbar.css">
-  <link rel="stylesheet" href="css/global.css">
-  <style>
-    .receipt {
-      max-width:600px; margin:90px auto 40px;
-      background:#ffcebd; padding:24px;
-      border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,.1);
-      font-family:"DM Sans",sans-serif; color:#333;
-    }
-    .receipt h2 { color:#007a87; margin-bottom:12px; }
-    .receipt table { width:100%; border-collapse:collapse; margin:14px 0; }
-    .receipt th, .receipt td {
-      padding:8px; border-bottom:1px solid #e5e5e5; text-align:left;
-    }
-    .receipt .total { font-weight:700; }
-    .btn-home {
-      display:inline-block; margin-top:22px;
-      padding:10px 24px; background:#56aab3;
-      color:#fff; text-decoration:none; border-radius:5px;
-    }
-    .loyalty {
-      margin-top:10px; color:#007a87; font-weight:600;
-    }
-  </style>
+
+  <!-- Single unified stylesheet -->
+  <link rel="stylesheet" href="css/gstyles.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,500&family=Faculty+Glyphic&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <?php
@@ -87,44 +72,57 @@ clearCartStorage();
       include __DIR__ . '/includes/header_guest.php';
     }
   ?>
-  <div class="receipt">
-    <h2>Thank you for your order!</h2>
-    <p>
-      Order ID: <strong><?= htmlspecialchars($orderId) ?></strong><br>
-      Paid by:  <strong><?= htmlspecialchars($user) ?></strong>
-    </p>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Item</th>
-          <th>Qty</th>
-          <th style="text-align:right">Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php foreach ($items as $row): ?>
-          <tr>
-            <td><?= htmlspecialchars($row['item_name']) ?></td>
-            <td><?= htmlspecialchars($row['quantity']) ?></td>
-            <td style="text-align:right">
-              $<?= number_format($row['price'], 2) ?>
-            </td>
-          </tr>
-        <?php endforeach; ?>
-        <tr class="total">
-          <td colspan="2" style="text-align:right">Total:</td>
-          <td style="text-align:right">$<?= number_format($total, 2) ?></td>
-        </tr>
-      </tbody>
-    </table>
+  <main class="contact-container">
+    <!-- Receipt Card -->
+    <section class="contact-card">
+      <header>
+        <h1>Thank you for your order!</h1>
+      </header>
 
-    <p class="loyalty">
-      Your current loyalty balance: <strong><?= $loyalty ?></strong> points
-    </p>
+      <div class="contact-form">
+        <p>
+          Order ID: <strong><?= htmlspecialchars($orderId) ?></strong><br>
+          Paid by:  <strong><?= htmlspecialchars($user ?: 'Guest') ?></strong>
+        </p>
 
-    <a href="/index.php" class="btn-home">Return Home</a>
-  </div>
+        <table class="cart-table" style="margin-top:12px;">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Qty</th>
+              <th style="text-align:right;">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($items as $row): ?>
+              <tr>
+                <td><?= htmlspecialchars($row['item_name']) ?></td>
+                <td><?= (int)$row['quantity'] ?></td>
+                <td style="text-align:right;">
+                  $<?= number_format((float)$row['price'], 2) ?>
+                </td>
+              </tr>
+            <?php endforeach; ?>
+            <tr>
+              <td colspan="2" style="text-align:right; font-weight:700;">Total:</td>
+              <td style="text-align:right; font-weight:700;">
+                $<?= number_format($total, 2) ?>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="info-pill" style="margin-top:10px;">
+          Current loyalty balance: <strong><?= $loyalty ?></strong> points
+        </p>
+
+        <div class="form-actions" style="margin-top:14px;">
+          <a href="/index.php" class="btn">Return Home</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <?php include __DIR__ . '/includes/footer.php'; ?>
 </body>

@@ -23,7 +23,7 @@ body {
 .category-nav a {
   margin: 0 8px;
   padding: 8px 14px;
-  color: #078a6f;
+  color: #007B86;
   text-decoration: none;
   border-radius: 4px;
   font-weight: 500;
@@ -33,7 +33,7 @@ body {
   background: #ffd5a3;
 }
 .category-nav a.active {
-  background: #078a6f;
+  background: #007B86;
   color: #000000;
 }
 

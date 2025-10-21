@@ -1,6 +1,34 @@
 <?php
 // backend/api/create_checkout_session.php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (isset($_GET['test'])) {
+    require_once __DIR__ . '/database.php';
+    $db = getDB();
+
+    $cart = $_SESSION['cart'] ?? [];
+    $subtotal = 0;
+    foreach ($cart as $item) {
+        $subtotal += $item['price'] * $item['quantity'];
+    }
+    $tax   = round($subtotal * 0.08, 2);
+    $total = round($subtotal + $tax, 2);
+    $points = floor($total);
+
+    $stmt = $db->prepare("UPDATE users SET loyalty_points = loyalty_points + :points WHERE email = :email");
+    $stmt->execute([
+        ':points' => $points,
+        ':email' => $_SESSION['username']
+    ]);
+
+    echo "✅ Test successful: {$points} points added to {$_SESSION['username']}";
+    exit;
+}
+
+
+
 require_once __DIR__ . '/../../vendor/autoload.php';
 
 use Dotenv\Dotenv;
