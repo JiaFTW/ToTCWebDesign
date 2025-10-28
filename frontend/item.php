@@ -3,9 +3,7 @@
 session_start();
 include __DIR__ . '/scripts/check-services.php';
 
-
-
-// ←――― FLASH MESSAGE GOES HERE ―――→
+// flash message
 if (!empty($_SESSION['flash_added'])) {
     $added = $_SESSION['flash_added']['name'];
     unset($_SESSION['flash_added']);
@@ -17,7 +15,6 @@ if (!empty($_SESSION['flash_added'])) {
     </div>
 HTML;
 }
-
 
 $item_id = intval($_GET['item_id'] ?? 0);
 require __DIR__ . '/backend/api/database.php';
@@ -34,14 +31,52 @@ $item = $stmt->fetch(PDO::FETCH_ASSOC);
 <head>
   <meta charset="UTF-8">
   <title>
-    <?= $item 
-        ? htmlspecialchars($item['item_name']) 
-        : 'Item Not Found' 
+    <?= $item
+        ? htmlspecialchars($item['item_name'])
+        : 'Item Not Found'
     ?> • Taste of the Caribbean
   </title>
-  <link rel="stylesheet" href="css/menu.css">
-  <link rel="stylesheet" href="css/navbar.css">
-  <link rel="stylesheet" href="css/global.css">
+
+  <link rel="stylesheet" href="css/gstyles.css">
+
+  <!-- small, scoped styles -->
+  <style>
+    /* fixed image */
+    .item-detail .img-col .item-img {
+      width: 350px;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+    }
+
+    /* layout */
+    .item-detail {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    /* buttons side by side */
+    .actions-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .item-detail {
+        grid-template-columns: 1fr;
+      }
+      .item-detail .img-col .item-img {
+        width: 300px;
+        height: 300px;
+      }
+    }
+  </style>
 </head>
 <body>
   <?php
@@ -49,64 +84,69 @@ $item = $stmt->fetch(PDO::FETCH_ASSOC);
       include __DIR__ . '/includes/header_user.php';
     } else {
       include __DIR__ . '/includes/header_guest.php';
-    } 
+    }
   ?>
-  <div class="container py-5">
 
+  <div class="container py-5">
     <?php if (!$item): ?>
       <div class="alert alert-danger">Item not found.</div>
 
     <?php else: ?>
-
       <div class="item-detail">
 
-        <!-- Image Column -->
+        <!-- image -->
         <div class="img-col">
-          <img 
+          <img
+            class="item-img"
             src="/images/<?= htmlspecialchars($item['image_name']) ?>"
             alt="<?= htmlspecialchars($item['item_name']) ?>">
         </div>
 
-        <!-- Info Column with “Add to Order” form -->
+        <!-- info and form -->
         <div class="info-col">
           <h2><?= htmlspecialchars($item['item_name']) ?></h2>
+
           <p class="category">
             <em>Category: <?= htmlspecialchars($item['category']) ?></em>
           </p>
+
           <p class="description">
             <?= htmlspecialchars($item['description']) ?>
           </p>
 
-          <!-- Live‑updating price -->
+          <!-- live price -->
           <h4 class="price" id="total-price">
             $<?= number_format($item['price'], 2) ?>
           </h4>
 
-          <!-- Add to Order form -->
-          <form 
-            action="/backend/api/add_to_cart.php" 
-            method="POST" 
+          <!-- form -->
+          <form
+            action="/backend/api/add_to_cart.php"
+            method="POST"
             id="add-to-cart"
           >
-            <input 
-              type="hidden" 
-              name="item_id" 
-              value="<?= $item_id ?>">
-            <input 
-              type="hidden" 
-              name="name" 
-              value="<?= htmlspecialchars($item['item_name']) ?>">
-            <input 
-              type="hidden" 
-              name="price" 
-              id="base-price" 
-              value="<?= $item['price'] ?>">
+            <input
+              type="hidden"
+              name="item_id"
+              value="<?= $item_id ?>"
+            >
+            <input
+              type="hidden"
+              name="name"
+              value="<?= htmlspecialchars($item['item_name']) ?>"
+            >
+            <input
+              type="hidden"
+              name="price"
+              id="base-price"
+              value="<?= $item['price'] ?>"
+            >
 
             <div class="form-group">
               <label for="size">Size</label>
-              <select 
-                name="size" 
-                id="size" 
+              <select
+                name="size"
+                id="size"
                 class="form-control w-50"
               >
                 <option value="s">Small</option>
@@ -123,28 +163,32 @@ $item = $stmt->fetch(PDO::FETCH_ASSOC);
                 id="quantity"
                 class="form-control w-25"
                 value="1"
-                min="1">
+                min="1"
+              >
             </div>
 
-            <button 
-              type="submit" 
-              class="order-btn"
-            >
-              Add to Order
-            </button>
-          </form>
+            <!-- buttons in a row -->
+            <div class="actions-row">
+              <button
+                type="submit"
+                class="btn"
+              >
+                Add to Order
+              </button>
 
-          <!-- Link to view the current order -->
-          <a 
-            href="cart.php" 
-            class="btn btn-outline-secondary mt-3"
-          >
-            View Order
-          </a>
+              <a
+                href="cart.php"
+                class="btn btn-outline-secondary"
+                role="button"
+              >
+                View Order
+              </a>
+            </div>
+          </form>
         </div>
       </div>
 
-      <!-- JavaScript: recalculate price on size/quantity change -->
+      <!-- recalc price -->
       <script>
       (function() {
         const basePriceInput = document.getElementById('base-price');
@@ -155,7 +199,7 @@ $item = $stmt->fetch(PDO::FETCH_ASSOC);
         const base = parseFloat(basePriceInput.value);
 
         function recalc() {
-          let qty = parseInt(qtyInput.value) || 1;
+          let qty = parseInt(qtyInput.value, 10) || 1;
           let mul = 1;
           if (sizeSelect.value === 'm') mul = 1.2;
           if (sizeSelect.value === 'l') mul = 1.5;
@@ -163,7 +207,6 @@ $item = $stmt->fetch(PDO::FETCH_ASSOC);
           const single = base * mul;
           const total  = single * qty;
 
-          // Update the display and hidden price field
           totalLabel.textContent = '$' + total.toFixed(2);
           basePriceInput.value   = single.toFixed(2);
         }
@@ -175,8 +218,9 @@ $item = $stmt->fetch(PDO::FETCH_ASSOC);
 
     <?php endif; ?>
   </div>
+
   <div>
     <?php include __DIR__.'/includes/footer.php'; ?>
-  </div>  
+  </div>
 </body>
 </html>
