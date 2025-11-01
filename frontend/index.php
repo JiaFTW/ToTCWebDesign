@@ -31,7 +31,7 @@ include __DIR__ . '/scripts/check-services.php';
       <!-- Hero -->
 <section class="hero">
   <div class="hero-content">
-    <img src="images/caribbean-food.jpg" alt="A display of Caribbean food on a table near a beach during a sunset">
+    <img src="images/caribbean-food.png" alt="A display of Caribbean food on a table near a beach during a sunset">
     <div class="hero-text">
       <h1>Welcome to the Taste of the Caribbean!</h1>
       <p>
