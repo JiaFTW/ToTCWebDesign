@@ -5,7 +5,7 @@ session_start();
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>About • Taste of the Caribbean</title>
+    <title>About • Taste of the Caribbean Restaurant & Catering</title>
 
     <!-- Single unified stylesheet -->
     <link rel="stylesheet" href="css/gstyles.css">

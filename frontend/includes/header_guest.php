@@ -11,8 +11,8 @@ $cartCount = isset($_SESSION['cart']) && is_array($_SESSION['cart'])
 
   <div class="nav-left">
     <a href="/index.php" class="logo">
-      <img src="/images/TOC_Logo.png" alt="Taste of the Caribbean">
-      <span class="brand">Taste of the Caribbean</span>
+      <img src="/images/WTOC_Logo.png" alt="Taste of the Caribbean Restaurant & Catering">
+      <span class="brand">Taste of the Caribbean Restaurant & Catering</span>
     </a>
   </div>
 
@@ -22,6 +22,27 @@ $cartCount = isset($_SESSION['cart']) && is_array($_SESSION['cart'])
     <a href="/location.php" class="<?= $active=='hours.php' ? 'active':'' ?>">Location</a>
     <a href="/map.php"   class="<?= $active=='map.php'   ? 'active':'' ?>">Map</a>
     <a href="/contact.php" class="<?= $active=='contact.php'? 'active':'' ?>">Catering</a>
+    <!-- delivery dropdown -->
+    <div class="dropdown">
+  <a href="#" class="nav-link dropbtn <?= $active=='delivery.php' ? 'active' : '' ?>">
+    Delivery ▾
+  </a>
+  <div class="dropdown-menu">
+    <a href="https://www.ubereats.com/store/taste-of-the-caribbean-restaurant-%26-catering/TgRJIF_ZRN-q-sTH0nkpmw?diningMode=DELIVERY"
+       target="_blank" rel="noopener">
+      Uber Eats
+    </a>
+    <a href="https://www.doordash.com/store/taste-of-the-caribbean-restaurant-&-catering-newark-34154629/"
+       target="_blank" rel="noopener">
+      DoorDash
+    </a>
+    <a href="https://www.grubhub.com/restaurant/taste-of-the-caribbean-restaurant--catering-4-branford-pl-newark/11330840"
+       target="_blank" rel="noopener">
+      Grubhub
+    </a>
+  </div>
+</div>
+
     <!-- <a href="/about.php" class="<?= $active=='about.php'   ? 'active':'' ?>">About Us</a> -->
 
     <!-- Profile Icon links to login when guest -->

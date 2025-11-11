@@ -6,7 +6,7 @@ session_start();
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Taste of the Caribbean - Location</title>
+  <title>Taste of the Caribbean Restaurant & Catering - Location</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -16,7 +16,7 @@ unset($_SESSION['form_status'], $_SESSION['form_message'], $_SESSION['form_data'
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Catering • Taste of the Caribbean</title>
+    <title>Catering • Taste of the Caribbean Restaurant & Catering</title>
 
     <!-- Unified stylesheet -->
     <link rel="stylesheet" href="css/gstyles.css">
@@ -83,7 +83,7 @@ unset($_SESSION['form_status'], $_SESSION['form_message'], $_SESSION['form_data'
             <div class="form-group">
               <label for="eventDate">Event Date</label>
               <input type="date" id="eventDate" name="eventDate"
-                     value="<?= htmlspecialchars($formData['eventDate'] ?? '') ?>">
+                     value="<?= htmlspecialchars($formData['eventDate'] ?? date('Y-m-d', strtotime('+2 days'))) ?>">
             </div>
 
             <div class="form-group">

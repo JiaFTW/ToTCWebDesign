@@ -1,0 +1,81 @@
+/* ===== DELIVERY PAGE STYLING ===== */
+
+/* Page Container */
+.delivery-page {
+  padding: 60px 20px;
+  background-color: #ffffff;
+  font-family: "Poppins", Arial, sans-serif;
+}
+
+.delivery-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Heading + Subtext */
+.delivery-inner h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0b977b; /* brand green */
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.delivery-text {
+  color: #333;
+  font-size: 1.05rem;
+  max-width: 600px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+
+/* ===== DELIVERY APP BUTTONS ===== */
+.delivery-apps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.delivery-card {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0b977b;  /* brand green */
+  color: #fff;
+  padding: 16px 30px;
+  min-width: 200px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease;
+}
+
+.delivery-card:hover {
+  background-color: #f5bf7d; /* brand peach from footer hover */
+  color: #000;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media screen and (max-width: 768px) {
+  .delivery-apps {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .delivery-card {
+    width: 80%;
+    max-width: 320px;
+  }
+
+  .delivery-inner h1 {
+    font-size: 1.7rem;
+  }
+}
