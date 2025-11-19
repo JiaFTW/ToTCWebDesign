@@ -100,19 +100,19 @@ include __DIR__ . '/scripts/check-services.php';
             </span>
           </a>
 
-          <a href="item.php?item_id=11" class="guyana">
+          <a href="item.php?item_id=125" class="guyana">
             <span class="popup">
               <strong>Guyana</strong>
               <em>Pepper Pot</em>
-              <img src="images/coconut_rice.png" alt="Coconut Rice" class="popimg">
+              <img src="images/pepper-pot.jpg" alt="Pepper Pot" class="popimg">
             </span>
           </a>
 
-          <a href="item.php?item_id=12" class="nicaragua">
+          <a href="item.php?item_id=12" class="trinidadtobago">
             <span class="popup">
-              <strong>Nicaragua</strong>
-              <em>Fish Tacos</em>
-              <img src="images/fish_tacos.png" alt="Fish Tacos" class="popimg">
+              <strong>Trinidad and Tobago</strong>
+              <em>Doubles</em>
+              <img src="images/doubles.jpg" alt="Doubles" class="popimg">
             </span>
           </a>
         </div>
