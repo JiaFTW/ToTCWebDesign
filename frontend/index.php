@@ -136,7 +136,7 @@ include __DIR__ . '/scripts/check-services.php';
 <!-- Location -->
 <section class="address">
   <div class="address-content">
-    <img src="images/location.jpg" alt="Caribbean food on plates on a table">
+    <img src="images/location.png" alt="Caribbean food on plates on a table">
     <div class="address-text">
       <h2>Want to Dine In?</h2>
       <p>
