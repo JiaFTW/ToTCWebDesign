@@ -49,6 +49,18 @@ $cartCount = isset($_SESSION['cart']) && is_array($_SESSION['cart'])
 
     <!-- <a href="/about.php" class="<?= $active=='about.php'   ? 'active':'' ?>">About Us</a> -->
 
+<!-- Social Media Icons -->
+<div class="social-icons">
+  <a href="https://www.instagram.com/tocrestaurant_catering/" target="_blank">
+    <img src="/images/instagram.png" alt="Instagram" class="social-icon">
+  </a>
+
+  <a href="https://www.facebook.com/tocfoodmarket/" target="_blank">
+    <img src="/images/facebook.png" alt="Facebook" class="social-icon">
+  </a>
+</div>
+
+    
     <!-- Profile Icon links to login when guest -->
     <a href="/login.php" class="icon-link <?= $active=='login.php'?'active':'' ?>" title="Login / Profile">
       <img src="/images/profile.svg" alt="Profile">
