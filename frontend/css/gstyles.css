@@ -1351,7 +1351,6 @@ form select {
   margin-bottom: 20px;
 }
 
-<<<<<<< HEAD
 /* Social media icons in navbar */
 .social-icons {
   display: flex;
@@ -1368,7 +1367,6 @@ form select {
 .social-icons .social-icon:hover {
   opacity: 0.7;
 }
-=======
 /* ------------------------------
    CATERING PAGES RESET + STYLING
    ------------------------------ */
@@ -1399,17 +1397,17 @@ form select {
     padding: 10px 28px;
     border-radius: 8px;
     font-weight: 600;
-    border: 2px solid var(--teal);
-    background: var(--white);
-    color: var(--teal);
+    border: 2px solid #007B86;
+    background: #FFFFFF;
+    color: #007B86;
     transition: 0.2s ease;
 }
 
 /* Active / Hover tab */
 .catering-tabs a.active,
 .catering-tabs a:hover {
-    background: var(--teal);
-    color: var(--white);
+    background: #007B86;
+    color: #FFFFFF;
 }
 
 /* Title styling (match Menu page) */
@@ -1418,16 +1416,16 @@ form select {
     font-size: 52px;
     font-weight: 700;
     margin-bottom: 40px;
-    color: var(--text);
+    color: #0B3D5B;
 }
 
 /* Catering Request Form (match Contact page form) */
 .catering-form-container form {
     max-width: 900px;
     margin: auto;
-    background: var(--white);
+    background: #FFFFFF;
     padding: 30px;
-    border: 2px solid var(--beige);
+    border: 2px solid #F5E8D0;
     border-radius: 12px;
 }
 
@@ -1436,15 +1434,15 @@ form select {
 .catering-form-container textarea {
     width: 100%;
     padding: 15px;
-    border: 2px solid var(--beige);
+    border: 2px solid #F5E8D0;
     border-radius: 8px;
     font-size: 16px;
 }
 
 /* Submit button (match your brand button) */
 .catering-form-container button {
-    background: var(--teal);
-    color: var(--white);
+    background: #007B86;
+    color: #FFFFFF;
     border-radius: 8px;
     padding: 12px 30px;
     font-size: 18px;
@@ -1454,7 +1452,6 @@ form select {
 }
 
 .catering-form-container button:hover {
-    background: var(--accent);
+    background:#FFB300;
 }
 
->>>>>>> 70975c8 ( Changed the placement of the catering menu from the menu tab to the catering tab but the colors are wrong. I still need to continue the forgot password, to get the reset password verifcation.)
