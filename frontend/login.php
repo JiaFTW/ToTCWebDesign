@@ -8,6 +8,10 @@ include __DIR__ . '/scripts/check-services.php';
 // Grab & clear any flash error
 $loginError = $_SESSION['login_error'] ?? '';
 unset($_SESSION['login_error']);
+
+// Grab & clear reset notice
+$resetNotice = $_SESSION['reset_notice'] ?? '';
+unset($_SESSION['reset_notice']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,9 +44,18 @@ unset($_SESSION['login_error']);
         </header>
 
         <div class="contact-form" style="padding: 24px;">
+          
+          <!-- EXISTING LOGIN ERROR MESSAGE -->
           <?php if ($loginError): ?>
             <div class="form-status error" style="margin-bottom: 12px;">
               <?= htmlspecialchars($loginError) ?>
+            </div>
+          <?php endif; ?>
+
+          <!-- NEW: RESET NOTICE MESSAGE -->
+          <?php if ($resetNotice): ?>
+            <div class="form-status success" style="margin-bottom: 12px;">
+              <?= htmlspecialchars($resetNotice) ?>
             </div>
           <?php endif; ?>
 
@@ -68,13 +81,6 @@ unset($_SESSION['login_error']);
               >
             </div>
 
-           
-            <p style="margin: 6px 0 10px 0; font-family: Poppins, sans-serif;">
-              <a href="/forgot_password.php" style="color: var(--teal); font-weight: 600;">
-                Forgot your password?
-              </a>
-            </p>
-
             <div class="form-actions" style="margin-top: 16px;">
               <button type="submit" class="btn">Login</button>
             </div>
@@ -84,6 +90,11 @@ unset($_SESSION['login_error']);
             Don't have an account?
             <a href="register.php" style="color: var(--teal); font-weight: 600;">Register here</a>
           </p>
+
+          <p style="margin-top: 8px; font-family: Poppins, sans-serif;">
+            <a href="forgot_password.php" style="color: var(--teal); font-weight: 600;">Forgot your password?</a>
+          </p>
+
         </div>
       </div>
     </section>

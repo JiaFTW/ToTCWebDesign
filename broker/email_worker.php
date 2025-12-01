@@ -1,107 +1,143 @@
 <?php
 /**
- * EMAIL WORKER
- * ---------------------------
- * Listens for messages from RabbitMQ in the "email_queue"
- * and sends password reset codes to users.
+ * Email Worker for Taste of the Caribbean
+ * Listens on RabbitMQ and sends Reset Code emails
  */
 
-require_once __DIR__ . '/../../vendor/autoload.php';
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+echo "-----------------------------------------\n";
+echo " Email Worker Starting...\n";
+echo "-----------------------------------------\n";
+
+// Load Composer
+$autoload = __DIR__ . '/../../vendor/autoload.php';
+if (!file_exists($autoload)) {
+    echo "ERROR: vendor/autoload.php not found at: $autoload\n";
+    exit(1);
+}
+require_once $autoload;
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-// CONNECT TO RABBITMQ
+// Connect to RabbitMQ
 try {
     $connection = new AMQPStreamConnection(
-        '98.82.149.231',   // your RabbitMQ host
-        5672,              // port
-        'totc',            // username
-        'Totc2025'         // password
+        '98.82.149.231',
+        5672,
+        'totc',
+        'Totc2025'
     );
-    $channel = $connection->channel();
+    echo "[✓] Connected to RabbitMQ\n";
 } catch (Throwable $e) {
-    die("Failed to connect to RabbitMQ: " . $e->getMessage());
+    echo "[ERROR] Could not connect to RabbitMQ:\n";
+    echo $e->getMessage() . "\n";
+    exit(1);
 }
 
-// DECLARE QUEUE
-$channel->queue_declare(
-    'email_queue',  // queue name
-    false,
-    true,
-    false,
-    false
-);
+$channel = $connection->channel();
 
-echo " [*] Email worker is running and waiting for messages...\n";
+// Declare queue
+$queueName = 'email_queue';
+$channel->queue_declare($queueName, false, true, false, false);
+
+echo "[✓] Listening on queue: {$queueName}\n";
 
 
-// CALLBACK: HANDLE INCOMING MESSAGES
+// MAIN CALLBACK ---------------------------------------------------------------
 $callback = function ($msg) {
-
-    echo " [x] Received message: " . $msg->body . "\n";
+    echo "-----------------------------------------\n";
+    echo "[x] Received message: {$msg->body}\n";
 
     $data = json_decode($msg->body, true);
 
-    if (!isset($data['action'])) {
-        echo " [!] Unknown message type.\n";
+    if (!is_array($data)) {
+        echo "[!] ERROR: Message is not valid JSON.\n";
         $msg->ack();
         return;
     }
 
-    /**
-     * HANDLE RESET CODE EMAIL
-     */
-    if ($data['action'] === 'send_reset_code') {
-
-        $email = $data['email'];
-        $code  = $data['code'];
-
-        echo " [>] Sending reset code to: {$email}\n";
-
-        // Email content
-        $subject = "Your Taste of the Caribbean Password Reset Code";
-        $message = "
-Hello,
-
-Your password reset code is: {$code}
-
-This code expires in 10 minutes.
-
-If you did not request a password reset, please ignore this email.
-
-- Taste of the Caribbean
-";
-        $headers = "From: no-reply@tasteofthecaribbeanfoodmarket.com\r\n";
-
-        // SEND EMAIL
-        if (mail($email, $subject, $message, $headers)) {
-            echo " [+] Email sent to {$email}\n";
-        } else {
-            echo " [!] Failed to send email to {$email}\n";
-        }
+    if (($data['action'] ?? '') !== 'send_reset_code') {
+        echo "[!] ERROR: Unknown action.\n";
+        $msg->ack();
+        return;
     }
 
-    // Acknowledge message
+    $email = $data['email'] ?? null;
+    $code  = $data['code'] ?? null;
+
+    if (!$email || !$code) {
+        echo "[!] ERROR: Missing email or code.\n";
+        $msg->ack();
+        return;
+    }
+
+    echo "[>] Sending reset code to: {$email}\n";
+
+    // Build email message
+    $subject = "Your Taste of the Caribbean Password Reset Code";
+    $body = "
+        Hello,<br><br>
+        Your password reset code is: <strong>{$code}</strong><br><br>
+        This code expires in 10 minutes.<br><br>
+        If you did not request this, ignore this email.<br><br>
+        - Taste of the Caribbean Team
+    ";
+
+    // PHPMailer setup
+    $mail = new PHPMailer(true);
+
+    try {
+        // SMTP SETTINGS (these work on any server that supports authenticated SMTP)
+
+
+        ///// Come back to this and put real SMTP credentials /////
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';           
+        $mail->SMTPAuth = true;
+        $mail->Username = 'tastecaribiannoreply@gmail.com';  // Replace with real sending account
+        $mail->Password = 'app-password-here';               // Use an app password (important)
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 587;
+
+        // From / To
+        $mail->setFrom('no-reply@tasteofthecaribbeanfoodmarket.com', 'Taste of the Caribbean');
+        $mail->addAddress($email);
+
+        // Content
+        $mail->isHTML(true);
+        $mail->Subject = $subject;
+        $mail->Body    = $body;
+
+        $mail->send();
+
+        echo "[✓] Email sent successfully to {$email}\n";
+
+    } catch (Exception $e) {
+        echo "[!] ERROR: PHPMailer failed: {$mail->ErrorInfo}\n";
+
+        // Save failures in a clean log
+        file_put_contents(
+            __DIR__ . "/email_worker.log",
+            date('c') . " PHPMailer error for {$email}: {$mail->ErrorInfo}\n",
+            FILE_APPEND
+        );
+    }
+
     $msg->ack();
+    echo "[✓] Done processing message.\n";
 };
 
 
-// CONSUME MESSAGES
-$channel->basic_consume(
-    'email_queue',
-    '',
-    false,
-    false,
-    false,
-    false,
-    $callback
-);
+// RUN WORKER ------------------------------------------------------------------
+$channel->basic_qos(null, 1, null);
+$channel->basic_consume($queueName, '', false, false, false, false, $callback);
 
-// KEEP WORKER ALIVE
+echo "[*] Worker is running... Waiting for messages...\n";
+
 while ($channel->is_consuming()) {
     $channel->wait();
 }
-
-$channel->close();
-$connection->close();
-?>

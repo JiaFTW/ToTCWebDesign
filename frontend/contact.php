@@ -1,127 +1,83 @@
 <?php
 session_start();
 
-// Check critical services FIRST
-include __DIR__ . '/scripts/check-services.php';
-
-// Display form status messages if they exist
-$formStatus  = $_SESSION['form_status'] ?? '';
-$formMessage = $_SESSION['form_message'] ?? '';
-$formData    = $_SESSION['form_data'] ?? [];
-
-// Clear session vars after showing message
-unset($_SESSION['form_status'], $_SESSION['form_message'], $_SESSION['form_data']);
+// Get any contact form status message
+$contactStatus = $_SESSION['contact_status'] ?? '';
+unset($_SESSION['contact_status']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Catering • Taste of the Caribbean Restaurant & Catering</title>
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Us • Taste of the Caribbean</title>
 
-    <!-- Unified stylesheet -->
-    <link rel="stylesheet" href="css/gstyles.css">
+  <link rel="stylesheet" href="css/gstyles.css">
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,500&family=Faculty+Glyphic&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  </head>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,500&family=Faculty+Glyphic&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
 
-  <body>
-    <?php
-      if (isset($_SESSION['username'])) {
-        include __DIR__ . '/includes/header_user.php';
-      } else {
-        include __DIR__ . '/includes/header_guest.php';
-      }
-    ?>
+<body>
 
-    <main class="contact-container">
-      <section class="contact-card">
-        <header>
-          <h1>Catering Request</h1>
-        </header>
+<?php
+  if (isset($_SESSION['username'])) {
+    include __DIR__.'/includes/header_user.php';
+  } else {
+    include __DIR__.'/includes/header_guest.php';
+  }
+?>
 
-        <div class="contact-form">
-          <p>
-            Let us cater your next big event! Submit your inquiry and we’ll get back to you within 1–2 business days.
-          </p>
+<main class="main-content">
+  <section class="contact-container">
+    <div class="contact-card" style="max-width: 600px; margin: 0 auto;">
+      
+      <header>
+        <h1>Contact Us</h1>
+        <p style="font-family: Poppins, sans-serif; margin-top: 6px;">
+          Have questions? Send us a message and we'll get back to you shortly.
+        </p>
+      </header>
 
-          <?php if ($formStatus): ?>
-            <div class="form-message <?= htmlspecialchars($formStatus) ?>">
-              <?= htmlspecialchars($formMessage) ?>
-            </div>
-          <?php endif; ?>
+      <div class="contact-form" style="padding: 24px;">
 
-          <form id="orderForm" action="scripts/process-catering.php" method="POST">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="firstName" class="required">First Name</label>
-                <input type="text" id="firstName" name="firstName" required
-                       value="<?= htmlspecialchars($formData['firstName'] ?? '') ?>">
-              </div>
-              <div class="form-group">
-                <label for="lastName" class="required">Last Name</label>
-                <input type="text" id="lastName" name="lastName" required
-                       value="<?= htmlspecialchars($formData['lastName'] ?? '') ?>">
-              </div>
-            </div>
+        <!-- Success / Error Message -->
+        <?php if ($contactStatus): ?>
+          <div class="form-status success" style="margin-bottom: 12px;">
+            <?= htmlspecialchars($contactStatus) ?>
+          </div>
+        <?php endif; ?>
 
-            <div class="form-group">
-              <label for="email" class="required">Email Address</label>
-              <input type="email" id="email" name="email" required
-                     pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                     value="<?= htmlspecialchars($formData['email'] ?? '') ?>">
-            </div>
+        <form action="/backend/api/contact_form.php" method="POST">
 
-            <div class="form-group">
-              <label for="phone" class="required">Phone Number</label>
-              <input type="tel" id="phone" name="phone" required
-                     value="<?= htmlspecialchars($formData['phone'] ?? '') ?>">
-            </div>
+          <div class="form-group">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required>
+          </div>
 
-            <div class="form-group">
-              <label for="eventDate">Event Date</label>
-              <input type="date" id="eventDate" name="eventDate"
-                     value="<?= htmlspecialchars($formData['eventDate'] ?? date('Y-m-d', strtotime('+2 days'))) ?>">
-            </div>
+          <div class="form-group">
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" required>
+          </div>
 
-            <div class="form-group">
-              <label for="orderDetails" class="required">Order Details</label>
-              <textarea id="orderDetails" name="orderDetails" required
-                        placeholder="Please specify what you would like to order and the quantities..."><?= htmlspecialchars($formData['orderDetails'] ?? '') ?></textarea>
-            </div>
+          <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
 
-            <div class="form-actions">
-              <button type="submit" class="btn">Submit Request</button>
-              <p class="notification">Fields marked with <span style="color:#e74c3c">*</span> are required</p>
-            </div>
-          </form>
-        </div>
-      </section>
-    </main>
+          <div class="form-actions" style="margin-top: 16px;">
+            <button type="submit" class="btn">Send Message</button>
+          </div>
 
-    <?php include __DIR__ . '/includes/footer.php'; ?>
+        </form>
 
-    <script>
-      document.getElementById('orderForm').addEventListener('submit', function(e) {
-        const requiredFields = ['firstName','lastName','email','phone','orderDetails'];
-        for (const id of requiredFields) {
-          if (!document.getElementById(id).value.trim()) {
-            e.preventDefault();
-            alert('Please fill in all required fields.');
-            return false;
-          }
-        }
+      </div>
+    </div>
+  </section>
+</main>
 
-        const email = document.getElementById('email').value.trim();
-        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-        if (!emailRegex.test(email)) {
-          e.preventDefault();
-          alert('Please enter a valid email address.');
-          return false;
-        }
-      });
-    </script>
-  </body>
+<?php include __DIR__.'/includes/footer.php'; ?>
+
+</body>
 </html>

@@ -1,48 +1,85 @@
 <?php
-// backend/api/send_reset.php
+session_start();
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
-require_once __DIR__ . '/../db/database.php';
-
-// Only POST allowed
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    die("This endpoint only accepts POST requests.");
-}
-
-// Get email
-$email = trim($_POST['email'] ?? '');
-if (!$email) {
-    http_response_code(400);
-    die("Email is required.");
-}
-
-// Connect to DB
+require_once __DIR__ . '/database.php';
 $db = getDB();
 
-// Check if user exists
-$stmt = $db->prepare("SELECT user_id FROM users WHERE email = ?");
+// Get email from the form
+$email = trim($_POST['email'] ?? '');
+
+if (!$email) {
+    die("❌ Email is required.");
+}
+
+// Check if this email exists
+$stmt = $db->prepare("SELECT email FROM users WHERE email = ?");
 $stmt->execute([$email]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
+// Don't reveal if the email exists
 if (!$user) {
-    http_response_code(404);
-    die("No account found with that email.");
+    echo "If this email exists, a reset code has been sent.";
+    exit;
 }
 
-// Generate a secure 6-digit code
-$code = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
-$expires = date("Y-m-d H:i:s", time() + 900); // 15 minutes
+/* -----------------------
+   1. Generate 6-digit code
+   ----------------------- */
+$code = random_int(100000, 999999);
+$expires = date('Y-m-d H:i:s', time() + 600); // expires in 10 minutes
 
-// Save into database
-$update = $db->prepare("
+/* -----------------------
+   2. Store reset code
+   ----------------------- */
+$upd = $db->prepare("
     UPDATE users 
     SET reset_code = ?, reset_expires = ?
-    WHERE user_id = ?
+    WHERE email = ?
 ");
-$update->execute([$code, $expires, $user['user_id']]);
+$upd->execute([$code, $expires, $email]);
 
-// TEMPORARY DEBUG OUTPUT (for testing)
-echo "Reset code generated: $code";
+/* -----------------------
+   3. Send to RabbitMQ queue
+   ----------------------- */
 
+$autoload = __DIR__ . '/../../vendor/autoload.php';
+if (file_exists($autoload)) {
+    require_once $autoload;
 
-?>
+    if (class_exists(\PhpAmqpLib\Connection\AMQPStreamConnection::class)) {
+        try {
+            $connection = new \PhpAmqpLib\Connection\AMQPStreamConnection(
+                '98.82.149.231', 5672, 'totc', 'Totc2025'
+            );
+            $channel = $connection->channel();
+
+            // Queue name must match worker
+            $channel->queue_declare('email_queue', false, true, false, false);
+
+            $msg = new \PhpAmqpLib\Message\AMQPMessage(json_encode([
+                'action' => 'send_reset_code',
+                'email'  => $email,
+                'code'   => $code
+            ]), [
+                'delivery_mode' => 2
+            ]);
+
+            $channel->basic_publish($msg, '', 'email_queue');
+
+            $channel->close();
+            $connection->close();
+
+        } catch (Throwable $e) {
+            error_log("RabbitMQ ERROR: " . $e->getMessage());
+        }
+    }
+}
+
+/* -----------------------
+   4. Final user response
+   ----------------------- */
+
+echo "If this email exists, a reset code has been sent to it.";
+exit;
