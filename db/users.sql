@@ -7,3 +7,11 @@
 );
 
 
+ALTER TABLE users 
+ADD COLUMN reset_code VARCHAR(10) NULL,
+ADD COLUMN reset_expires DATETIME NULL,
+ADD COLUMN is_admin TINYINT(1) NOT NULL DEFAULT 0;
+
+UPDATE users
+SET is_admin = 1
+WHERE email = 'cfish@tocfoodmarket.com';

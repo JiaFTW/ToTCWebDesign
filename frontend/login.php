@@ -68,6 +68,13 @@ unset($_SESSION['login_error']);
               >
             </div>
 
+           
+            <p style="margin: 6px 0 10px 0; font-family: Poppins, sans-serif;">
+              <a href="/forgot_password.php" style="color: var(--teal); font-weight: 600;">
+                Forgot your password?
+              </a>
+            </p>
+
             <div class="form-actions" style="margin-top: 16px;">
               <button type="submit" class="btn">Login</button>
             </div>
