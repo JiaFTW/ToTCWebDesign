@@ -11,8 +11,8 @@ $cartCount = isset($_SESSION['cart']) && is_array($_SESSION['cart'])
 
   <div class="nav-left">
     <a href="/index.php" class="logo">
-      <img src="/images/TOC_Logo.png" alt="Taste of the Caribbean">
-      <span class="brand">Taste of the Caribbean</span>
+      <img src="/images/WTOC_Logo.png" alt="Taste of the Caribbean Restaurant & Catering">
+      <span class="brand">Taste of the Caribbean Restaurant & Catering</span>
     </a>
   </div>
 
@@ -21,9 +21,46 @@ $cartCount = isset($_SESSION['cart']) && is_array($_SESSION['cart'])
     <a href="/menu.php"  class="<?= $active=='menu.php'  ? 'active':'' ?>">Menu</a>
     <a href="/location.php" class="<?= $active=='hours.php' ? 'active':'' ?>">Location</a>
     <a href="/map.php"   class="<?= $active=='map.php'   ? 'active':'' ?>">Map</a>
-    <a href="/contact.php" class="<?= $active=='contact.php'? 'active':'' ?>">Catering</a>
+    <a href="/catering.php" class="<?= $active=='catering.php'? 'active':'' ?>">Catering</a>
+    <!-- delivery dropdown -->
+    <div class="dropdown">
+  <a href="#" class="nav-link dropbtn <?= $active=='delivery.php' ? 'active' : '' ?>">
+    Delivery ▾
+  </a>
+  <div class="dropdown-menu">
+    <a href="https://www.ubereats.com/store/taste-of-the-caribbean-restaurant-%26-catering/TgRJIF_ZRN-q-sTH0nkpmw?diningMode=DELIVERY"
+       target="_blank" rel="noopener">
+      Uber Eats
+    </a>
+    <a href="https://www.doordash.com/store/taste-of-the-caribbean-restaurant-&-catering-newark-34154629/"
+       target="_blank" rel="noopener">
+      DoorDash
+    </a>
+    <a href="https://www.grubhub.com/restaurant/taste-of-the-caribbean-restaurant--catering-4-branford-pl-newark/11330840"
+       target="_blank" rel="noopener">
+      Grubhub
+    </a>
+     <a href="https://order.toasttab.com/online/taste-of-the-caribbean-restaurant-and-4-branford-pl"
+       target="_blank" rel="noopener">
+      In house Delivery
+    </a>
+  </div>
+</div>
+
     <!-- <a href="/about.php" class="<?= $active=='about.php'   ? 'active':'' ?>">About Us</a> -->
 
+<!-- Social Media Icons -->
+<div class="social-icons">
+  <a href="https://www.instagram.com/tocrestaurant_catering/" target="_blank">
+    <img src="/images/instagram.png" alt="Instagram" class="social-icon">
+  </a>
+
+  <a href="https://www.facebook.com/tocfoodmarket/" target="_blank">
+    <img src="/images/facebook.png" alt="Facebook" class="social-icon">
+  </a>
+</div>
+
+    
     <!-- Profile Icon links to login when guest -->
     <a href="/login.php" class="icon-link <?= $active=='login.php'?'active':'' ?>" title="Login / Profile">
       <img src="/images/profile.svg" alt="Profile">

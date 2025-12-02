@@ -634,6 +634,59 @@ nav.navbar {
   border-color: var(--beige);
 }
 
+/* =====  DROPDOWN (Delivery) ===== */
+
+.nav-right .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+
+.nav-right .dropbtn {
+  display: inline-block;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: #F5E8D0;
+}
+
+
+.nav-right .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;         
+  left: 0;
+  background-color:#f5bf7d;
+
+  min-width: 180px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  border-radius: 6px;
+  z-index: 1000;
+}
+
+/* Links inside the dropdown */
+.nav-right .dropdown-menu a {
+  display: block;
+  padding: 10px 14px;
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.nav-right .dropdown-menu a:hover {
+  background-color: #f5f5f5;
+}
+
+/* Show dropdown on hover */
+.nav-right .dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+
+.nav-right .dropdown:hover .dropbtn {
+  color: #f5f5f5; 
+}
+
 #menu-grid .card {
   background: #FFFFFF;
   border: 3px solid var(--beige);
@@ -1297,3 +1350,108 @@ form select {
   border-radius: 8px;
   margin-bottom: 20px;
 }
+
+/* Social media icons in navbar */
+.social-icons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.social-icons .social-icon {
+  width: 22px;
+  height: 22px;
+  transition: opacity 0.2s ease;
+}
+
+.social-icons .social-icon:hover {
+  opacity: 0.7;
+}
+/* ------------------------------
+   CATERING PAGES RESET + STYLING
+   ------------------------------ */
+
+/* Remove teal box or teal header from catering pages */
+.catering-wrapper,
+.catering-form-container,
+.catering-form-container .form-header,
+.catering-form-container h1,
+.catering-form-container h2 {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* Tabs container spacing */
+.catering-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+/* Tab button (match Menu category buttons) */
+.catering-tabs a {
+    font-size: 18px;
+    padding: 10px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    border: 2px solid #007B86;
+    background: #FFFFFF;
+    color: #007B86;
+    transition: 0.2s ease;
+}
+
+/* Active / Hover tab */
+.catering-tabs a.active,
+.catering-tabs a:hover {
+    background: #007B86;
+    color: #FFFFFF;
+}
+
+/* Title styling (match Menu page) */
+.catering-title {
+    text-align: center;
+    font-size: 52px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: #0B3D5B;
+}
+
+/* Catering Request Form (match Contact page form) */
+.catering-form-container form {
+    max-width: 900px;
+    margin: auto;
+    background: #FFFFFF;
+    padding: 30px;
+    border: 2px solid #F5E8D0;
+    border-radius: 12px;
+}
+
+/* Input & textarea styling */
+.catering-form-container input,
+.catering-form-container textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #F5E8D0;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+/* Submit button (match your brand button) */
+.catering-form-container button {
+    background: #007B86;
+    color: #FFFFFF;
+    border-radius: 8px;
+    padding: 12px 30px;
+    font-size: 18px;
+    border: none;
+    margin-top: 20px;
+    transition: 0.2s;
+}
+
+.catering-form-container button:hover {
+    background:#FFB300;
+}
+

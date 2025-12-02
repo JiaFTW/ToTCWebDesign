@@ -9,7 +9,7 @@ include __DIR__ . '/scripts/check-services.php';
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Taste of the Caribbean</title>
+    <title>Taste of the Caribbean Resturant & Catering</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
