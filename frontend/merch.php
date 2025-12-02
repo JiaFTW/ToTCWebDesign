@@ -35,46 +35,50 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body>
-  <?php
-  if (isset($_SESSION['username'])) {
-    include __DIR__ . '/includes/header_user.php';
-  } else {
-    include __DIR__ . '/includes/header_guest.php';
-  } ?>
-    
-  <div class="main-content">
+<?php
+if (isset($_SESSION['username'])) {
+  include __DIR__ . '/includes/header_user.php';
+} else {
+  include __DIR__ . '/includes/header_guest.php';
+}
+?>
 
-    <div class="container py-5">
-      <h1 class="display-4 text-center mb-4">
-        Merch
-      </h1>
-      <div id="menu-grid" class="row">
-        <?php if ($items): ?>
-          <?php foreach ($items as $i): ?>
-            <div class="col-md-4 mb-4">
+<div class="main-content">
+
+  <div class="container py-5">
+    <h1 class="display-4 text-center mb-4">Merch</h1>
+
+    <div id="menu-grid" class="row">
+      <?php if ($items): ?>
+        <?php foreach ($items as $i): ?>
+          <div class="col-md-4 mb-4">
+            <a href="merch_item.php?item_id=<?= $i['id'] ?>" class="text-decoration-none text-dark">
               <div class="card h-100 shadow-sm">
                 <?php if (!empty($i['image_name'])): ?>
                   <img src="/images/<?= htmlspecialchars($i['image_name']) ?>"
                        class="card-img-top"
                        alt="<?= htmlspecialchars($i['item_name']) ?>">
                 <?php endif; ?>
+
                 <div class="card-body">
                   <h5 class="card-title"><?= htmlspecialchars($i['item_name']) ?></h5>
                   <p class="card-text"><?= htmlspecialchars($i['description']) ?></p>
                 </div>
+
                 <div class="card-footer text-right">
                   <strong>$<?= number_format((float)$i['price'], 2) ?></strong>
                 </div>
               </div>
-            </div>
-          <?php endforeach; ?>
-        <?php else: ?>
-          <div class="col-12 text-muted">No items found.</div>
-        <?php endif; ?>
-      </div>
+            </a>
+          </div>
+        <?php endforeach; ?>
+      <?php else: ?>
+        <div class="col-12 text-muted">No items found.</div>
+      <?php endif; ?>
     </div>
-
   </div>
+
+</div>
 
 <?php include __DIR__.'/includes/footer.php'; ?>
 </body>

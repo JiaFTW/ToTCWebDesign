@@ -20,8 +20,8 @@ $item_id = intval($_GET['item_id'] ?? 0);
 require __DIR__ . '/backend/api/database.php';
 $db = getDB();
 $stmt = $db->prepare(
-  'SELECT item_name, description, price, image_name, category
-   FROM menu_items WHERE id = :id'
+  'SELECT item_name, description, price, image_name
+   FROM merch_items WHERE id = :id'
 );
 $stmt->execute(['id' => $item_id]);
 $item = $stmt->fetch(PDO::FETCH_ASSOC);
