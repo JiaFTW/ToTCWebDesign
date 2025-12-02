@@ -18,9 +18,9 @@ require __DIR__ . '/backend/api/database.php';
 $db = getDB();
 
 $stmt = $db->query(
-    'SELECT id, item_name, description, price, image_name
-     FROM merch_items
-     ORDER BY id ASC'
+  'SELECT id, item_name, description, price, image_name
+   FROM merch_items
+   ORDER BY id ASC'
 );
 $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -40,14 +40,15 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
     include __DIR__ . '/includes/header_user.php';
   } else {
     include __DIR__ . '/includes/header_guest.php';
-  }
-  ?>
+  } ?>
     
   <div class="main-content">
-    <div class="container py-5">
-      <h1 class="display-4 text-center mb-4">Merch</h1>
 
-      <div class="row">
+    <div class="container py-5">
+      <h1 class="display-4 text-center mb-4">
+        Merch
+      </h1>
+      <div id="menu-grid" class="row">
         <?php if ($items): ?>
           <?php foreach ($items as $i): ?>
             <div class="col-md-4 mb-4">
@@ -57,33 +58,24 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
                        class="card-img-top"
                        alt="<?= htmlspecialchars($i['item_name']) ?>">
                 <?php endif; ?>
-
                 <div class="card-body">
                   <h5 class="card-title"><?= htmlspecialchars($i['item_name']) ?></h5>
-                  <?php if (!empty($i['description'])): ?>
-                    <p class="card-text"><?= htmlspecialchars($i['description']) ?></p>
-                  <?php endif; ?>
+                  <p class="card-text"><?= htmlspecialchars($i['description']) ?></p>
                 </div>
-
-                <div class="card-footer d-flex justify-content-between align-items-center">
+                <div class="card-footer text-right">
                   <strong>$<?= number_format((float)$i['price'], 2) ?></strong>
-                  <form method="post" action="/backend/api/cart_add.php" class="mb-0">
-                    <input type="hidden" name="item_id" value="<?= (int)$i['id'] ?>">
-                    <input type="hidden" name="source" value="merch">
-                    <button type="submit" class="btn btn-sm btn-primary">Add to Cart</button>
-                  </form>
                 </div>
               </div>
             </div>
           <?php endforeach; ?>
-
         <?php else: ?>
-          <div class="col-12 text-center text-muted">No merch items available yet.</div>
+          <div class="col-12 text-muted">No items found.</div>
         <?php endif; ?>
       </div>
     </div>
+
   </div>
 
-</body>
 <?php include __DIR__.'/includes/footer.php'; ?>
+</body>
 </html>
