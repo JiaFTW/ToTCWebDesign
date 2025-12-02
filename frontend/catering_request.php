@@ -1,3 +1,6 @@
+<head>
+    <link rel="stylesheet" href="css/gstyles.css">
+</head>
 <div class="catering-form-wrapper">
 
     <!-- Header bar -->
