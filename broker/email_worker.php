@@ -98,7 +98,7 @@ $callback = function ($msg) {
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';           
         $mail->SMTPAuth = true;
-        $mail->Username = 'tastecaribiannoreply@gmail.com';  // Replace with real sending account
+        $mail->Username = 'catering@totcfoodmarket.com';  // Replace with real sending account
         $mail->Password = 'app-password-here';               // Use an app password (important)
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
