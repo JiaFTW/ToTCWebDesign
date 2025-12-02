@@ -119,6 +119,72 @@ $item = $stmt->fetch(PDO::FETCH_ASSOC);
             $<?= number_format($item['price'], 2) ?>
           </h4>
 
+          <!-- form -->
+          <form
+            action="/backend/api/add_to_cart.php"
+            method="POST"
+            id="add-to-cart"
+          >
+            <input
+              type="hidden"
+              name="item_id"
+              value="<?= $item_id ?>"
+            >
+            <input
+              type="hidden"
+              name="name"
+              value="<?= htmlspecialchars($item['item_name']) ?>"
+            >
+            <input
+              type="hidden"
+              name="price"
+              id="base-price"
+              value="<?= $item['price'] ?>"
+            >
+
+            <div class="form-group">
+              <label for="size">Size</label>
+              <select
+                name="size"
+                id="size"
+                class="form-control w-50"
+              >
+                <option value="s">Small</option>
+                <option value="m">Medium</option>
+                <option value="l">Large</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="quantity">Quantity</label>
+              <input
+                type="number"
+                name="quantity"
+                id="quantity"
+                class="form-control w-25"
+                value="1"
+                min="1"
+              >
+            </div>
+
+            <!-- buttons in a row -->
+            <div class="actions-row">
+              <button
+                type="submit"
+                class="btn"
+              >
+                Add to Order
+              </button>
+
+              <a
+                href="cart.php"
+                class="btn btn-outline-secondary"
+                role="button"
+              >
+                View Order
+              </a>
+            </div>
+          </form>
         </div>
       </div>
 

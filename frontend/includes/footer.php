@@ -8,6 +8,7 @@
       <a href="/about.php">About Us</a>
       <a href="/contact.php">Contact</a>
       <a href="/privacy.php">Privacy Policy</a>
+      <a href="/careers.php">Careers</a>
     </nav>
   </div>
 </footer>

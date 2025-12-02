@@ -1,5 +1,8 @@
-<div class="container py-5">
-  <h1 class="display-4 text-center mb-4">Catering Menu</h1>
+<head>
+  <link rel="stylesheet" href="css/gstyles.css">
+</head>
+<div class="container py-5 catering-wrapper">
+  <h1 class="catering-title">Catering Menu</h1>
   <div id="catering-grid" class="row"></div>
 </div>
 
@@ -14,7 +17,7 @@
 
           if (!items.length) {
             return $grid.html(`
-              <div class="col-12 text-muted text-center">
+              <div class="col-12" style="text-align:center; color:#777;">
                 No catering items available at the moment.
               </div>
             `);
@@ -24,7 +27,7 @@
             $grid.append(`
               <div class="col-md-4 mb-4">
                 <a href="item.php?item_id=${i.item_id}" class="text-decoration-none text-dark">
-                  <div class="card h-100 shadow-sm">
+                  <div class="card h-100">
                     <img src="/images/${i.image_name}" 
                          class="card-img-top" 
                          alt="${i.item_name}">
@@ -32,7 +35,7 @@
                       <h5 class="card-title">${i.item_name}</h5>
                       <p class="card-text">${i.description}</p>
                     </div>
-                    <div class="card-footer text-right">
+                    <div class="card-footer" style="text-align:right;">
                       <strong>$${parseFloat(i.price).toFixed(2)}</strong>
                     </div>
                   </div>
@@ -43,7 +46,7 @@
         })
         .fail(() => {
           $('#catering-grid').html(`
-            <div class="col-12 text-danger text-center">
+            <div class="col-12" style="text-align:center; color:#A30000;">
               Unable to load catering items. Please try again later.
             </div>
           `);

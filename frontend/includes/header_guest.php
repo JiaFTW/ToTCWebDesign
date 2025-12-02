@@ -21,6 +21,7 @@ $cartCount = isset($_SESSION['cart']) && is_array($_SESSION['cart'])
     <a href="/menu.php"  class="<?= $active=='menu.php'  ? 'active':'' ?>">Menu</a>
     <a href="/location.php" class="<?= $active=='hours.php' ? 'active':'' ?>">Location</a>
     <a href="/map.php"   class="<?= $active=='map.php'   ? 'active':'' ?>">Map</a>
+    <a href="/merch.php"   class="<?= $active=='merch.php'   ? 'active':'' ?>">Merch</a>
     <a href="/catering.php" class="<?= $active=='catering.php'? 'active':'' ?>">Catering</a>
     <!-- delivery dropdown -->
     <div class="dropdown">
